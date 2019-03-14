@@ -1,0 +1,739 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!28 &-6946013704545917399
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AbsoluteNeonScript SDF Atlas
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 2
+  m_Width: 32
+  m_Height: 32
+  m_CompleteImageSize: 1024
+  m_TextureFormat: 1
+  m_MipCount: 1
+  m_IsReadable: 0
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 0
+    m_WrapV: 0
+    m_WrapW: 0
+  m_LightmapFormat: 0
+  m_ColorSpace: 0
+  image data: 1024
+  _typelessdata: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+  m_Name: AbsoluteNeonScript SDF
+  m_EditorClassIdentifier: 
+  hashCode: -894552061
+  material: {fileID: 21565887176083468}
+  materialHashCode: 126838440
+  fontAssetType: 1
+  m_fontInfo:
+    Name: Absolute Neon Script
+    PointSize: 0
+    Scale: 0
+    CharacterCount: 55
+    LineHeight: 0.0625
+    Baseline: 0
+    Ascender: 0.0625
+    CapHeight: 0
+    Descender: 0
+    CenterLine: 0
+    SuperscriptOffset: 0.0625
+    SubscriptOffset: -0
+    SubSize: 0.5
+    Underline: -0
+    UnderlineThickness: 5
+    strikethrough: 0.022727273
+    strikethroughThickness: 5
+    TabWidth: 0
+    Padding: 5
+    AtlasWidth: 32
+    AtlasHeight: 32
+  atlas: {fileID: -6946013704545917399}
+  m_glyphInfoList:
+  - id: 32
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 33
+    x: 6
+    y: 25
+    width: 0.0625
+    height: 0.0625
+    xOffset: 0
+    yOffset: 0.0625
+    xAdvance: 0
+    scale: 1
+  - id: 34
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 35
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 36
+    x: 6
+    y: 13
+    width: 0.125
+    height: 0.0625
+    xOffset: -0.0625
+    yOffset: 0.0625
+    xAdvance: 0
+    scale: 1
+  - id: 37
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 38
+    x: 18
+    y: 25
+    width: 0.0625
+    height: 0.0625
+    xOffset: 0
+    yOffset: 0.0625
+    xAdvance: 0
+    scale: 1
+  - id: 39
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 40
+    x: 18
+    y: 13
+    width: 0.0625
+    height: 0.0625
+    xOffset: 0
+    yOffset: 0.0625
+    xAdvance: 0
+    scale: 1
+  - id: 42
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 44
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 45
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 47
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 48
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 51
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 52
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 57
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 60
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0.0625
+    scale: 1
+  - id: 61
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 62
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0.0625
+    scale: 1
+  - id: 65
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 66
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 68
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 70
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 71
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 72
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 73
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 74
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 75
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 76
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 77
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0.0625
+    scale: 1
+  - id: 79
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 81
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0.0625
+    scale: 1
+  - id: 84
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 85
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 86
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 87
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0.0625
+    scale: 1
+  - id: 88
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0.0625
+    scale: 1
+  - id: 92
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 95
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 98
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 100
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 104
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 105
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 108
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 111
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 113
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 114
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 118
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 120
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: -0.0625
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 123
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 124
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 125
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 126
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  - id: 160
+    x: 6
+    y: 37
+    width: 0
+    height: 0
+    xOffset: 0
+    yOffset: 0
+    xAdvance: 0
+    scale: 1
+  m_kerningInfo:
+    kerningPairs: []
+  m_kerningPair:
+    m_FirstGlyph: 0
+    m_FirstGlyphAdjustments:
+      xPlacement: 0
+      yPlacement: 0
+      xAdvance: 0
+      yAdvance: 0
+    m_SecondGlyph: 0
+    m_SecondGlyphAdjustments:
+      xPlacement: 0
+      yPlacement: 0
+      xAdvance: 0
+      yAdvance: 0
+    xOffset: 0
+  fallbackFontAssets: []
+  m_CreationSettings:
+    sourceFontFileName: 
+    sourceFontFileGUID: cc6e50a1d99e0a24ab34637339ed8440
+    pointSizeSamplingMode: 0
+    pointSize: 0
+    padding: 5
+    packingMode: 4
+    atlasWidth: 32
+    atlasHeight: 32
+    characterSetSelectionMode: 0
+    characterSequence: 32 - 126, 160, 8203, 8230, 9633
+    referencedFontAssetGUID: 
+    referencedTextAssetGUID: 
+    fontStyle: 0
+    fontStyleModifier: 2
+    renderMode: 6
+    includeFontFeatures: 0
+  fontWeights:
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  normalStyle: 0
+  normalSpacingOffset: 0
+  boldStyle: 0.75
+  boldSpacing: 7
+  italicStyle: 35
+  tabSize: 10
+--- !u!21 &21565887176083468
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AbsoluteNeonScript SDF Material
+  m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FaceTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: -6946013704545917399}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Ambient: 0.5
+    - _Bevel: 0.5
+    - _BevelClamp: 0
+    - _BevelOffset: 0
+    - _BevelRoundness: 0
+    - _BevelWidth: 0
+    - _BumpFace: 0
+    - _BumpOutline: 0
+    - _ColorMask: 15
+    - _Diffuse: 0.5
+    - _FaceDilate: 0
+    - _FaceUVSpeedX: 0
+    - _FaceUVSpeedY: 0
+    - _GlowInner: 1
+    - _GlowOffset: 0.96
+    - _GlowOuter: 0.856
+    - _GlowPower: 0.804
+    - _GradientScale: 6
+    - _LightAngle: 3.1416
+    - _MaskSoftnessX: 0
+    - _MaskSoftnessY: 0
+    - _OutlineSoftness: 0
+    - _OutlineUVSpeedX: 0
+    - _OutlineUVSpeedY: 0
+    - _OutlineWidth: 0
+    - _PerspectiveFilter: 0.875
+    - _Reflectivity: 10
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.37284324
+    - _ScaleRatioC: 0.6770833
+    - _ScaleX: 1
+    - _ScaleY: 1
+    - _ShaderFlags: 0
+    - _SpecularPower: 2
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _TextureHeight: 32
+    - _TextureWidth: 32
+    - _UnderlayDilate: 0
+    - _UnderlayOffsetX: 0
+    - _UnderlayOffsetY: 0
+    - _UnderlaySoftness: 0
+    - _VertexOffsetX: 0
+    - _VertexOffsetY: 0
+    - _WeightBold: 0.75
+    - _WeightNormal: 0
+    m_Colors:
+    - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
+    - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
+    - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GlowColor: {r: 1, g: 0.06439098, b: 0, a: 0.5}
+    - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
