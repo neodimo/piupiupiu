@@ -35,14 +35,14 @@ public class Enemy : MonoBehaviour
 
     //List<GameObject> popUpList;
 
-    Level level;
+    //Level level;
 
     Coroutine firingCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
-        level = FindObjectOfType<Level>();
+        //level = FindObjectOfType<Level>();
         //popUpList = new List<GameObject>();
 
         //FOR SHOOTING
@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
             currentPoints = FindObjectOfType<GameSession>().AddToScore(points);
             PopUpPoints();
             Destroy(gameObject);
-            level.EnemyDestroyed();
+            //level.EnemyDestroyed();
         }
     }
 

@@ -82,8 +82,13 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     Rigidbody2D rb2D;
 
+    //Children
+    [SerializeField] GameObject body;
+    [SerializeField] GameObject gun;
+
     // Use this for initialization
     void Start() {
+
         playerBaseScaleX = transform.localScale.x;
         playerBaseScaleY = transform.localScale.y;
         SetupBoundaries();
@@ -120,7 +125,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             Jump();
             ProcessDash();
         }
-        Fire();
+        //Fire();
         ProcessState();
     }
 
@@ -266,7 +271,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             {
                 directionChosen = false;
             }
-            Debug.Log(dashDirectionMouse);
             isMouseInput = true;
         }
 
@@ -336,10 +340,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         {
             //float normalizedScale = Mathf.Abs(playerBaseScaleY - transform.localScale.y);
             //Vector3 transformOffset = new Vector3(transform.position.x, (transform.position.y+2)+(2*normalizedScale), transform.position.z);
-            Vector3 gunTransform = transform.GetChild(0).position;
-            GameObject laser = Instantiate(laserPrefab, gunTransform, transform.rotation) as GameObject;
+            Vector3 gunTransform = transform.GetChild(0).GetChild(0).position;
+            GameObject laser = Instantiate(laserPrefab, gun.transform.position, body.transform.rotation) as GameObject;
             laser.transform.localScale = transform.localScale*3;
-            laser.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
+            laser.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
             yield return new WaitForSeconds(projectileFiringPeriod);
         }
 
@@ -439,7 +443,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             diff = direction - transform.position;
         }
 
-        transform.up = diff;
+        body.transform.up = diff;
     }
 
     private void Jump()

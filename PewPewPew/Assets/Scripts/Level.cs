@@ -6,18 +6,11 @@ public class Level : MonoBehaviour
 {
     int enemyCount;
     //SceneLoader sceneLoader;
-    EnemySpawnerOld enemySpawner;
+    EnemySpawner enemySpawner;
 
     private void Start()
     {
         //sceneLoader = FindObjectOfType<SceneLoader>();
-        enemySpawner = FindObjectOfType<EnemySpawnerOld>();
-        CountEnemies();
-    }
-
-    public void CountEnemies()
-    {
-        enemyCount = enemySpawner.EnemyCount();
     }
 
     public void EnemyDestroyed()

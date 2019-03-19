@@ -65,6 +65,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -163,7 +164,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201558124188071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 344b8e8f74f13a342848b4e5018e4d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201558124188071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: cac9e75e8c651d647aa30a77806af637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -192,7 +191,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201558124188071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: b0a1e6a2351d416428885f2136b5a7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -244,7 +242,7 @@ Camera:
   m_GameObject: {fileID: 5324201558856496421}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -271,9 +269,9 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 0
+  m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -311,7 +309,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201558856496421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: ac47b6daf58b82f4aab69fe710181836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -324,7 +321,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201558856496421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -342,7 +338,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201558856496421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -481,7 +476,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201559213319660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 344b8e8f74f13a342848b4e5018e4d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -494,7 +488,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201559213319660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: cac9e75e8c651d647aa30a77806af637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -510,7 +503,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5324201559213319660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: b0a1e6a2351d416428885f2136b5a7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
