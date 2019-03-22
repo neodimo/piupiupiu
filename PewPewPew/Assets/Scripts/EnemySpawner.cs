@@ -5,12 +5,12 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] int enemyCountMin, enemyCountMax;
-    GameObject enemyPrefab;
+    [SerializeField] GameObject enemyPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        EmitEnemies();
     }
 
     // Update is called once per frame
@@ -26,13 +26,13 @@ public class EnemySpawner : MonoBehaviour
 
         for (int counter = 0; counter < enemyCount; counter++)
         {
-            float randOffsetX = UnityEngine.Random.Range(-1f, 1f);
-            float randOffsetY = UnityEngine.Random.Range(-1f, 1f);
+            float randOffsetX = UnityEngine.Random.Range(-3f, 3f);
+            float randOffsetY = UnityEngine.Random.Range(-3f, 3f);
             Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z);
             enemyPrefabs[counter] = Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
 
-            float randVelX = UnityEngine.Random.Range(-2f, 2f);
-            float randVelY = UnityEngine.Random.Range(-2f, 2f);
+            float randVelX = UnityEngine.Random.Range(-7f, 7f);
+            float randVelY = UnityEngine.Random.Range(-7f, 7f);
             Vector2 enemyVel = new Vector2(randVelX, randVelY);
             enemyPrefabs[counter].GetComponent<Rigidbody2D>().velocity = enemyVel;
         }

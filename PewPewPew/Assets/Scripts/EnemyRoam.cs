@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyRoam : MonoBehaviour
 {
     Player[] allPlayers;
-    Vector2 playerPos;
+    Vector3 playerPos;
     float distance;
     [SerializeField] [Range(1, 30)] float homingSpeedMin = 12;
     [SerializeField] [Range(1, 30)] float homingSpeedMax = 15;
@@ -15,16 +15,19 @@ public class EnemyRoam : MonoBehaviour
     float timeOfLastRedirection;
     float actualSpeed = 0;
     float accelleration = 2f;
+    float randomStartTime;
+    bool firstGo;
 
     private void Awake()
     {
         startTime = Time.time;
+        randomStartTime = UnityEngine.Random.Range(1f, 2f);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        timePastSinceLastRedirection = 0;
+        firstGo = false;
     }
 
     // Update is called once per frame
@@ -37,23 +40,29 @@ public class EnemyRoam : MonoBehaviour
 
         timePastSinceAlive = Time.time - startTime;
         timePastSinceLastRedirection = Time.time - timeOfLastRedirection;
-        Debug.Log("Time Past Since Last Redirection: " + timePastSinceLastRedirection);
-        Debug.Log("Hello");
-        if (timePastSinceAlive > .5)
+
+        if (timePastSinceAlive > randomStartTime)
         {
-            if (timePastSinceLastRedirection > 3)
+            if (firstGo && timePastSinceLastRedirection > 2.5f)
             {
-                distance = Vector2.Distance(transform.position, playerPos);
                 GoToPlayer();
+            }
+            else if (!firstGo)
+            {
+                GoToPlayer();
+                firstGo = true;
             }
         }
     }
 
     private void GoToPlayer()
     {
-        var deltaX = playerPos.x - transform.position.x;
-        var deltaY = playerPos.y - transform.position.y;
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(deltaX, deltaY) * Time.deltaTime * 5;
+        //var deltaX = playerPos.x - transform.position.x;
+        //var deltaY = playerPos.y - transform.position.y;
+        Vector3 direction = playerPos - transform.position;
+        var randomSpeed = UnityEngine.Random.Range(400, 550);
+        gameObject.GetComponent<Rigidbody2D>().velocity = direction.normalized * Time.deltaTime * randomSpeed;
+        //Debug.Log("deltaX: " + deltaX + "deltaY: " + deltaY);
         timeOfLastRedirection = Time.time;
     }
 
