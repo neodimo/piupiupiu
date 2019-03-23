@@ -31,10 +31,21 @@ public class EnemySpawner : MonoBehaviour
             Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z);
             enemyPrefabs[counter] = Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
 
-            float randVelX = UnityEngine.Random.Range(-7f, 7f);
-            float randVelY = UnityEngine.Random.Range(-7f, 7f);
-            Vector2 enemyVel = new Vector2(randVelX, randVelY);
+            float randVelX = UnityEngine.Random.Range(-200f, 200f);
+            float randVelY = UnityEngine.Random.Range(-200f, 200f);
+            Vector2 enemyVel = new Vector2(randVelX, randVelY) * Time.deltaTime;
             enemyPrefabs[counter].GetComponent<Rigidbody2D>().velocity = enemyVel;
+            Vector2 enemyVelNorm = enemyVel.normalized;
+            var rotationDirection = 0;
+            if (enemyVelNorm.x > 0)
+            {
+                rotationDirection = 1;
+            }
+            else
+            {
+                rotationDirection = -1;
+            }
+            enemyPrefabs[counter].GetComponent<Rigidbody2D>().angularVelocity = UnityEngine.Random.Range(360, 400) * rotationDirection;
         }
     }
 }

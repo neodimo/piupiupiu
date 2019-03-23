@@ -7,16 +7,16 @@ public class EnemyRoam : MonoBehaviour
     Player[] allPlayers;
     Vector3 playerPos;
     float distance;
-    [SerializeField] [Range(1, 30)] float homingSpeedMin = 12;
-    [SerializeField] [Range(1, 30)] float homingSpeedMax = 15;
+    [SerializeField] [Range(1, 600)] float homingSpeedMin = 12;
+    [SerializeField] [Range(1, 600)] float homingSpeedMax = 15;
     float startTime;
     float timePastSinceAlive;
     float timePastSinceLastRedirection;
     float timeOfLastRedirection;
-    float actualSpeed = 0;
     float accelleration = 2f;
     float randomStartTime;
     bool firstGo;
+    Rigidbody2D enemyRB2D;
 
     private void Awake()
     {
@@ -28,6 +28,7 @@ public class EnemyRoam : MonoBehaviour
     void Start()
     {
         firstGo = false;
+        enemyRB2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -57,22 +58,21 @@ public class EnemyRoam : MonoBehaviour
 
     private void GoToPlayer()
     {
-        //var deltaX = playerPos.x - transform.position.x;
-        //var deltaY = playerPos.y - transform.position.y;
         Vector3 direction = playerPos - transform.position;
-        var randomSpeed = UnityEngine.Random.Range(400, 550);
-        gameObject.GetComponent<Rigidbody2D>().velocity = direction.normalized * Time.deltaTime * randomSpeed;
-        //Debug.Log("deltaX: " + deltaX + "deltaY: " + deltaY);
-        timeOfLastRedirection = Time.time;
-    }
-
-    private void SlowToStop()
-    {
-        if (actualSpeed != 0)
+        var randomSpeed = UnityEngine.Random.Range(homingSpeedMin, homingSpeedMax);
+        enemyRB2D.velocity = direction.normalized * Time.deltaTime * randomSpeed;
+        Vector2 enemyVelNorm = enemyRB2D.velocity.normalized;
+        var rotationDirection = 0;
+        if (enemyVelNorm.x > 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerPos, actualSpeed * Time.deltaTime);
-            actualSpeed -= accelleration;
+            rotationDirection = 1;
         }
+        else
+        {
+            rotationDirection = -1;
+        }
+        enemyRB2D.angularVelocity = UnityEngine.Random.Range(360, 400) * rotationDirection;
+        timeOfLastRedirection = Time.time;
     }
 
     private GameObject FindClosestPlayer()
