@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8230820202391581965}
   - component: {fileID: 2795799106643662155}
   - component: {fileID: 1344008160368451861}
+  - component: {fileID: 8450463823494622678}
   m_Layer: 9
   m_Name: EnemyHoming
   m_TagString: Enemy
@@ -205,3 +206,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homingSpeedMin: 12
   homingSpeedMax: 15
+--- !u!58 &8450463823494622678
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784998059116464}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.19

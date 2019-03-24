@@ -21,15 +21,23 @@ public class EnemySpawner : MonoBehaviour
 
     private void EmitEnemies()
     {
+        StartCoroutine("WaitToEmit");
+    }
+
+    IEnumerator WaitToEmit()
+    {
+        yield return new WaitForSeconds(2);
+
         int enemyCount = UnityEngine.Random.Range(enemyCountMin, enemyCountMax);
         GameObject[] enemyPrefabs = new GameObject[enemyCount];
-
         for (int counter = 0; counter < enemyCount; counter++)
         {
             float randOffsetX = UnityEngine.Random.Range(-3f, 3f);
             float randOffsetY = UnityEngine.Random.Range(-3f, 3f);
             Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z);
-            enemyPrefabs[counter] = Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
+            yield return new WaitForSeconds(.5f);
+
+            enemyPrefabs[counter] = Instantiate(enemyPrefab, transform.position, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
 
             float randVelX = UnityEngine.Random.Range(-200f, 200f);
             float randVelY = UnityEngine.Random.Range(-200f, 200f);
@@ -47,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
             }
             enemyPrefabs[counter].GetComponent<Rigidbody2D>().angularVelocity = UnityEngine.Random.Range(360, 400) * rotationDirection;
         }
+        Destroy(gameObject, 1f);
     }
 }
 

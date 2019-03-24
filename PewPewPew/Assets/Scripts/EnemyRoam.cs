@@ -13,7 +13,6 @@ public class EnemyRoam : MonoBehaviour
     float timePastSinceAlive;
     float timePastSinceLastRedirection;
     float timeOfLastRedirection;
-    float accelleration = 2f;
     float randomStartTime;
     bool firstGo;
     Rigidbody2D enemyRB2D;
@@ -29,6 +28,7 @@ public class EnemyRoam : MonoBehaviour
     {
         firstGo = false;
         enemyRB2D = gameObject.GetComponent<Rigidbody2D>();
+        allPlayers = GameObject.FindObjectsOfType<Player>();
     }
 
     // Update is called once per frame
@@ -63,7 +63,7 @@ public class EnemyRoam : MonoBehaviour
         enemyRB2D.velocity = direction.normalized * Time.deltaTime * randomSpeed;
         Vector2 enemyVelNorm = enemyRB2D.velocity.normalized;
         var rotationDirection = 0;
-        if (enemyVelNorm.x > 0)
+        if (enemyVelNorm.x < 0)
         {
             rotationDirection = 1;
         }
@@ -79,7 +79,6 @@ public class EnemyRoam : MonoBehaviour
     {
         float distanceToClosestPlayer = Mathf.Infinity;
         Player closestPlayer = null;
-        allPlayers = GameObject.FindObjectsOfType<Player>();
         if (allPlayers.Length == 0) { return this.gameObject; }
         foreach (Player currentPlayer in allPlayers)
         {

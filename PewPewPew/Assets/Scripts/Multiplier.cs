@@ -24,7 +24,7 @@ public class Multiplier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        allPlayers = GameObject.FindObjectsOfType<Player>();
     }
 
     // Update is called once per frame
@@ -78,7 +78,6 @@ public class Multiplier : MonoBehaviour
     {
         float distanceToClosestPlayer = Mathf.Infinity;
         Player closestPlayer = null;
-        allPlayers = GameObject.FindObjectsOfType<Player>();
         if(allPlayers.Length == 0) { return this.gameObject; }
         foreach (Player currentPlayer in allPlayers)
         {

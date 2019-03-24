@@ -82,6 +82,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     Rigidbody2D rb2D;
 
+    public Vector2 playerPos;
+
     //Children
     [SerializeField] GameObject body;
     [SerializeField] GameObject gun;
@@ -125,7 +127,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             Jump();
             ProcessDash();
         }
-        //Fire();
+        Fire();
         ProcessState();
     }
 
@@ -531,6 +533,11 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     public float GetHealth()
     {
         return health;
+    }
+
+    public Vector2 GetPos()
+    {
+        return transform.position;
     }
 
     private void Die()
