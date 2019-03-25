@@ -34,7 +34,10 @@ public class EnemyRoam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPos = FindClosestPlayer().transform.position;
+        if (allPlayers[0] != null)
+        {
+            playerPos = FindClosestPlayer().transform.position;
+        }
 
         //Pythagoras Rule
         //distance = (float)Math.Sqrt(Math.Pow((playerPos[0] - transform.position.x), 2) + Math.Pow((playerPos[1] - transform.position.y), 2));

@@ -49,6 +49,7 @@ public class SpawnerSpawner : MonoBehaviour
         timeBetweenSpawners = 5f;
         spawning = true;
         allPlayers = GameObject.FindObjectsOfType<Player>();
+        playerPos = FindClosestPlayer().transform.position;
         percentageBasedValue = RandomWeighted();
         StartCoroutine(SpawnSpawners());
     }

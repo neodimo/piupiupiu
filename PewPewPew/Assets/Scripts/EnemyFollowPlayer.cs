@@ -70,17 +70,14 @@ public class EnemyFollowPlayer : MonoBehaviour
         float distanceToClosestPlayer = Mathf.Infinity;
         Player closestPlayer = null;
 
-        if (allPlayers != null)
+        if (allPlayers.Length == 0) { return this.gameObject; }
+        foreach (Player currentPlayer in allPlayers)
         {
-            if (allPlayers.Length == 0) { return this.gameObject; }
-            foreach (Player currentPlayer in allPlayers)
+            float distanceToPlayer = (currentPlayer.transform.position - this.transform.position).sqrMagnitude;
+            if (distanceToPlayer < distanceToClosestPlayer)
             {
-                float distanceToPlayer = (currentPlayer.transform.position - this.transform.position).sqrMagnitude;
-                if (distanceToPlayer < distanceToClosestPlayer)
-                {
-                    distanceToClosestPlayer = distanceToPlayer;
-                    closestPlayer = currentPlayer;
-                }
+                distanceToClosestPlayer = distanceToPlayer;
+                closestPlayer = currentPlayer;
             }
         }
         return closestPlayer.gameObject;

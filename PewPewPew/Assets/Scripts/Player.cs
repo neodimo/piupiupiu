@@ -57,6 +57,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     Vector2 mouseEndPos;
     Vector2 currentMousePos;
 
+    Vector3 moveVector;
+
     Coroutine firingCoroutine;
     Coroutine suckingCoroutine;
 
@@ -365,7 +367,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         transform.position = new Vector2(xPos, yPos);
         */
 
-        Vector3 moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
+        moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
         var deltaX = Vector3.right * Time.deltaTime * playerSpeed;
         var deltaY = Vector3.up * Time.deltaTime * playerSpeed;
 
@@ -376,11 +378,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             var xPos = Mathf.Clamp(transform.position.x, xMin, xMax);
             var yPos = Mathf.Clamp(transform.position.y, yMin, yMax);
 
-
             transform.position = new Vector3(xPos, yPos, transform.position.z);
         }
 
-        var direction = new Vector3(transform.position.x + deltaX[0] * 2, transform.position.y + deltaY[1] * 2, transform.position.z);
+        var direction = new Vector3(moveVector[0], moveVector[1], transform.position.z);
         return direction;
     }
 
@@ -439,13 +440,12 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         {
             Transform enemyTransform = FindClosestEnemy().transform;
             diff = enemyTransform.position - transform.position;
+            body.transform.up = diff;
         }
         else
         {
-            diff = direction - transform.position;
+            body.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveVector);
         }
-
-        body.transform.up = diff;
     }
 
     private void Jump()
