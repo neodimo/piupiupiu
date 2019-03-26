@@ -189,6 +189,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     private void ProcessDash()
     {
         sinceLastDashPress = Time.time - lastDashPress;
+
+        //KeyBoardInput
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
             canDash = true;
@@ -222,6 +224,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             directionChosen = true;
         }
 
+        //TouchInput
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -240,6 +243,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                         if (dashSliderGauge.value > 0)
                         {
                             minSwipeToDashCheck = true;
+                            isTouchInput = true;
+                            directionChosen = true;
                         }
                     }
                     break;
@@ -250,6 +255,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                     break;
             }
         }
+        //MouseInput
+        /*
         else if (Input.mousePresent)
         {
             if (Input.GetMouseButtonDown(0))
@@ -276,11 +283,12 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 directionChosen = false;
             }
             isMouseInput = true;
-        }
+        }*/
 
         if (minSwipeToDashCheck)
         {
             minSwipeToDashCheck = false;
+            Debug.Log("directionChosen = " + directionChosen);
             if (directionChosen)
             {
                 if (dashSliderGauge.value > 0)
@@ -289,11 +297,13 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                     {
                         StartCoroutine(Dash(dashDirectionTouch));
                         dashDirectionTouch = Vector2.zero;
+                        Debug.Log("You are touching!");
                     }
                     else if (isMouseInput)
                     {
                         StartCoroutine(Dash(dashDirectionMouse));
                         dashDirectionMouse = Vector2.zero;
+                        Debug.Log("You are clicking!");
                     }
                 }
             }

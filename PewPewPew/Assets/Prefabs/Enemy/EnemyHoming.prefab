@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 212832652287730196}
   - component: {fileID: 6735942685473660405}
   - component: {fileID: 2651614071226650610}
+  - component: {fileID: 8450463823494622678}
   - component: {fileID: 6191171155983036924}
   - component: {fileID: 8230820202391581965}
   - component: {fileID: 2795799106643662155}
   - component: {fileID: 1344008160368451861}
-  - component: {fileID: 8450463823494622678}
+  - component: {fileID: 7692646901017636947}
   m_Layer: 9
   m_Name: EnemyHoming
   m_TagString: Enemy
@@ -133,6 +134,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.0726728, y: 3.0437503}
   m_EdgeRadius: 0
+--- !u!58 &8450463823494622678
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784998059116464}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.19
 --- !u!50 &6191171155983036924
 Rigidbody2D:
   serializedVersion: 4
@@ -206,19 +223,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homingSpeedMin: 12
   homingSpeedMax: 15
---- !u!58 &8450463823494622678
-CircleCollider2D:
+--- !u!114 &7692646901017636947
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784998059116464}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.19
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1be5b40d70f57419e3ca360f178ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  homingSpeedMin: 50
+  homingSpeedMax: 100
