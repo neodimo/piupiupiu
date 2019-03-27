@@ -29,6 +29,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     private bool isDashing = false;
     private bool isSucking = false;
     private bool hasSuckedOnce = false;
+    private bool isDead = false;
 
     float sinceLastDashPress;
     float lastDashPress;
@@ -66,6 +67,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     Animator animator;
 
+    SpriteRenderer spriteRenderer;
+
+    CircleCollider2D circleCollider2D;
+
     VectorGridForce2 vectorGridForce;
 
     float xMin;
@@ -99,6 +104,9 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         allEnemies = GameObject.FindObjectsOfType<Enemy>();
         animator = GetComponent<Animator>();
         vectorGridForce = gameObject.GetComponent<VectorGridForce2>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
+
 
         sliders = GameObject.FindGameObjectsWithTag("Slider");
 
@@ -122,15 +130,19 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     // Update is called once per frame
     void Update() {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+        if(isDead == false)
         {
-            Rotate(Move());
-            Suck();
-            Jump();
-            ProcessDash();
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                Rotate(Move());
+                Suck();
+                Jump();
+                ProcessDash();
+            }
+            Fire();
         }
-        Fire();
-        ProcessState();
+        var playerState = ProcessState();
+        Debug.Log(playerState);
     }
 
     public String ProcessState()
@@ -175,6 +187,11 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 vectorGridForce.m_Radius = .4f;
                 return "Sucking";
             }
+            else if (isDead)
+            {
+                StartCoroutine(SendOutWave());
+                return "Dead";
+            }
             else
             {
                 animator.runtimeAnimatorController = statusSprites[0];
@@ -184,6 +201,15 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             }
         }
         else return "Null";
+    }
+
+    IEnumerator SendOutWave()
+    {
+        vectorGridForce.m_ForceScale = 2f;
+        vectorGridForce.m_Radius = .25f;
+        yield return new WaitForSeconds(.2f);
+        vectorGridForce.m_ForceScale = 0f;
+        vectorGridForce.m_Radius = 0f;
     }
 
     private void ProcessDash()
@@ -255,8 +281,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                     break;
             }
         }
+
         //MouseInput
-        /*
         else if (Input.mousePresent)
         {
             if (Input.GetMouseButtonDown(0))
@@ -283,7 +309,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 directionChosen = false;
             }
             isMouseInput = true;
-        }*/
+        }
 
         if (minSwipeToDashCheck)
         {
@@ -552,11 +578,13 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     private void Die()
     {
-        Destroy(gameObject);
+        spriteRenderer.enabled = false; //Destroy(gameObject);
+        isDead = true;
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
         Destroy(explosion, 1f);
         FindObjectOfType<SceneLoader>().GameOver();
+        circleCollider2D.enabled = false;
     }
 
     public void ToggleGodMode(bool value)
