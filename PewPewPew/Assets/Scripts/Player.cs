@@ -142,7 +142,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             Fire();
         }
         var playerState = ProcessState();
-        Debug.Log(playerState);
+        //Debug.Log(playerState);
     }
 
     public String ProcessState()
@@ -555,7 +555,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         damageDealer.Hit();
         if (health <= 0)
         {
-            if (!godMode && !isDashing)
+            if (!godMode && !isDashing && !isSucking)
             {
                 Die();
             }

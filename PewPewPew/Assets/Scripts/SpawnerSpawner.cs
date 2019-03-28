@@ -7,12 +7,14 @@ public class SpawnerSpawner : MonoBehaviour
     [SerializeField] GameObject[] SpawnerPool;
     Vector2 playerPos;
     Player[] allPlayers;
+    Player closestPlayerClass;
+    string playerState;
     float timeSincePlayerDied;
     float startTime;
     float timeSinceStarted;
     float timeBetweenSpawners;
     int percentageBasedValue;
-    bool spawning;
+    public bool spawning;
 
     int[] weights;
     int weightTotal;
@@ -49,6 +51,7 @@ public class SpawnerSpawner : MonoBehaviour
         timeBetweenSpawners = 5f;
         spawning = true;
         allPlayers = GameObject.FindObjectsOfType<Player>();
+        closestPlayerClass = FindObjectOfType<Player>();
         playerPos = FindClosestPlayer().transform.position;
         percentageBasedValue = RandomWeighted();
         StartCoroutine(SpawnSpawners());
@@ -57,6 +60,7 @@ public class SpawnerSpawner : MonoBehaviour
     void Update()
     {
         percentageBasedValue = RandomWeighted();
+        playerState = closestPlayerClass.ProcessState();
     }
 
     IEnumerator SpawnSpawners()
@@ -65,25 +69,29 @@ public class SpawnerSpawner : MonoBehaviour
 
         while (spawning)
         {
-            playerPos = FindClosestPlayer().transform.position;
-            var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -40, 40);
-            var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -40, 40);
-            Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
-            var currentSpawner = Instantiate(SpawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
-            timeSinceStarted = Time.time - startTime;
-            if (timeSinceStarted < 30f)
+            while (playerState != "Sucking")
             {
-                timeBetweenSpawners = 5f;
+                playerPos = FindClosestPlayer().transform.position;
+                var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -40, 40);
+                var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -40, 40);
+                Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
+                var currentSpawner = Instantiate(SpawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
+                timeSinceStarted = Time.time - startTime;
+                if (timeSinceStarted < 30f)
+                {
+                    timeBetweenSpawners = 5f;
+                }
+                else if (timeSinceStarted > 30f && timeSinceStarted < 60f)
+                {
+                    timeBetweenSpawners = 3f;
+                }
+                else if (timeSinceStarted > 60f && timeSinceStarted < 90f)
+                {
+                    timeBetweenSpawners = 2f;
+                }
+                yield return new WaitForSeconds(timeBetweenSpawners);
             }
-            else if (timeSinceStarted > 30f && timeSinceStarted < 60f)
-            {
-                timeBetweenSpawners = 3f;
-            }
-            else if (timeSinceStarted > 60f && timeSinceStarted < 90f)
-            {
-                timeBetweenSpawners = 2f;
-            }
-            yield return new WaitForSeconds(timeBetweenSpawners);
+            yield return new WaitForSeconds(6f);
         }
     }
 
