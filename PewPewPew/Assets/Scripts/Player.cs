@@ -93,7 +93,12 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     //Children
     [SerializeField] GameObject body;
-    [SerializeField] GameObject gun;
+    [SerializeField] GameObject gunMiddle;
+    [SerializeField] GameObject gunLeft;
+    [SerializeField] GameObject gunRight;
+    GameObject[] guns;
+
+    string score;
 
     // Use this for initialization
     void Start() {
@@ -126,6 +131,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         rb2D = GetComponent<Rigidbody2D>();
         lastDashPress = Time.time - 5;
         canDash = true;
+
+        guns = new GameObject[] {gunMiddle, gunLeft, gunRight};
     }
 
     // Update is called once per frame
@@ -139,8 +146,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 Jump();
                 ProcessDash();
             }
+            //score = GetComponent<GameSession>().GetScore();
             Fire();
         }
+        Debug.Log(Convert.ToInt32(score));
         var playerState = ProcessState();
         //Debug.Log(playerState);
     }
@@ -221,7 +230,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         {
             canDash = true;
         }
-        if (Input.GetAxis("Horizontal") > 0 && canDash && !isDashing && dashSliderGauge.value > 0) // && sinceLastDashPress > dashCooldown)
+        if (Input.GetAxis("Horizontal") > 0 && canDash && !isDashing && dashSliderGauge.value > 0)
         {
             canDash = false;
             StartCoroutine(Dash(new Vector2(dashSliderGauge.value*1, 0)));
@@ -343,7 +352,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     IEnumerator Dash(Vector2 dashDirection)
     {
-        //Debug.Log(dashDirection);
         isDashing = true;
         lastDashPress = Time.time;
         if (isTouchInput)
@@ -378,38 +386,39 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         while (true)
         {
-            //float normalizedScale = Mathf.Abs(playerBaseScaleY - transform.localScale.y);
-            //Vector3 transformOffset = new Vector3(transform.position.x, (transform.position.y+2)+(2*normalizedScale), transform.position.z);
-            Vector3 gunTransform = transform.GetChild(0).GetChild(0).position;
-            GameObject laser = Instantiate(laserPrefab, gun.transform.position, body.transform.rotation) as GameObject;
-            laser.transform.localScale = transform.localScale*3;
-            laser.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-            yield return new WaitForSeconds(projectileFiringPeriod);
+            Debug.Log(Convert.ToInt32(score));
+            if (Convert.ToInt32(score) >= 0 && Convert.ToInt32(score) < 19999)
+            {
+                GameObject laser = Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
+                laser.transform.localScale = transform.localScale * 3;
+                laser.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                yield return new WaitForSeconds(projectileFiringPeriod);
+            }
+            if (Convert.ToInt32(score) > 19999)
+            {
+                GameObject laserMiddle = Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
+                laserMiddle.transform.localScale = transform.localScale * 3;
+                laserMiddle.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                GameObject laserLeft = Instantiate(laserPrefab, gunLeft.transform.position, body.transform.rotation) as GameObject;
+                laserLeft.transform.localScale = transform.localScale * 3;
+                laserLeft.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                GameObject laserRight = Instantiate(laserPrefab, gunRight.transform.position, body.transform.rotation) as GameObject;
+                laserRight.transform.localScale = transform.localScale * 3;
+                laserRight.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                yield return new WaitForSeconds(projectileFiringPeriod*2);
+            }
         }
 
     }
 
     private Vector3 Move()
     {
-        /*
-        //x position
-        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * playerSpeed;
-        var xPos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
-
-        //y position
-        var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * playerSpeed;
-        var yPos = Mathf.Clamp(transform.position.y + deltaY, yMin, yMax);
-        x
-        transform.position = new Vector2(xPos, yPos);
-        */
-
         moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
         var deltaX = Vector3.right * Time.deltaTime * playerSpeed;
         var deltaY = Vector3.up * Time.deltaTime * playerSpeed;
 
         if (moveVector != Vector3.zero)
         {
-            //transform.rotation = Quaternion.LookRotation(Vector3.forward, moveVector);
             transform.Translate(moveVector * playerSpeed * Time.deltaTime, Space.World);
             var xPos = Mathf.Clamp(transform.position.x, xMin, xMax);
             var yPos = Mathf.Clamp(transform.position.y, yMin, yMax);
@@ -486,7 +495,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     private void Jump()
     {
-        //z position. this is faked with scaling.
         //JUMP!
         float zScaleX;
         float zScaleY;
@@ -523,7 +531,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             {
                 distanceToClosestEnemy = distanceToEnemy;
                 closestEnemy = currentEnemy;
-                //Debug.Log("Distance to Closest Enemy = " + distanceToClosestEnemy);
             }
         }
         return closestEnemy.gameObject;
@@ -578,7 +585,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     private void Die()
     {
-        spriteRenderer.enabled = false; //Destroy(gameObject);
+        spriteRenderer.enabled = false;
         isDead = true;
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
@@ -591,24 +598,19 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         if (value == true)
         {
-            //godMode = true;
-            //GetComponent<Animator>().runtimeAnimatorController = statusSprites[2];
             Debug.Log("God Mode On");
         }
         if (value == false)
         {
-            //godMode = false;
-            //GetComponent<Animator>().runtimeAnimatorController = statusSprites[0];
             Debug.Log("God Mode Off");
         }
     }
 
     private void SetupBoundaries()
     {
-        //Camera gameCamera = Camera.main;
-        xMin = -49.15f; //gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding;
-        xMax = 49.15f; //gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
-        yMin = -49.15f; //gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
-        yMax = 49.15f; //gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - padding;
+        xMin = -49.15f;
+        xMax = 49.15f;
+        yMin = -49.15f;
+        yMax = 49.15f;
     }
 }

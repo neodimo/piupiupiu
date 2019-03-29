@@ -55,6 +55,11 @@ public class GameSession : MonoBehaviour {
         multText.text = "x" + multiplier.ToString();
     }
 
+    public string GetScore()
+    {
+        return scoreText.text;
+    }
+
     public void ResetGame()
     {
         Destroy(gameObject);
