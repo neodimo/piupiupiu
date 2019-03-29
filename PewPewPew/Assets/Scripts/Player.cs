@@ -94,10 +94,13 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     //Children
     [SerializeField] GameObject body;
     [SerializeField] GameObject gunMiddle;
-    [SerializeField] GameObject gunLeft;
-    [SerializeField] GameObject gunRight;
+    [SerializeField] GameObject gunLeft01;
+    [SerializeField] GameObject gunLeft02;
+    [SerializeField] GameObject gunRight01;
+    [SerializeField] GameObject gunRight02;
     GameObject[] guns;
 
+    GameSession gameSession;
     string score;
 
     // Use this for initialization
@@ -111,7 +114,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         vectorGridForce = gameObject.GetComponent<VectorGridForce2>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
-
+        gameSession = GameObject.FindObjectOfType<GameSession>();
 
         sliders = GameObject.FindGameObjectsWithTag("Slider");
 
@@ -132,7 +135,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         lastDashPress = Time.time - 5;
         canDash = true;
 
-        guns = new GameObject[] {gunMiddle, gunLeft, gunRight};
+        guns = new GameObject[] {gunMiddle, gunLeft01, gunRight01};
     }
 
     // Update is called once per frame
@@ -146,7 +149,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 Jump();
                 ProcessDash();
             }
-            //score = GetComponent<GameSession>().GetScore();
+            score = gameSession.GetScore();
             Fire();
         }
         Debug.Log(Convert.ToInt32(score));
@@ -387,25 +390,46 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         while (true)
         {
             Debug.Log(Convert.ToInt32(score));
-            if (Convert.ToInt32(score) >= 0 && Convert.ToInt32(score) < 19999)
+            if (Convert.ToInt32(score) >= 0 && Convert.ToInt32(score) < 9999)
             {
                 GameObject laser = Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laser.transform.localScale = transform.localScale * 3;
                 laser.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
                 yield return new WaitForSeconds(projectileFiringPeriod);
             }
-            if (Convert.ToInt32(score) > 19999)
+            if (Convert.ToInt32(score) > 9999 && Convert.ToInt32(score) < 199999)
             {
                 GameObject laserMiddle = Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laserMiddle.transform.localScale = transform.localScale * 3;
                 laserMiddle.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-                GameObject laserLeft = Instantiate(laserPrefab, gunLeft.transform.position, body.transform.rotation) as GameObject;
-                laserLeft.transform.localScale = transform.localScale * 3;
-                laserLeft.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-                GameObject laserRight = Instantiate(laserPrefab, gunRight.transform.position, body.transform.rotation) as GameObject;
-                laserRight.transform.localScale = transform.localScale * 3;
-                laserRight.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-                yield return new WaitForSeconds(projectileFiringPeriod*2);
+                GameObject laserLeft01 = Instantiate(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;
+                laserLeft01.transform.localScale = transform.localScale * 3;
+                laserLeft01.transform.up = body.transform.up / 2;
+                laserLeft01.GetComponent<Rigidbody2D>().velocity = laserLeft01.transform.up * projectileSpeed;
+                GameObject laserRight01 = Instantiate(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;
+                laserRight01.transform.localScale = transform.localScale * 3;
+                laserRight01.transform.up = body.transform.up * 2;
+                laserRight01.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                yield return new WaitForSeconds(projectileFiringPeriod/5);
+            }
+            if (Convert.ToInt32(score) > 199999)
+            {
+                GameObject laserMiddle = Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
+                laserMiddle.transform.localScale = transform.localScale * 3;
+                laserMiddle.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                GameObject laserLeft01 = Instantiate(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;
+                laserLeft01.transform.localScale = transform.localScale * 3;
+                laserLeft01.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                GameObject laserLeft02 = Instantiate(laserPrefab, gunLeft02.transform.position, body.transform.rotation) as GameObject;
+                laserLeft02.transform.localScale = transform.localScale * 3;
+                laserLeft02.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                GameObject laserRight01 = Instantiate(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;
+                laserRight01.transform.localScale = transform.localScale * 3;
+                laserRight01.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                GameObject laserRight02 = Instantiate(laserPrefab, gunRight02.transform.position, body.transform.rotation) as GameObject;
+                laserRight02.transform.localScale = transform.localScale * 3;
+                laserRight02.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
+                yield return new WaitForSeconds(projectileFiringPeriod / 5);
             }
         }
 
