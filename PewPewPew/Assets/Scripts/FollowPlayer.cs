@@ -23,7 +23,7 @@ public class FollowPlayer : MonoBehaviour
         if (player)
         {
             playerPos = player.transform.position;
-            transform.position = new Vector3(playerPos.x, playerPos.y, transform.position.z);
+            transform.position = new Vector3(playerPos.x*1f, playerPos.y*1f, transform.position.z);
         }
     }
 }
