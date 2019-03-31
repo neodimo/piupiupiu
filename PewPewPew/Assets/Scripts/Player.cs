@@ -379,7 +379,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         {
             firingCoroutine = StartCoroutine(FireContinuously());
         }
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Fire1") || isDead)
         {
             StopCoroutine(firingCoroutine);
         }
@@ -387,7 +387,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     IEnumerator FireContinuously()
     {
-        while (true)
+        while (!isDead)
         {
             Debug.Log(Convert.ToInt32(score));
             if (Convert.ToInt32(score) >= 0 && Convert.ToInt32(score) < 9999)

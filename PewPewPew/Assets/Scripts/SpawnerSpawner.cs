@@ -84,10 +84,17 @@ public class SpawnerSpawner : MonoBehaviour
                 else if (timeSinceStarted > 30f && timeSinceStarted < 60f)
                 {
                     timeBetweenSpawners = 3f;
+                    currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(10);
                 }
                 else if (timeSinceStarted > 60f && timeSinceStarted < 90f)
                 {
                     timeBetweenSpawners = 2f;
+                    currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(20);
+                }
+                else if (timeSinceStarted > 90f)
+                {
+                    timeBetweenSpawners = 1f;
+                    currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(30);
                 }
                 yield return new WaitForSeconds(timeBetweenSpawners);
             }
