@@ -32,6 +32,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     private bool isDead = false;
 
     float sinceLastDashPress;
+    float sinceLastSuck;
+    float timeofSuck;
     float lastDashPress;
     public bool godMode;
     Toggle m_Toggle;
@@ -152,7 +154,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             score = gameSession.GetScore();
             Fire();
         }
-        Debug.Log(Convert.ToInt32(score));
         var playerState = ProcessState();
         //Debug.Log(playerState);
     }
@@ -389,7 +390,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         while (!isDead)
         {
-            Debug.Log(Convert.ToInt32(score));
             if (Convert.ToInt32(score) >= 0 && Convert.ToInt32(score) < 9999)
             {
                 GameObject laser = Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
@@ -482,6 +482,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             {
                 isSucking = true;
                 suckSliderGauge.value -= .35f;
+                timeofSuck = Time.time;
             }
             else
             {
@@ -584,9 +585,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         health -= damageDealer.GetDamage();
         damageDealer.Hit();
+        sinceLastSuck = Time.time - timeofSuck;
         if (health <= 0)
         {
-            if (!godMode && !isDashing && !isSucking)
+            if (!godMode && !isDashing && !isSucking && sinceLastSuck > 3)
             {
                 Die();
             }

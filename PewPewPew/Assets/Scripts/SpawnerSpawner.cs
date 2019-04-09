@@ -14,7 +14,8 @@ public class SpawnerSpawner : MonoBehaviour
     float timeSinceStarted;
     float timeBetweenSpawners;
     int percentageBasedValue;
-    public bool spawning;
+    bool spawning;
+    [SerializeField] bool spawn = true;
 
     int[] weights;
     int weightTotal;
@@ -54,7 +55,10 @@ public class SpawnerSpawner : MonoBehaviour
         closestPlayerClass = FindObjectOfType<Player>();
         playerPos = FindClosestPlayer().transform.position;
         percentageBasedValue = RandomWeighted();
-        StartCoroutine(SpawnSpawners());
+        if (spawn == true)
+        {
+            StartCoroutine(SpawnSpawners());
+        }
     }
 
     void Update()

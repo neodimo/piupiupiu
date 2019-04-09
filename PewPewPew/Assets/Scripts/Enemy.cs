@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
 
     int currentPoints;
     bool dealerIsPlayerBody;
+    Player closestPlayerClass;
+    string playerState;
 
     //List<GameObject> popUpList;
 
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour
     {
         level = FindObjectOfType<Level>();
         level.AddToEnemyCount();
+        closestPlayerClass = FindObjectOfType<Player>();
         //popUpList = new List<GameObject>();
 
         //FOR SHOOTING
@@ -55,6 +58,7 @@ public class Enemy : MonoBehaviour
     {
         //FOR SHOOTING
         //CountDownAndShoot();
+        playerState = closestPlayerClass.ProcessState();
     }
 
     //FOR SHOOTING
@@ -100,7 +104,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            if (!dealerIsPlayerBody)
+            if (!dealerIsPlayerBody && playerState != "Sucking")
             {
                 EmitMultipliers();
             }
