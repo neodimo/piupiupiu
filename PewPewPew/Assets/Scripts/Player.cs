@@ -132,7 +132,14 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             }
         }
 
-        godModeToggle = GameObject.FindGameObjectWithTag("GodModeToggle");
+        if (GameObject.FindGameObjectWithTag("GodModeToggle") != null)
+        {
+            godModeToggle = GameObject.FindGameObjectWithTag("GodModeToggle");
+        }
+        else
+        {
+            godModeToggle = null;
+        }
         rb2D = GetComponent<Rigidbody2D>();
         lastDashPress = Time.time - 5;
         canDash = true;

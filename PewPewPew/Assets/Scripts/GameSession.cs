@@ -33,6 +33,7 @@ public class GameSession : MonoBehaviour {
     private void Start()
     {
         scoreText.text = currentScore.ToString();
+        Application.targetFrameRate = 60;
         multiplier = 1;
         //healthText.text = currentHealth.ToString();
     }
