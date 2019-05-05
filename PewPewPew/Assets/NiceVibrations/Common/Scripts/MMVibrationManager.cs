@@ -174,6 +174,7 @@ namespace MoreMountains.NiceVibrations
             private static IntPtr AndroidVibrateMethodRawClass = AndroidJNIHelper.GetMethodID(AndroidVibrator.GetRawClass(), "vibrate", "(J)V", false);
             private static jvalue[] AndroidVibrateMethodRawClassParameters = new jvalue[1];
 #else
+            
         private static AndroidJavaClass UnityPlayer;
 			private static AndroidJavaObject CurrentActivity;
 			private static AndroidJavaObject AndroidVibrator = null;
@@ -182,6 +183,7 @@ namespace MoreMountains.NiceVibrations
 			private static int DefaultAmplitude;
             private static IntPtr AndroidVibrateMethodRawClass = IntPtr.Zero;
             private static jvalue[] AndroidVibrateMethodRawClassParameters = null;
+            
 #endif
 
         /// <summary>
