@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using MoreMountains.NiceVibrations;
 
 public class GameSession : MonoBehaviour {
 
@@ -28,6 +29,7 @@ public class GameSession : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
         }
+        MMVibrationManager.iOSInitializeHaptics();
     }
 
     private void Start()

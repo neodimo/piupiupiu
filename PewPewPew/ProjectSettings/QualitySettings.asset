@@ -148,9 +148,9 @@ QualitySettings:
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Very High
-    pixelLightCount: 10
+    pixelLightCount: 4
     shadows: 0
-    shadowResolution: 2
+    shadowResolution: 1
     shadowProjection: 1
     shadowCascades: 2
     shadowDistance: 70
@@ -216,6 +216,4 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality:
-    Standalone: 0
-    iPhone: 0
+  m_PerPlatformDefaultQuality: {}

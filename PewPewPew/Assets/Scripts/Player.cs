@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using MoreMountains.NiceVibrations;
 
 public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IPointerUpHandler
 {
@@ -167,59 +168,64 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     public String ProcessState()
     {
-        if (godModeToggle.GetComponent<Toggle>().isOn)
+        if (godModeToggle != null)
         {
-            godMode = true;
-            if (isDashing)
+            if (godModeToggle.GetComponent<Toggle>().isOn)
             {
-                animator.runtimeAnimatorController = statusSprites[2];
-                vectorGridForce.m_ForceScale = 1.5f;
-                vectorGridForce.m_Radius = .3f;
-                return "Dashing God";
+                godMode = true;
+                if (isDashing)
+                {
+                    animator.runtimeAnimatorController = statusSprites[2];
+                    vectorGridForce.m_ForceScale = 1.5f;
+                    vectorGridForce.m_Radius = .3f;
+                    return "Dashing God";
+                }
+                else if (isSucking)
+                {
+                    vectorGridForce.m_ForceScale = -.5f;
+                    vectorGridForce.m_Radius = .4f;
+                    return "Sucking God";
+                }
+                else
+                {
+                    animator.runtimeAnimatorController = statusSprites[1];
+                    vectorGridForce.m_ForceScale = .9f;
+                    vectorGridForce.m_Radius = .2f;
+                    return "Normal God";
+                }
             }
-            else if (isSucking)
+            if (!godModeToggle.GetComponent<Toggle>().isOn)
             {
-                vectorGridForce.m_ForceScale = -.5f;
-                vectorGridForce.m_Radius = .4f;
-                return "Sucking God";
+                godMode = false;
+                if (isDashing)
+                {
+                    animator.runtimeAnimatorController = statusSprites[2];
+                    vectorGridForce.m_ForceScale = 1.3f;
+                    vectorGridForce.m_Radius = .3f;
+                    return "Dashing";
+                }
+                else if (isSucking)
+                {
+                    vectorGridForce.m_ForceScale = -.2f;
+                    vectorGridForce.m_Radius = .4f;
+                    return "Sucking";
+                }
+                else if (isDead)
+                {
+                    StartCoroutine(SendOutWave());
+                    return "Dead";
+                }
+                else
+                {
+                    animator.runtimeAnimatorController = statusSprites[0];
+                    vectorGridForce.m_ForceScale = .6f;
+                    vectorGridForce.m_Radius = .2f;
+                    return "Normal";
+                }
             }
-            else
-            {
-                animator.runtimeAnimatorController = statusSprites[1];
-                vectorGridForce.m_ForceScale = .9f;
-                vectorGridForce.m_Radius = .2f;
-                return "Normal God";
-            }
+            else return "Null";
         }
-        if (!godModeToggle.GetComponent<Toggle>().isOn)
-        {
-            godMode = false;
-            if (isDashing)
-            {
-                animator.runtimeAnimatorController = statusSprites[2];
-                vectorGridForce.m_ForceScale = 1.3f;
-                vectorGridForce.m_Radius = .3f;
-                return "Dashing";
-            }
-            else if (isSucking)
-            {
-                vectorGridForce.m_ForceScale = -.2f;
-                vectorGridForce.m_Radius = .4f;
-                return "Sucking";
-            }
-            else if (isDead)
-            {
-                StartCoroutine(SendOutWave());
-                return "Dead";
-            }
-            else
-            {
-                animator.runtimeAnimatorController = statusSprites[0];
-                vectorGridForce.m_ForceScale = .6f;
-                vectorGridForce.m_Radius = .2f;
-                return "Normal";
-            }
-        }
+        
         else return "Null";
     }
 
@@ -397,6 +403,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         while (!isDead)
         {
+            MMVibrationManager.Haptic(HapticTypes.MediumImpact);
             if (Convert.ToInt32(score) >= 0 && Convert.ToInt32(score) < 9999)
             {
                 GameObject laser = Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
