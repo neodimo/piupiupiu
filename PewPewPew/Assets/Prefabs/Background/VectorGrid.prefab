@@ -88,7 +88,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5902598453358140614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 5d8c3e05d6f44a34985144f2a5ef7a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -97,7 +96,7 @@ MonoBehaviour:
   m_GridScale: 0.1
   m_MaxFogDistance: -27.2
   m_MaxFogAlphaScale: 0.2
-  m_TwoWayFog: 1
+  m_TwoWayFog: 0
   m_RenderMode: 0
   m_VectorGridPointMass: 1
   m_VelocityDamping: 0.98

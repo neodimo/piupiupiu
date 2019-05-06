@@ -194,7 +194,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                     return "Normal God";
                 }
             }
-            if (!godModeToggle.GetComponent<Toggle>().isOn)
+            else if (!godModeToggle.GetComponent<Toggle>().isOn)
             {
                 godMode = false;
                 if (isDashing)
@@ -223,10 +223,39 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                     return "Normal";
                 }
             }
-            else return "Null";
+            
+            else return "Normal";
         }
-        
-        else return "Null";
+        else if (godModeToggle == null)
+        {
+
+            if (isDashing)
+            {
+                animator.runtimeAnimatorController = statusSprites[2];
+                vectorGridForce.m_ForceScale = 1.3f;
+                vectorGridForce.m_Radius = .3f;
+                return "Dashing";
+            }
+            else if (isSucking)
+            {
+                vectorGridForce.m_ForceScale = -.2f;
+                vectorGridForce.m_Radius = .4f;
+                return "Sucking";
+            }
+            else if (isDead)
+            {
+                StartCoroutine(SendOutWave());
+                return "Dead";
+            }
+            else
+            {
+                animator.runtimeAnimatorController = statusSprites[0];
+                vectorGridForce.m_ForceScale = .6f;
+                vectorGridForce.m_Radius = .2f;
+                return "Normal";
+            }
+        }
+        else return "Normal";
     }
 
     IEnumerator SendOutWave()
