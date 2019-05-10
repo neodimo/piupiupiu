@@ -157,7 +157,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 Rotate(Move());
                 Suck();
                 Jump();
-                ProcessDash();
+                //ProcessDash();
             }
             score = gameSession.GetScore();
             Fire();

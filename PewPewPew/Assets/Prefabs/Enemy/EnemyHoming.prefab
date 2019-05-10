@@ -235,5 +235,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1be5b40d70f57419e3ca360f178ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homingSpeedMin: 50
-  homingSpeedMax: 100
+  homingSpeedMin: 25
+  homingSpeedMax: 45

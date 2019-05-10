@@ -27,9 +27,12 @@ public class SuckTowardPlayer : MonoBehaviour
     void Update()
     {
         closestPlayerObj = FindClosestPlayer();
-        playerState = closestPlayerClass.ProcessState();
-        playerPos = FindClosestPlayer().transform.position;
-        SuckToPlayer();
+        if (closestPlayerClass != null)
+        {
+            playerState = closestPlayerClass.ProcessState();
+            playerPos = closestPlayerObj.transform.position;
+            SuckToPlayer();
+        }
     }
 
     private GameObject FindClosestPlayer()
