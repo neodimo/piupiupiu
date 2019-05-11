@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2795799106643662155}
   - component: {fileID: 1344008160368451861}
   - component: {fileID: 7692646901017636947}
+  - component: {fileID: 1389175874115575446}
   m_Layer: 9
   m_Name: EnemyHoming
   m_TagString: Enemy
@@ -237,3 +238,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homingSpeedMin: 25
   homingSpeedMax: 45
+--- !u!114 &1389175874115575446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784998059116464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c044fa73573cd748a16a0faa92cc326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
