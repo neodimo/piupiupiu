@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            GameObject explosion = Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
             if (!dealerIsPlayerBody && playerState != "Sucking")
             {
                 EmitMultipliers();

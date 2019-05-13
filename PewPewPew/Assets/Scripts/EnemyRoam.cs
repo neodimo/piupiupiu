@@ -60,7 +60,7 @@ public class EnemyRoam : MonoBehaviour
     {
         Vector3 direction = playerPos - transform.position;
         var randomSpeed = UnityEngine.Random.Range(homingSpeedMin, homingSpeedMax);
-        enemyRB2D.velocity = direction.normalized * Time.deltaTime * randomSpeed;
+        enemyRB2D.velocity = direction.normalized * Time.deltaTime * randomSpeed *3;
         Vector2 enemyVelNorm = enemyRB2D.velocity.normalized;
         var rotationDirection = 0;
         if (enemyVelNorm.x < 0)
