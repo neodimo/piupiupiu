@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5846313810682970479, guid: 3fa37ce8ee1c9a247804afeb684eadce,
+  m_Sprite: {fileID: -9059002366800377645, guid: bebafc2b79b7dd9479af1c39e13bd7e6,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 1725634666783160}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 87d2acbf45fae784c830effa30193e90, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9318b199b178ce745b6636c6c9a6f41b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -140,10 +140,6 @@ MonoBehaviour:
     type: 3}
   explosionSound: {fileID: 8300000, guid: a7d3007759b5d5f4186d3972bfcd4330, type: 3}
   explosionVolume: 0
-  statusSprites:
-  - {fileID: 9100000, guid: e5f87e45a41d69943be23502ceefdbb2, type: 2}
-  - {fileID: 9100000, guid: 87d2acbf45fae784c830effa30193e90, type: 2}
-  - {fileID: 9100000, guid: 73efcbd793d24d949b65404c920d1de9, type: 2}
   playerPos: {x: 0, y: 0}
   body: {fileID: 4619176669154800185}
   gunMiddle: {fileID: 3755754594894044174}

@@ -48,7 +48,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     [SerializeField] AudioClip explosionSound;
     //[SerializeField] [Range(0, 1)] float shootingVolume = 0.2f;
     [SerializeField] [Range(0, 1)] float explosionVolume = 0.1f;
-    [SerializeField] RuntimeAnimatorController[] statusSprites;
+    //[SerializeField] RuntimeAnimatorController[] statusSprites;
 
     GameObject[] sliders;
     Slider suckSliderGauge;
@@ -175,7 +175,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 godMode = true;
                 if (isDashing)
                 {
-                    animator.runtimeAnimatorController = statusSprites[2];
+                    //animator.runtimeAnimatorController = statusSprites[2];
                     vectorGridForce.m_ForceScale = 1.5f;
                     vectorGridForce.m_Radius = .3f;
                     return "Dashing God";
@@ -188,7 +188,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 }
                 else
                 {
-                    animator.runtimeAnimatorController = statusSprites[1];
+                    //animator.runtimeAnimatorController = statusSprites[1];
                     vectorGridForce.m_ForceScale = .9f;
                     vectorGridForce.m_Radius = .2f;
                     return "Normal God";
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 godMode = false;
                 if (isDashing)
                 {
-                    animator.runtimeAnimatorController = statusSprites[2];
+                    //animator.runtimeAnimatorController = statusSprites[2];
                     vectorGridForce.m_ForceScale = 1.3f;
                     vectorGridForce.m_Radius = .3f;
                     return "Dashing";
@@ -217,7 +217,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 }
                 else
                 {
-                    animator.runtimeAnimatorController = statusSprites[0];
+                    //animator.runtimeAnimatorController = statusSprites[0];
                     vectorGridForce.m_ForceScale = .6f;
                     vectorGridForce.m_Radius = .2f;
                     return "Normal";
@@ -231,7 +231,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
             if (isDashing)
             {
-                animator.runtimeAnimatorController = statusSprites[2];
+                //animator.runtimeAnimatorController = statusSprites[2];
                 vectorGridForce.m_ForceScale = 1.3f;
                 vectorGridForce.m_Radius = .3f;
                 return "Dashing";
@@ -249,7 +249,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             }
             else
             {
-                animator.runtimeAnimatorController = statusSprites[0];
+                //animator.runtimeAnimatorController = statusSprites[0];
                 vectorGridForce.m_ForceScale = .6f;
                 vectorGridForce.m_Radius = .2f;
                 return "Normal";
