@@ -25,7 +25,7 @@ MonoBehaviour:
     value: 1
   fastMode:
     overrideState: 0
-    value: 0
+    value: 1
 --- !u!114 &-4765477550849220295
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1418,7 +1418,7 @@ MonoBehaviour:
     value: 65472
   diffusion:
     overrideState: 0
-    value: 9.92
+    value: 10
   anamorphicRatio:
     overrideState: 0
     value: -1

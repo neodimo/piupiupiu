@@ -7,7 +7,7 @@ using MoreMountains.NiceVibrations;
 
 public class GameSession : MonoBehaviour {
 
-    [Range(0.1f, 10f)][SerializeField] float gameSpeed = 1f;
+    [Range(0f, 10f)][SerializeField] float gameSpeed = 1f;
     int pointsPerEnemyDestroyed;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI multText;
