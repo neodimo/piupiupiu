@@ -92,44 +92,6 @@ public class SpawnerSpawner : MonoBehaviour
                     var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 20, playerPos.y + 20), -47, 46.5f);
                     Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
                     currentSpawner = Instantiate(spawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
-                    int currentSpawnerEnemyCount = currentSpawner.GetComponent<EnemySpawner>().EnemyCount();
-
-                    //MOVE ALL THIS INTO ENEMYSPAWNER...i think.
-
-                    if (Random.value < 0.5f)
-                    {
-                        horizontal = true;
-                    }
-                    else horizontal = false;
-
-                    if (currentSpawner.transform.position.x < 0 && currentSpawner.transform.position.y < 0) //if bottom left
-                    {
-                        if (!horizontal)
-                        {
-                            currentSpawner.transform.Rotate(0, 0, -90);
-                        }
-                    }
-                    else if (currentSpawner.transform.position.x < 0 && currentSpawner.transform.position.y > 0) //if top left
-                    {
-                        if (!horizontal)
-                        {
-                            currentSpawner.transform.Rotate(0, 0, 90);
-                        }
-                    }
-                    else if (currentSpawner.transform.position.x > 0 && currentSpawner.transform.position.y < 0) //if bottom right
-                    {
-                        if (!horizontal)
-                        {
-                            currentSpawner.transform.Rotate(0, 0, -90);
-                        }
-                    }
-                    else if (currentSpawner.transform.position.x > 0 && currentSpawner.transform.position.y > 0) //if top right
-                    {
-                        if (!horizontal)
-                        {
-                            currentSpawner.transform.Rotate(0, 0, 90);
-                        }
-                    }
                 }
                 else
                 {

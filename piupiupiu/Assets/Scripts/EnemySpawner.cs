@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject tilePrefab;
     [SerializeField] Sprite[] sprites;
     GameObject[] tiles;
+    bool horizontal = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 Vector3 tilePos = new Vector3(transform.position.x + tileOffset, transform.position.y, transform.position.z);
                 tiles[spriteCount] = Instantiate(tilePrefab, tilePos, Quaternion.identity) as GameObject;
+                tiles[spriteCount].transform.parent = gameObject.transform;
                 if (spriteCount == 0)
                 {
                     tiles[spriteCount].GetComponent<SpriteRenderer>().sprite = sprites[0];
@@ -37,6 +39,40 @@ public class EnemySpawner : MonoBehaviour
                     tiles[spriteCount].GetComponent<SpriteRenderer>().sprite = sprites[1];
                 }
                 tileOffset += 5;
+            }
+            if (Random.value < 0.5f)
+            {
+                horizontal = true;
+            }
+            else horizontal = false;
+
+            if (gameObject.transform.position.x < 0 && gameObject.transform.position.y < 0) //if bottom left
+            {
+                if (!horizontal)
+                {
+                    gameObject.transform.Rotate(0, 0, -90);
+                }
+            }
+            else if (gameObject.transform.position.x < 0 && gameObject.transform.position.y > 0) //if top left
+            {
+                if (!horizontal)
+                {
+                    gameObject.transform.Rotate(0, 0, 90);
+                }
+            }
+            else if (gameObject.transform.position.x > 0 && gameObject.transform.position.y < 0) //if bottom right
+            {
+                if (!horizontal)
+                {
+                    gameObject.transform.Rotate(0, 0, -90);
+                }
+            }
+            else if (gameObject.transform.position.x > 0 && gameObject.transform.position.y > 0) //if top right
+            {
+                if (!horizontal)
+                {
+                    gameObject.transform.Rotate(0, 0, 90);
+                }
             }
         }
     }
@@ -58,7 +94,8 @@ public class EnemySpawner : MonoBehaviour
 
         //int enemyCount = UnityEngine.Random.Range(enemyCountMin, enemyCountMax);
         GameObject[] enemyPrefabs = new GameObject[enemyCount];
-        float waveEnemyOffset = 0;
+        float waveEnemyOffsetX = 0;
+        float waveEnemyOffsetY = 0;
         for (int counter = 0; counter < enemyCount; counter++)
         {
             if (enemyPrefab.name == "EnemyHoming" || enemyPrefab.name == "EnemyRoaming")
@@ -89,9 +126,23 @@ public class EnemySpawner : MonoBehaviour
             else if (enemyPrefab.name == "EnemyWave")
             {
                 yield return new WaitForSeconds(.2f);
-                Vector3 enemyWavePos = new Vector3(transform.position.x + waveEnemyOffset, transform.position.y, transform.position.z);
+                Vector3 enemyWavePos;
+                if (transform.rotation.z == 0)
+                {
+                    enemyWavePos = new Vector3(transform.position.x + waveEnemyOffsetX, transform.position.y, transform.position.z);
+                    waveEnemyOffsetX += 5;
+                }
+                else if (transform.rotation.z == 90)
+                {
+                    enemyWavePos = new Vector3(transform.position.x, transform.position.y + waveEnemyOffsetY, transform.position.z);
+                    waveEnemyOffsetY -= 5;
+                }
+                else
+                {
+                    enemyWavePos = new Vector3(transform.position.x, transform.position.y + waveEnemyOffsetY, transform.position.z);
+                    waveEnemyOffsetY -= 5;
+                }
                 enemyPrefabs[counter] = Instantiate(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject;
-                waveEnemyOffset += 5;
             }
         }
         if (tilePrefab)

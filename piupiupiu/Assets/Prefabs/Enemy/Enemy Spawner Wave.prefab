@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCountMin: 5
-  enemyCountMax: 10
+  enemyCountMax: 5
   enemyPrefab: {fileID: 1784998059116464, guid: 62fb978d2c0427f4da439e478633636b,
     type: 3}
   tilePrefab: {fileID: 7393561851078554590, guid: b86e2f8acefafad4eb6bf590d4d47fc7,
