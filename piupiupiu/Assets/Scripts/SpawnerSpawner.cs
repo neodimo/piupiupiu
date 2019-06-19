@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnerSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject[] SpawnerPool;
+    [SerializeField] GameObject[] spawnerPool;
     Vector2 playerPos;
     Player[] allPlayers;
     Player closestPlayerClass;
@@ -15,6 +15,7 @@ public class SpawnerSpawner : MonoBehaviour
     float timeBetweenSpawners;
     int percentageBasedValue;
     bool spawning;
+    bool horizontal = true;
     [SerializeField] bool spawn = true;
 
     int[] weights;
@@ -22,10 +23,11 @@ public class SpawnerSpawner : MonoBehaviour
 
     void Awake()
     {
-        weights = new int[SpawnerPool.Length]; //number of things
+        weights = new int[spawnerPool.Length]; //number of things
 
-        weights[0] = 60;
-        weights[1] = 40;
+        weights[0] = 35;
+        weights[1] = 45;
+        weights[2] = 20;
 
         weightTotal = 0;
         foreach (int w in weights)
@@ -76,10 +78,67 @@ public class SpawnerSpawner : MonoBehaviour
             while (playerState != "Sucking")
             {
                 playerPos = FindClosestPlayer().transform.position;
-                var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -40, 40);
-                var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -40, 40);
-                Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
-                var currentSpawner = Instantiate(SpawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
+                GameObject currentSpawner;
+                if (spawnerPool[percentageBasedValue].name == "Enemy Spawner Homing" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Roaming")
+                {
+                    var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -40, 40);
+                    var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -40, 40);
+                    Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
+                    currentSpawner = Instantiate(spawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
+                }
+                else if (spawnerPool[percentageBasedValue].name == "Enemy Spawner Wave")
+                {
+                    var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 20, playerPos.x + 20), -47, 30);
+                    var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 20, playerPos.y + 20), -47, 46.5f);
+                    Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
+                    currentSpawner = Instantiate(spawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
+                    int currentSpawnerEnemyCount = currentSpawner.GetComponent<EnemySpawner>().EnemyCount();
+
+                    //MOVE ALL THIS INTO ENEMYSPAWNER...i think.
+
+                    if (Random.value < 0.5f)
+                    {
+                        horizontal = true;
+                    }
+                    else horizontal = false;
+
+                    if (currentSpawner.transform.position.x < 0 && currentSpawner.transform.position.y < 0) //if bottom left
+                    {
+                        if (!horizontal)
+                        {
+                            currentSpawner.transform.Rotate(0, 0, -90);
+                        }
+                    }
+                    else if (currentSpawner.transform.position.x < 0 && currentSpawner.transform.position.y > 0) //if top left
+                    {
+                        if (!horizontal)
+                        {
+                            currentSpawner.transform.Rotate(0, 0, 90);
+                        }
+                    }
+                    else if (currentSpawner.transform.position.x > 0 && currentSpawner.transform.position.y < 0) //if bottom right
+                    {
+                        if (!horizontal)
+                        {
+                            currentSpawner.transform.Rotate(0, 0, -90);
+                        }
+                    }
+                    else if (currentSpawner.transform.position.x > 0 && currentSpawner.transform.position.y > 0) //if top right
+                    {
+                        if (!horizontal)
+                        {
+                            currentSpawner.transform.Rotate(0, 0, 90);
+                        }
+                    }
+                }
+                else
+                {
+                    var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -40, 40);
+                    var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -40, 40);
+                    Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
+                    currentSpawner = Instantiate(spawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
+                }
+
                 timeSinceStarted = Time.time - startTime;
                 if (timeSinceStarted < 30f)
                 {

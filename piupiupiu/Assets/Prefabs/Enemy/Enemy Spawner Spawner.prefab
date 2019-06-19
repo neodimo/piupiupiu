@@ -46,3 +46,5 @@ MonoBehaviour:
   SpawnerPool:
   - {fileID: 8720660084022875205, guid: 91bc96d418165d24fafff63effad5ffb, type: 3}
   - {fileID: 8720660084022875205, guid: e7f7b618e55be13468cdb58627208210, type: 3}
+  - {fileID: 8720660084022875205, guid: cd5d1f11de374ca4e96a5fac09304cf9, type: 3}
+  spawn: 1

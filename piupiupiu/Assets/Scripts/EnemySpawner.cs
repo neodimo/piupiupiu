@@ -5,12 +5,40 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] int enemyCountMin, enemyCountMax;
+    int enemyCount;
     [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject tilePrefab;
+    [SerializeField] Sprite[] sprites;
+    GameObject[] tiles;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyCount = UnityEngine.Random.Range(enemyCountMin, enemyCountMax);
         EmitEnemies();
+        if (enemyPrefab.name == "EnemyWave")
+        {
+            tiles = new GameObject[enemyCount];
+            float tileOffset = 0;
+            for (int spriteCount = 0; spriteCount < enemyCount; spriteCount++)
+            {
+                Vector3 tilePos = new Vector3(transform.position.x + tileOffset, transform.position.y, transform.position.z);
+                tiles[spriteCount] = Instantiate(tilePrefab, tilePos, Quaternion.identity) as GameObject;
+                if (spriteCount == 0)
+                {
+                    tiles[spriteCount].GetComponent<SpriteRenderer>().sprite = sprites[0];
+                }
+                else if (spriteCount == enemyCount - 1)
+                {
+                    tiles[spriteCount].GetComponent<SpriteRenderer>().sprite = sprites[2];
+                }
+                else
+                {
+                    tiles[spriteCount].GetComponent<SpriteRenderer>().sprite = sprites[1];
+                }
+                tileOffset += 5;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -28,32 +56,50 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        int enemyCount = UnityEngine.Random.Range(enemyCountMin, enemyCountMax);
+        //int enemyCount = UnityEngine.Random.Range(enemyCountMin, enemyCountMax);
         GameObject[] enemyPrefabs = new GameObject[enemyCount];
+        float waveEnemyOffset = 0;
         for (int counter = 0; counter < enemyCount; counter++)
         {
-            yield return new WaitForSeconds(.2f);
-            float randOffsetX = UnityEngine.Random.Range(-3f, 3f);
-            float randOffsetY = UnityEngine.Random.Range(-3f, 3f);
-            Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z);
-
-            enemyPrefabs[counter] = Instantiate(enemyPrefab, transform.position, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
-
-            float randVelX = UnityEngine.Random.Range(-200f, 200f);
-            float randVelY = UnityEngine.Random.Range(-200f, 200f);
-            Vector2 enemyVel = new Vector2(randVelX, randVelY) * Time.deltaTime;
-            enemyPrefabs[counter].GetComponent<Rigidbody2D>().velocity = enemyVel;
-            Vector2 enemyVelNorm = enemyVel.normalized;
-            var rotationDirection = 0;
-            if (enemyVelNorm.x > 0)
+            if (enemyPrefab.name == "EnemyHoming" || enemyPrefab.name == "EnemyRoaming")
             {
-                rotationDirection = 1;
+                yield return new WaitForSeconds(.2f);
+                float randOffsetX = UnityEngine.Random.Range(-3f, 3f);
+                float randOffsetY = UnityEngine.Random.Range(-3f, 3f);
+                Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z); //implement maybe?
+
+                enemyPrefabs[counter] = Instantiate(enemyPrefab, transform.position, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
+
+                float randVelX = UnityEngine.Random.Range(-200f, 200f);
+                float randVelY = UnityEngine.Random.Range(-200f, 200f);
+                Vector2 enemyVel = new Vector2(randVelX, randVelY) * Time.deltaTime;
+                enemyPrefabs[counter].GetComponent<Rigidbody2D>().velocity = enemyVel;
+                Vector2 enemyVelNorm = enemyVel.normalized;
+                var rotationDirection = 0;
+                if (enemyVelNorm.x > 0)
+                {
+                    rotationDirection = 1;
+                }
+                else
+                {
+                    rotationDirection = -1;
+                }
+                enemyPrefabs[counter].GetComponent<Rigidbody2D>().angularVelocity = UnityEngine.Random.Range(360, 400) * rotationDirection;
             }
-            else
+            else if (enemyPrefab.name == "EnemyWave")
             {
-                rotationDirection = -1;
+                yield return new WaitForSeconds(.2f);
+                Vector3 enemyWavePos = new Vector3(transform.position.x + waveEnemyOffset, transform.position.y, transform.position.z);
+                enemyPrefabs[counter] = Instantiate(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject;
+                waveEnemyOffset += 5;
             }
-            enemyPrefabs[counter].GetComponent<Rigidbody2D>().angularVelocity = UnityEngine.Random.Range(360, 400) * rotationDirection;
+        }
+        if (tilePrefab)
+        {
+            for (int counter = 0; counter < enemyCount; counter++)
+            {
+                Destroy(tiles[counter], 1f);
+            }
         }
         Destroy(gameObject, 1f);
     }
@@ -62,6 +108,11 @@ public class EnemySpawner : MonoBehaviour
     {
         enemyCountMin += EnemySpawnCount - 5;
         enemyCountMax += EnemySpawnCount;
+    }
+
+    public int EnemyCount()
+    {
+        return enemyCount;
     }
 }
 

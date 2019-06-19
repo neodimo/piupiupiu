@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPathing : MonoBehaviour
+public class EnemyWave : MonoBehaviour
 {
     [SerializeField] [Range(1, 600)] float homingSpeedMin = 12;
     [SerializeField] [Range(1, 600)] float homingSpeedMax = 15;
