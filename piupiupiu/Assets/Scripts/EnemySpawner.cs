@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Sprite[] sprites;
     GameObject[] tiles;
     bool horizontal = true;
+    string position;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
         EmitEnemies();
         if (enemyPrefab.name == "EnemyWave")
         {
+            enemyCount = 6;
             tiles = new GameObject[enemyCount];
             float tileOffset = 0;
             for (int spriteCount = 0; spriteCount < enemyCount; spriteCount++)
@@ -51,6 +54,13 @@ public class EnemySpawner : MonoBehaviour
                 if (!horizontal)
                 {
                     gameObject.transform.Rotate(0, 0, -90);
+                    transform.position = new Vector3(-46, -15, transform.position.z);
+                    position = "left";
+                }
+                else
+                {
+                    transform.position = new Vector3(-42, -46, transform.position.z);
+                    position = "bottom";
                 }
             }
             else if (gameObject.transform.position.x < 0 && gameObject.transform.position.y > 0) //if top left
@@ -58,6 +68,13 @@ public class EnemySpawner : MonoBehaviour
                 if (!horizontal)
                 {
                     gameObject.transform.Rotate(0, 0, 90);
+                    transform.position = new Vector3(-46, 15, transform.position.z);
+                    position = "left";
+                }
+                else
+                {
+                    transform.position = new Vector3(-42, 46, transform.position.z);
+                    position = "top";
                 }
             }
             else if (gameObject.transform.position.x > 0 && gameObject.transform.position.y < 0) //if bottom right
@@ -65,6 +82,13 @@ public class EnemySpawner : MonoBehaviour
                 if (!horizontal)
                 {
                     gameObject.transform.Rotate(0, 0, -90);
+                    transform.position = new Vector3(46, -15, transform.position.z);
+                    position = "right";
+                }
+                else
+                {
+                    transform.position = new Vector3(15, -46, transform.position.z);
+                    position = "bottom";
                 }
             }
             else if (gameObject.transform.position.x > 0 && gameObject.transform.position.y > 0) //if top right
@@ -72,6 +96,13 @@ public class EnemySpawner : MonoBehaviour
                 if (!horizontal)
                 {
                     gameObject.transform.Rotate(0, 0, 90);
+                    transform.position = new Vector3(46, 15, transform.position.z);
+                    position = "right";
+                }
+                else
+                {
+                    transform.position = new Vector3(15, 46, transform.position.z);
+                    position = "top";
                 }
             }
         }
@@ -125,24 +156,48 @@ public class EnemySpawner : MonoBehaviour
             }
             else if (enemyPrefab.name == "EnemyWave")
             {
-                yield return new WaitForSeconds(.2f);
+                yield return new WaitForSeconds(.05f);
                 Vector3 enemyWavePos;
                 if (transform.rotation.z == 0)
                 {
                     enemyWavePos = new Vector3(transform.position.x + waveEnemyOffsetX, transform.position.y, transform.position.z);
                     waveEnemyOffsetX += 5;
                 }
-                else if (transform.rotation.z == 90)
+                else if (transform.rotation.z > 0)
                 {
                     enemyWavePos = new Vector3(transform.position.x, transform.position.y + waveEnemyOffsetY, transform.position.z);
-                    waveEnemyOffsetY -= 5;
+                    waveEnemyOffsetY += 5;
                 }
                 else
                 {
                     enemyWavePos = new Vector3(transform.position.x, transform.position.y + waveEnemyOffsetY, transform.position.z);
                     waveEnemyOffsetY -= 5;
                 }
+
+                //Emit enemy.
                 enemyPrefabs[counter] = Instantiate(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject;
+
+                //Orient enemy direction.
+                if (position == "top")
+                {
+                    enemyPrefabs[counter].transform.up = Vector3.down;
+                    enemyPrefabs[counter].GetComponent<EnemyWave>().position = "top";
+                }
+                else if (position == "bottom")
+                {
+                    enemyPrefabs[counter].transform.up = Vector3.up;
+                    enemyPrefabs[counter].GetComponent<EnemyWave>().position = "bottom";
+                }
+                else if (position == "left")
+                {
+                    enemyPrefabs[counter].transform.up = Vector3.right;
+                    enemyPrefabs[counter].GetComponent<EnemyWave>().position = "left";
+                }
+                else
+                {
+                    enemyPrefabs[counter].transform.up = Vector3.left;
+                    enemyPrefabs[counter].GetComponent<EnemyWave>().position = "right";
+                }
             }
         }
         if (tilePrefab)
@@ -164,6 +219,11 @@ public class EnemySpawner : MonoBehaviour
     public int EnemyCount()
     {
         return enemyCount;
+    }
+
+    public string WaveEmitterPosition()
+    {
+        return position;
     }
 }
 

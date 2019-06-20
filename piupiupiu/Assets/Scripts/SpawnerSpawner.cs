@@ -92,6 +92,8 @@ public class SpawnerSpawner : MonoBehaviour
                     var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 20, playerPos.y + 20), -47, 46.5f);
                     Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
                     currentSpawner = Instantiate(spawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
+                    var enemyCount = currentSpawner.GetComponent<EnemySpawner>().EnemyCount();
+
                 }
                 else
                 {
