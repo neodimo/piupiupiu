@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 381981941881055527}
   - component: {fileID: 7089464575003664114}
   - component: {fileID: 4058762716604323318}
+  - component: {fileID: -6916374904693149117}
   m_Layer: 0
   m_Name: Multiplier
   m_TagString: Multiplier
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -113,7 +115,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3108611466150865320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2902eab69def24a46b86cb578325783e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -136,3 +137,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.26359203, y: 0.7502235}
   m_Direction: 0
+--- !u!114 &-6916374904693149117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3108611466150865320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c044fa73573cd748a16a0faa92cc326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

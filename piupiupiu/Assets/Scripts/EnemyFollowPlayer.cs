@@ -12,7 +12,7 @@ public class EnemyFollowPlayer : MonoBehaviour
     float startTime;
     float timePast;
     float actualSpeed = 0;
-    float accelleration = 2f;
+    [SerializeField] float accelleration = 2f;
 
     private void Awake()
     {
