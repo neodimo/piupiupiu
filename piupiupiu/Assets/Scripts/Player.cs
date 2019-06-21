@@ -50,6 +50,14 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     [SerializeField] [Range(0, 1)] float explosionVolume = 0.1f;
     //[SerializeField] RuntimeAnimatorController[] statusSprites;
 
+    [Header("VectorGridForce")]
+    [SerializeField]
+    [Range(0, 1)]
+    float defaultScale = .6f;
+    [SerializeField]
+    [Range(0, 1)]
+    float defaultRadius = .2f;
+
     GameObject[] sliders;
     Slider suckSliderGauge;
     Slider dashSliderGauge;
@@ -250,8 +258,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             else
             {
                 //animator.runtimeAnimatorController = statusSprites[0];
-                vectorGridForce.m_ForceScale = .6f;
-                vectorGridForce.m_Radius = .2f;
+                vectorGridForce.m_ForceScale = defaultScale; //.6f;
+                vectorGridForce.m_Radius = defaultRadius; //.2f;
                 return "Normal";
             }
         }
@@ -656,7 +664,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         spriteRenderer.enabled = false;
         isDead = true;
-        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        GameObject explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
+        explosion.transform.up = Vector3.forward;
         AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
         Destroy(explosion, 1f);
         FindObjectOfType<SceneLoader>().GameOver();
