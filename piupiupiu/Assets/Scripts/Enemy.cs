@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] [Range(1, 20)] int multCountMin = 1;
     [Header("Points Pop Up")]
     [SerializeField] GameObject popUpText;
+    GameObject CGFObjectPoolingManagerObject;
 
     int currentPoints;
     bool dealerIsPlayerBody;
@@ -47,6 +48,7 @@ public class Enemy : MonoBehaviour
         level = FindObjectOfType<Level>();
         level.AddToEnemyCount();
         closestPlayerClass = FindObjectOfType<Player>();
+        CGFObjectPoolingManagerObject = GameObject.Find("ObjectPooling");
         //popUpList = new List<GameObject>();
 
         //FOR SHOOTING
@@ -127,7 +129,7 @@ public class Enemy : MonoBehaviour
             float randOffsetX = UnityEngine.Random.Range(-1f, 1f);
             float randOffsetY = UnityEngine.Random.Range(-1f, 1f);
             Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z);
-            multPrefabs[counter] = Instantiate(multPrefab, offsetPos, Quaternion.identity) as GameObject;
+            //multPrefabs[counter] = CGFObjectPoolingManagerObject.Instance.InstantiatePoolObject(elementToSpawn.prefab, spawnPosition, Quaternion.identity) as GameObject; //Instantiate(multPrefab, offsetPos, Quaternion.identity) as GameObject;
 
             float randVelX = UnityEngine.Random.Range(-2f, 2f);
             float randVelY = UnityEngine.Random.Range(-2f, 2f);
