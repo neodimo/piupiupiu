@@ -24,16 +24,21 @@ public class Multiplier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        allPlayers = GameObject.FindObjectsOfType<Player>();
+        //allPlayers = GameObject.FindObjectsOfType<Player>();
+        StartCoroutine(BackToPool());
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (allPlayers[0] != null)
         {
             playerPos = FindClosestPlayer().transform.position;
         }
+        */
+
+        playerPos = Player.Instance.transform.position;
 
         //Pythagoras Rule
         //distance = (float)Math.Sqrt(Math.Pow((playerPos[0] - transform.position.x), 2) + Math.Pow((playerPos[1] - transform.position.y), 2));
@@ -92,5 +97,11 @@ public class Multiplier : MonoBehaviour
             }
         }
         return closestPlayer.gameObject;
+    }
+
+    IEnumerator BackToPool()
+    {
+        yield return new WaitForSeconds(4f);
+        gameObject.SetActive(false);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    public static Level Instance;
     int enemyCount;
     int enemyDeathCount;
     //SceneLoader sceneLoader;
@@ -11,6 +12,7 @@ public class Level : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         enemyCount = 0;
         enemyDeathCount = 0;
     }

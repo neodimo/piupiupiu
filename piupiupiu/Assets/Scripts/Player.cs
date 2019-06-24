@@ -9,7 +9,7 @@ using MoreMountains.NiceVibrations;
 
 public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IPointerUpHandler
 {
-
+    public static Player Instance;
     [Header("Player")]
     [SerializeField] float playerSpeed = 20;
     //[SerializeField] float padding = 0;
@@ -113,6 +113,12 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     GameSession gameSession;
     string score;
+
+    //
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Use this for initialization
     void Start() {

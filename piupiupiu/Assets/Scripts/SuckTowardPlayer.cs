@@ -19,18 +19,18 @@ public class SuckTowardPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        allPlayers = GameObject.FindObjectsOfType<Player>();
-        closestPlayerClass = FindObjectOfType<Player>();
+        //allPlayers = GameObject.FindObjectsOfType<Player>();
+        closestPlayerClass = Player.Instance; // FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        closestPlayerObj = FindClosestPlayer();
+        //closestPlayerObj = FindClosestPlayer();
         if (closestPlayerClass != null)
         {
             playerState = closestPlayerClass.ProcessState();
-            playerPos = closestPlayerObj.transform.position;
+            playerPos = Player.Instance.transform.position; //closestPlayerObj.transform.position;
             SuckToPlayer();
         }
     }

@@ -9,6 +9,7 @@ public class GameSession : MonoBehaviour {
 
     [Range(0f, 10f)][SerializeField] float gameSpeed = 1f;
     int pointsPerEnemyDestroyed;
+    public static GameSession Instance;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI multText;
     [SerializeField] bool isAutoPlayEnabled;
@@ -20,6 +21,7 @@ public class GameSession : MonoBehaviour {
 
     private void Awake()
     {
+        Instance = this;
         int gameStatusCount = FindObjectsOfType<GameSession>().Length;
         if (gameStatusCount > 1)
         {

@@ -16,6 +16,7 @@ public class EnemyRoam : MonoBehaviour
     float randomStartTime;
     bool firstGo;
     Rigidbody2D enemyRB2D;
+    Vector3 direction;
 
     private void Awake()
     {
@@ -28,23 +29,24 @@ public class EnemyRoam : MonoBehaviour
     {
         firstGo = false;
         enemyRB2D = gameObject.GetComponent<Rigidbody2D>();
-        allPlayers = GameObject.FindObjectsOfType<Player>();
+        StartCoroutine(ChangeDirection());
+        //allPlayers = GameObject.FindObjectsOfType<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerPos = FindClosestPlayer().transform.position;
+        playerPos = Player.Instance.transform.position; //FindClosestPlayer().transform.position;
 
         //Pythagoras Rule
         //distance = (float)Math.Sqrt(Math.Pow((playerPos[0] - transform.position.x), 2) + Math.Pow((playerPos[1] - transform.position.y), 2));
 
         timePastSinceAlive = Time.time - startTime;
         timePastSinceLastRedirection = Time.time - timeOfLastRedirection;
-
+        /*
         if (timePastSinceAlive > randomStartTime)
         {
-            if (firstGo && timePastSinceLastRedirection > 2.5f)
+            if (firstGo && timePastSinceLastRedirection > 0.1f)
             {
                 GoToPlayer();
             }
@@ -54,15 +56,29 @@ public class EnemyRoam : MonoBehaviour
                 firstGo = true;
             }
         }
+        */
+
+        if (timePastSinceAlive > randomStartTime)
+        {
+            MoveTowardDirection(direction);
+        }
     }
 
-    private void GoToPlayer()
+    IEnumerator ChangeDirection()
     {
-        Vector3 direction = playerPos - transform.position;
+        while (true)
+        {
+            direction = playerPos - transform.position;
+            yield return new WaitForSeconds(3f);
+        }
+    }
+
+    private void MoveTowardDirection(Vector3 direction)
+    {
         var randomSpeed = UnityEngine.Random.Range(homingSpeedMin, homingSpeedMax);
         //enemyRB2D.velocity = direction.normalized * Time.deltaTime * randomSpeed *2;
         Vector2 enemyVelNorm = enemyRB2D.velocity.normalized;
-        float step = 200 * Time.deltaTime;
+        float step = randomSpeed * Time.deltaTime;
         //transform.position = Vector3.MoveTowards(transform.position, currentTarget.transform.position, step);
         //var magnitude = direction.magnitude;
         var magNormalized = direction.normalized;

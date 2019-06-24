@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Assets.CGF.Systems.ObjectTransform;
 
 public class Enemy : MonoBehaviour
 {
@@ -19,17 +20,16 @@ public class Enemy : MonoBehaviour
     */
     [Header("Death Effects")]
     [SerializeField] GameObject explosionPrefab;
-    [SerializeField] AudioClip explosionSound;
-    [SerializeField] AudioClip enemyShootingSound;
+    //[SerializeField] AudioClip explosionSound;
+    //[SerializeField] AudioClip enemyShootingSound;
     //[SerializeField] [Range(0, 1)] float shootingVolume = 0.05f;
-    [SerializeField] [Range(0, 1)] float explosionVolume = 0.1f;
+    //[SerializeField] [Range(0, 1)] float explosionVolume = 0.1f;
     [Header("Multiplier")]
     [SerializeField] GameObject multPrefab;
-    [SerializeField] [Range(1, 20)] int multCountMax = 5;
     [SerializeField] [Range(1, 20)] int multCountMin = 1;
+    [SerializeField] [Range(1, 20)] int multCountMax = 5;
     [Header("Points Pop Up")]
     [SerializeField] GameObject popUpText;
-    GameObject CGFObjectPoolingManagerObject;
 
     int currentPoints;
     bool dealerIsPlayerBody;
@@ -45,10 +45,9 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        level = FindObjectOfType<Level>();
+        level = Level.Instance;
         level.AddToEnemyCount();
-        closestPlayerClass = FindObjectOfType<Player>();
-        CGFObjectPoolingManagerObject = GameObject.Find("ObjectPooling");
+        closestPlayerClass = Player.Instance; //FindObjectOfType<Player>();
         //popUpList = new List<GameObject>();
 
         //FOR SHOOTING
@@ -105,17 +104,17 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            GameObject explosion = Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
+            GameObject explosion = CGFObjectPoolingManager.Instance.InstantiatePoolObject(explosionPrefab, transform.position, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
             if (!dealerIsPlayerBody && playerState != "Sucking")
             {
                 EmitMultipliers();
             }
-            AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
-            Destroy(explosion, 1f);
-            currentPoints = FindObjectOfType<GameSession>().AddToScore(points);
+            //AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
+            currentPoints = GameSession.Instance.AddToScore(points);
             PopUpPoints();
-            Destroy(gameObject);
-            level.EnemyDestroyed();
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+            //level.EnemyDestroyed();
         }
     }
 
@@ -129,23 +128,23 @@ public class Enemy : MonoBehaviour
             float randOffsetX = UnityEngine.Random.Range(-1f, 1f);
             float randOffsetY = UnityEngine.Random.Range(-1f, 1f);
             Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z);
-            //multPrefabs[counter] = CGFObjectPoolingManagerObject.Instance.InstantiatePoolObject(elementToSpawn.prefab, spawnPosition, Quaternion.identity) as GameObject; //Instantiate(multPrefab, offsetPos, Quaternion.identity) as GameObject;
+            multPrefabs[counter] = CGFObjectPoolingManager.Instance.InstantiatePoolObject(multPrefab, offsetPos, Quaternion.identity);
+            //Instantiate(multPrefab, offsetPos, Quaternion.identity) as GameObject;
 
             float randVelX = UnityEngine.Random.Range(-2f, 2f);
             float randVelY = UnityEngine.Random.Range(-2f, 2f);
             Vector2 multVel = new Vector2(randVelX, randVelY);
             multPrefabs[counter].GetComponent<Rigidbody2D>().velocity = multVel;
-            Destroy(multPrefabs[counter], 4f);
         }
     }
 
     private void PopUpPoints()
     {
         GameObject textClone;
-        textClone = Instantiate(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
+        textClone = CGFObjectPoolingManager.Instance.InstantiatePoolObject(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity); //Instantiate(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
 
         textClone.GetComponent<TextMeshPro>().text = "+" + currentPoints.ToString();
 
-        Destroy(textClone, .5f);
+        //Destroy(textClone, .5f);
     }
 }

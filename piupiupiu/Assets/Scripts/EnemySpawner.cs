@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.CGF.Systems.ObjectTransform;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -175,7 +176,7 @@ public class EnemySpawner : MonoBehaviour
                 }
 
                 //Emit enemy.
-                enemyPrefabs[counter] = Instantiate(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject;
+                enemyPrefabs[counter] = CGFObjectPoolingManager.Instance.InstantiatePoolObject(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject;
 
                 //Orient enemy direction.
                 if (position == "top")

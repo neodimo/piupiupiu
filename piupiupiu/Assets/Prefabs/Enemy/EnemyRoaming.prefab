@@ -168,13 +168,10 @@ MonoBehaviour:
   points: 5
   explosionPrefab: {fileID: 6949742781396101536, guid: ead92916de0fe764787ee91ccea65d15,
     type: 3}
-  explosionSound: {fileID: 8300000, guid: a7d3007759b5d5f4186d3972bfcd4330, type: 3}
-  enemyShootingSound: {fileID: 8300000, guid: f5064a5413b962c41a95241e37743462, type: 3}
-  explosionVolume: 0
   multPrefab: {fileID: 3108611466150865320, guid: 835fd527a8d3f334e9e7886163c5406a,
     type: 3}
-  multCountMax: 15
   multCountMin: 1
+  multCountMax: 15
   popUpText: {fileID: 6499300873041219245, guid: b2f888f96073aff4b92ce68082c1c1a5,
     type: 3}
 --- !u!114 &2795799106643662155
@@ -202,8 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b4da7054d077143830d90ada6594a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homingSpeedMin: 400
-  homingSpeedMax: 500
+  homingSpeedMin: 5
+  homingSpeedMax: 15
 --- !u!114 &266124396207942367
 MonoBehaviour:
   m_ObjectHideFlags: 0

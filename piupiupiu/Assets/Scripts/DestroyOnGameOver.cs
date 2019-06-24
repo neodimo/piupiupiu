@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class DestroyOnGameOver : MonoBehaviour
 {
-    GameObject player;
     Player closestPlayerClass;
     string playerState;
 
@@ -14,8 +13,7 @@ public class DestroyOnGameOver : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex != 2)
         {
-            player = FindObjectOfType<Player>().gameObject;
-            closestPlayerClass = FindObjectOfType<Player>();
+            closestPlayerClass = Player.Instance; //FindObjectOfType<Player>();
         }
     }
 
@@ -25,7 +23,8 @@ public class DestroyOnGameOver : MonoBehaviour
         playerState = closestPlayerClass.ProcessState();
         if (playerState == "Dead")
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
     }
 }
