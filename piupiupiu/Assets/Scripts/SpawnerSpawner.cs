@@ -48,14 +48,14 @@ public class SpawnerSpawner : MonoBehaviour
         return result;
     }
 
-    void Start()
+    public void Init()
     {
         startTime = Time.time;
         timeBetweenSpawners = 5f;
         spawning = true;
-        allPlayers = GameObject.FindObjectsOfType<Player>();
-        closestPlayerClass = FindObjectOfType<Player>();
-        playerPos = FindClosestPlayer().transform.position;
+        //allPlayers = GameObject.FindObjectsOfType<Player>();
+        //closestPlayerClass = FindObjectOfType<Player>();
+        playerPos = Player.Instance.transform.position; //FindClosestPlayer().transform.position;
         percentageBasedValue = RandomWeighted();
         if (spawn == true)
         {
@@ -66,7 +66,7 @@ public class SpawnerSpawner : MonoBehaviour
     void Update()
     {
         percentageBasedValue = RandomWeighted();
-        playerState = closestPlayerClass.ProcessState();
+        playerState = Player.Instance.ProcessState(); //closestPlayerClass.ProcessState();
     }
 
     IEnumerator SpawnSpawners()
@@ -77,7 +77,7 @@ public class SpawnerSpawner : MonoBehaviour
         {
             while (playerState != "Sucking")
             {
-                playerPos = FindClosestPlayer().transform.position;
+                playerPos = Player.Instance.transform.position; //FindClosestPlayer().transform.position;
                 GameObject currentSpawner;
                 if (spawnerPool[percentageBasedValue].name == "Enemy Spawner Homing" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Roaming")
                 {

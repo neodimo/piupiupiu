@@ -11,10 +11,13 @@ public class DestroyOnGameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        closestPlayerClass = Player.Instance;
+        /*
         if (SceneManager.GetActiveScene().buildIndex != 2)
         {
             closestPlayerClass = Player.Instance; //FindObjectOfType<Player>();
         }
+        */
     }
 
     // Update is called once per frame

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    public SpawnerSpawner spawnerSpawner;
     public static Level Instance;
-    int enemyCount;
+    public int enemyCount;
     int enemyDeathCount;
+    public List<GameObject> enemies = new List<GameObject>();
     //SceneLoader sceneLoader;
     EnemySpawner enemySpawner;
 
@@ -19,23 +21,36 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
+        spawnerSpawner.Init();
         //sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
-    public void AddToEnemyCount()
+    public void AddToEnemyCount(GameObject enemy)
     {
-        enemyCount++;
+        enemies.Add(enemy);
+        enemyCount = enemies.Count;
     }
 
-    public void EnemyDestroyed()
+    public void EnemyDestroyed(GameObject enemy)
     {
         enemyCount--;
         enemyDeathCount++;
+        enemies.Remove(enemy);
         /*
         if (enemyCount <= 0)
         {
             sceneLoader.LoadNextScene();
         }
         */
+    }
+
+    public int EnemyCount()
+    {
+        return enemyCount;
+    }
+
+    public List<GameObject> EnemiesAlive()
+    {
+        return enemies;
     }
 }

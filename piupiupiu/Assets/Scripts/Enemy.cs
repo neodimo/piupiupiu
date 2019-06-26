@@ -42,16 +42,44 @@ public class Enemy : MonoBehaviour
 
     Coroutine firingCoroutine;
 
+    private void Awake()
+    {
+        level = Level.Instance;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        level = Level.Instance;
-        level.AddToEnemyCount();
+        //StartCoroutine(CheckForLevel());
+
+        Level.Instance.AddToEnemyCount(gameObject);
         closestPlayerClass = Player.Instance; //FindObjectOfType<Player>();
         //popUpList = new List<GameObject>();
 
         //FOR SHOOTING
         //shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+    }
+
+    //
+    IEnumerator CheckForLevel()
+    {
+        yield return new WaitForSeconds(.01f);
+
+        // check for it
+        if (level == null)
+        {
+            level = Level.Instance;
+        }
+
+        // add
+        if (level != null)
+        {
+            level.AddToEnemyCount(gameObject);
+        }
+        else
+        {
+            StartCoroutine(CheckForLevel());
+        }
     }
 
     // Update is called once per frame
@@ -104,17 +132,17 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            GameObject explosion = CGFObjectPoolingManager.Instance.InstantiatePoolObject(explosionPrefab, transform.position, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
+            //GameObject explosion = CGFObjectPoolingManager.Instance.InstantiatePoolObject(explosionPrefab, transform.position, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
             if (!dealerIsPlayerBody && playerState != "Sucking")
             {
                 EmitMultipliers();
             }
             //AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
-            currentPoints = GameSession.Instance.AddToScore(points);
+            currentPoints = GameSession.Instance.AddToScore(points);  //FindObjectOfType<GameSession>().AddToScore(points);
             PopUpPoints();
             //Destroy(gameObject);
+            Level.Instance.EnemyDestroyed(gameObject);
             gameObject.SetActive(false);
-            //level.EnemyDestroyed();
         }
     }
 
@@ -141,7 +169,7 @@ public class Enemy : MonoBehaviour
     private void PopUpPoints()
     {
         GameObject textClone;
-        textClone = CGFObjectPoolingManager.Instance.InstantiatePoolObject(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity); //Instantiate(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
+        textClone = CGFObjectPoolingManager.Instance.InstantiatePoolObject(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity) as GameObject; //Instantiate(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
 
         textClone.GetComponent<TextMeshPro>().text = "+" + currentPoints.ToString();
 

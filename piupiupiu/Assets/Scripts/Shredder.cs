@@ -13,7 +13,8 @@ public class Shredder : MonoBehaviour {
     {
         if (collision.tag != "Player" && collision.tag != "Enemy")
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 

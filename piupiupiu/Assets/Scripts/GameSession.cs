@@ -21,7 +21,6 @@ public class GameSession : MonoBehaviour {
 
     private void Awake()
     {
-        Instance = this;
         int gameStatusCount = FindObjectsOfType<GameSession>().Length;
         if (gameStatusCount > 1)
         {
@@ -29,6 +28,7 @@ public class GameSession : MonoBehaviour {
         }
         else
         {
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         MMVibrationManager.iOSInitializeHaptics();

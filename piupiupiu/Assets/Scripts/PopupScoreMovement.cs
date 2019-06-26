@@ -13,6 +13,7 @@ public class PopupScoreMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position, Time.deltaTime * 300f);
+        var newPosition = Vector3.MoveTowards(transform.position, Camera.main.transform.position, Time.deltaTime * 300f);
+        transform.position = new Vector3(newPosition.x, newPosition.y + (10 * Time.deltaTime), newPosition.z);
     }
 }
