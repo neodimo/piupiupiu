@@ -126,13 +126,25 @@ public class Enemy : MonoBehaviour
         ProcessHit(damageDealer);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (other.gameObject.tag == "Player")
+        {
+            dealerIsPlayerBody = true;
+        }
+        else dealerIsPlayerBody = false;
+        if (!damageDealer) { return; }
+        ProcessHit(damageDealer);
+    }
+
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
         damageDealer.Hit();
         if (health <= 0)
         {
-            //GameObject explosion = CGFObjectPoolingManager.Instance.InstantiatePoolObject(explosionPrefab, transform.position, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
+            GameObject explosion = CGFObjectPoolingManager.Instance.InstantiatePoolObject(explosionPrefab, transform.position, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
             if (!dealerIsPlayerBody && playerState != "Sucking")
             {
                 EmitMultipliers();

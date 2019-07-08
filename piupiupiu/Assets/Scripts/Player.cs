@@ -719,6 +719,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         xMin = -49.15f;
         xMax = 49.15f;
         yMin = -49.15f;
-        yMax = 49.15f;
+        yMax = 48.15f;
     }
 }
