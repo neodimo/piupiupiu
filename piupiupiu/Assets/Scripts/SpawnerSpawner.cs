@@ -40,10 +40,13 @@ public class SpawnerSpawner : MonoBehaviour
     {
         int result = 0, total = 0;
         int randVal = Random.Range(0, weightTotal + 1);
-        for (result = 0; result < weights.Length; result++)
+        if (weights != null)
         {
-            total += weights[result];
-            if (total >= randVal) break;
+            for (result = 0; result < weights.Length; result++)
+            {
+                total += weights[result];
+                if (total >= randVal) break;
+            }
         }
         return result;
     }

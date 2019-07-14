@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5902598453358140613}
   - component: {fileID: 5902598453358140612}
   - component: {fileID: 5902598453358140615}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: VectorGrid
-  m_TagString: Untagged
+  m_TagString: VectorGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

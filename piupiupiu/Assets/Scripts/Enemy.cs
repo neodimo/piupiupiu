@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
     bool dealerIsPlayerBody;
     Player closestPlayerClass;
     string playerState;
+    string colliderType;
 
     //List<GameObject> popUpList;
 
@@ -123,6 +124,7 @@ public class Enemy : MonoBehaviour
         }
         else dealerIsPlayerBody = false;
         if (!damageDealer) { return; }
+        colliderType = "2d";
         ProcessHit(damageDealer);
     }
 
@@ -135,13 +137,14 @@ public class Enemy : MonoBehaviour
         }
         else dealerIsPlayerBody = false;
         if (!damageDealer) { return; }
+        colliderType = "3d";
         ProcessHit(damageDealer);
     }
 
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
-        damageDealer.Hit();
+        damageDealer.Hit(colliderType);
         if (health <= 0)
         {
             GameObject explosion = CGFObjectPoolingManager.Instance.InstantiatePoolObject(explosionPrefab, transform.position, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);

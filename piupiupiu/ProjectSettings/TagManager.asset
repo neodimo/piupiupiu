@@ -8,6 +8,7 @@ TagManager:
   - GodModeToggle
   - Multiplier
   - Slider
+  - VectorGrid
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - Player Projectile
   - Enemy Projectile
-  - 
+  - VectorGrid
   - 
   - 
   - 

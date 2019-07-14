@@ -6,7 +6,7 @@ public class EnemyFollowPlayer : MonoBehaviour
 {
     Player[] allPlayers;
     Vector2 playerPos;
-    float distance;
+    //float distance;
     [SerializeField] [Range(1, 30)] float homingSpeedMin = 12;
     [SerializeField] [Range(1, 30)] float homingSpeedMax = 15;
     float startTime;
@@ -36,7 +36,7 @@ public class EnemyFollowPlayer : MonoBehaviour
         timePast = Time.time - startTime;
         if (timePast > .5)
         {
-            distance = Vector2.Distance(transform.position, playerPos);
+            //distance = Vector2.Distance(transform.position, playerPos);
             GoToPlayer();
         }
     }

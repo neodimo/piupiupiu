@@ -13,6 +13,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     public static Player Instance;
     Level level;
     [Header("Player")]
+    [SerializeField] bool canFire = true;
     [SerializeField] float playerSpeed = 20;
     //[SerializeField] float padding = 0;
     [SerializeField] float jumpSpeed = 0.1f;
@@ -85,6 +86,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     CircleCollider2D circleCollider2D;
 
     VectorGridForce2 vectorGridForce;
+
+    string colliderType = "2d";
 
     float xMin;
     float xMax;
@@ -440,13 +443,16 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     private void Fire()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (canFire == true)
         {
-            firingCoroutine = StartCoroutine(FireContinuously());
-        }
-        if (Input.GetButtonUp("Fire1") || isDead)
-        {
-            StopCoroutine(firingCoroutine);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                firingCoroutine = StartCoroutine(FireContinuously());
+            }
+            if (Input.GetButtonUp("Fire1") || isDead)
+            {
+                StopCoroutine(firingCoroutine);
+            }
         }
     }
 
@@ -665,7 +671,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
-        damageDealer.Hit();
+        damageDealer.Hit(colliderType);
         sinceLastSuck = Time.time - timeofSuck;
         if (health <= 0)
         {

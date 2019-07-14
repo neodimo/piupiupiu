@@ -12,11 +12,18 @@ public class DamageDealer : MonoBehaviour
         return damage;
     }
 
-    public void Hit()
+    public void Hit(string colliderType)
     {
         if (gameObject.tag != "Player")
         {
-            Destroy(gameObject);
+            if (colliderType == "2d")
+            {
+                gameObject.SetActive(false);
+            }
+            else if (colliderType == "3d")
+            {
+                gameObject.transform.parent.gameObject.SetActive(false);
+            }
         }
     }
 }
