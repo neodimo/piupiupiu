@@ -137,7 +137,7 @@ public class EnemySpawner : MonoBehaviour
                 float randOffsetY = UnityEngine.Random.Range(-3f, 3f);
                 Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z); //implement maybe?
 
-                enemyPrefabs[counter] = Instantiate(enemyPrefab, transform.position, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
+                enemyPrefabs[counter] = CGFObjectPoolingManager.Instance.InstantiatePoolObject(enemyPrefab, transform.position, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
 
                 float randVelX = UnityEngine.Random.Range(-200f, 200f);
                 float randVelY = UnityEngine.Random.Range(-200f, 200f);

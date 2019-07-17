@@ -14,6 +14,9 @@ public class DamageDealer : MonoBehaviour
 
     public void Hit(string colliderType)
     {
+
+        //Destroy(gameObject);
+        
         if (gameObject.tag != "Player")
         {
             if (colliderType == "2d")
