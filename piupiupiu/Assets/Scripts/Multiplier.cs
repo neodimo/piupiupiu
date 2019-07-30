@@ -22,7 +22,7 @@ public class Multiplier : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         //allPlayers = GameObject.FindObjectsOfType<Player>();
         StartCoroutine(BackToPool());

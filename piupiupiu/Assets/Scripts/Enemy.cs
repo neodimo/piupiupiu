@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Assets.CGF.Systems.ObjectTransform;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy")]
+    [SerializeField] float maxHealth = 100;
     [SerializeField] float health = 100;
     [SerializeField] int points = 5;
     //FOR SHOOTING
@@ -37,6 +37,8 @@ public class Enemy : MonoBehaviour
     string playerState;
     string colliderType;
 
+    Vector3 positionWhenDead;
+
     //List<GameObject> popUpList;
 
     Level level;
@@ -53,15 +55,27 @@ public class Enemy : MonoBehaviour
     {
         //StartCoroutine(CheckForLevel());
 
-        Level.Instance.AddToEnemyCount(gameObject);
-        closestPlayerClass = Player.Instance; //FindObjectOfType<Player>();
+        //Level.Instance.AddToEnemyCount(gameObject);
+         //FindObjectOfType<Player>();
         //popUpList = new List<GameObject>();
 
         //FOR SHOOTING
         //shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
 
-    //
+    private void OnEnable()
+    {
+        Level.Instance.AddToEnemyCount(gameObject);
+        closestPlayerClass = Player.Instance;
+    }
+
+    private void OnDisable()
+    {
+        Level.Instance.EnemyDestroyed(gameObject);
+        gameObject.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+    /*
     IEnumerator CheckForLevel()
     {
         yield return new WaitForSeconds(.01f);
@@ -81,7 +95,7 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(CheckForLevel());
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -124,6 +138,10 @@ public class Enemy : MonoBehaviour
         }
         else dealerIsPlayerBody = false;
         if (!damageDealer) { return; }
+        if (other.gameObject.tag == "Environment")
+        {
+            return;
+        }
         colliderType = "2d";
         ProcessHit(damageDealer);
     }
@@ -137,6 +155,10 @@ public class Enemy : MonoBehaviour
         }
         else dealerIsPlayerBody = false;
         if (!damageDealer) { return; }
+        if (other.gameObject.tag == "Environment")
+        {
+            return;
+        }
         colliderType = "3d";
         ProcessHit(damageDealer);
     }
@@ -147,7 +169,8 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit(colliderType);
         if (health <= 0)
         {
-            GameObject explosion = CGFObjectPoolingManager.Instance.InstantiatePoolObject(explosionPrefab, transform.position, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
+            positionWhenDead = transform.position;
+            GameObject explosion = ObjectPooler.SharedInstance.GetPooledObject(explosionPrefab, positionWhenDead, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
             if (!dealerIsPlayerBody && playerState != "Sucking")
             {
                 EmitMultipliers();
@@ -158,6 +181,7 @@ public class Enemy : MonoBehaviour
             //Destroy(gameObject);
             Level.Instance.EnemyDestroyed(gameObject);
             gameObject.SetActive(false);
+            health = maxHealth;
         }
     }
 
@@ -170,8 +194,8 @@ public class Enemy : MonoBehaviour
         {
             float randOffsetX = UnityEngine.Random.Range(-1f, 1f);
             float randOffsetY = UnityEngine.Random.Range(-1f, 1f);
-            Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z);
-            multPrefabs[counter] = CGFObjectPoolingManager.Instance.InstantiatePoolObject(multPrefab, offsetPos, Quaternion.identity);
+            Vector3 offsetPos = new Vector3(positionWhenDead.x + randOffsetX, positionWhenDead.y + randOffsetY, positionWhenDead.z);
+            multPrefabs[counter] = ObjectPooler.SharedInstance.GetPooledObject(multPrefab, offsetPos, Quaternion.identity);
             //Instantiate(multPrefab, offsetPos, Quaternion.identity) as GameObject;
 
             float randVelX = UnityEngine.Random.Range(-2f, 2f);
@@ -184,7 +208,7 @@ public class Enemy : MonoBehaviour
     private void PopUpPoints()
     {
         GameObject textClone;
-        textClone = CGFObjectPoolingManager.Instance.InstantiatePoolObject(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity) as GameObject; //Instantiate(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
+        textClone = ObjectPooler.SharedInstance.GetPooledObject(popUpText, new Vector3(positionWhenDead.x, positionWhenDead.y + 2, positionWhenDead.z), Quaternion.identity) as GameObject; //Instantiate(popUpText, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
 
         textClone.GetComponent<TextMeshPro>().text = "+" + currentPoints.ToString();
 

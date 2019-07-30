@@ -33,9 +33,10 @@ public class Level : MonoBehaviour
 
     public void EnemyDestroyed(GameObject enemy)
     {
-        enemyCount--;
+        //enemyCount--;
         enemyDeathCount++;
         enemies.Remove(enemy);
+        enemyCount = enemies.Count;
         /*
         if (enemyCount <= 0)
         {

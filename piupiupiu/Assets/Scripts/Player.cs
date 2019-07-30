@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using MoreMountains.NiceVibrations;
-using Assets.CGF.Systems.ObjectTransform;
 
 public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IPointerUpHandler
 {
     public static Player Instance;
     Level level;
     [Header("Player")]
+    public bool godMode;
     [SerializeField] bool canFire = true;
     [SerializeField] float playerSpeed = 20;
     //[SerializeField] float padding = 0;
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     float sinceLastSuck;
     float timeofSuck;
     float lastDashPress;
-    public bool godMode;
+    
     Toggle m_Toggle;
     [SerializeField] Joystick joystick;
     [Header("Projectile")]
@@ -463,21 +463,21 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
             if (Convert.ToInt32(score) >= 0 && Convert.ToInt32(score) < 9999)
             {
-                GameObject laser =  CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
+                GameObject laser = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laser.transform.localScale = transform.localScale * 3;
                 laser.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
                 yield return new WaitForSeconds(projectileFiringPeriod);
             }
             if (Convert.ToInt32(score) > 9999 && Convert.ToInt32(score) < 199999)
             {
-                GameObject laserMiddle = CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
+                GameObject laserMiddle = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laserMiddle.transform.localScale = transform.localScale * 3;
                 laserMiddle.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-                GameObject laserLeft01 = CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;
+                GameObject laserLeft01 = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;
                 laserLeft01.transform.localScale = transform.localScale * 3;
                 laserLeft01.transform.up = body.transform.up / 2;
                 laserLeft01.GetComponent<Rigidbody2D>().velocity = laserLeft01.transform.up * projectileSpeed;
-                GameObject laserRight01 = CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;
+                GameObject laserRight01 = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;
                 laserRight01.transform.localScale = transform.localScale * 3;
                 laserRight01.transform.up = body.transform.up * 2;
                 laserRight01.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
@@ -485,19 +485,19 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             }
             if (Convert.ToInt32(score) > 199999)
             {
-                GameObject laserMiddle = CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject; //Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
+                GameObject laserMiddle = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject; //Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laserMiddle.transform.localScale = transform.localScale * 3;
                 laserMiddle.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-                GameObject laserLeft01 = CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;
+                GameObject laserLeft01 = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunLeft01.transform.position, body.transform.rotation) as GameObject;
                 laserLeft01.transform.localScale = transform.localScale * 3;
                 laserLeft01.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-                GameObject laserLeft02 = CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunLeft02.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunLeft02.transform.position, body.transform.rotation) as GameObject;
+                GameObject laserLeft02 = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunLeft02.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunLeft02.transform.position, body.transform.rotation) as GameObject;
                 laserLeft02.transform.localScale = transform.localScale * 3;
                 laserLeft02.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-                GameObject laserRight01 = CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;
+                GameObject laserRight01 = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunRight01.transform.position, body.transform.rotation) as GameObject;
                 laserRight01.transform.localScale = transform.localScale * 3;
                 laserRight01.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
-                GameObject laserRight02 = CGFObjectPoolingManager.Instance.InstantiatePoolObject(laserPrefab, gunRight02.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunRight02.transform.position, body.transform.rotation) as GameObject;
+                GameObject laserRight02 = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunRight02.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunRight02.transform.position, body.transform.rotation) as GameObject;
                 laserRight02.transform.localScale = transform.localScale * 3;
                 laserRight02.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
                 yield return new WaitForSeconds(projectileFiringPeriod / 5);
@@ -620,7 +620,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         float distanceToClosestEnemy = Mathf.Infinity;
         
         GameObject closestEnemy = null;
-        allEnemies = Level.Instance.EnemiesAlive(); //GameObject.FindObjectsOfType<Enemy>();
+        allEnemies =  Level.Instance.EnemiesAlive(); //GameObject.FindObjectsOfType<Enemy>(); 
         foreach (GameObject currentEnemy in allEnemies)
         {
             float distanceToEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
@@ -630,20 +630,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 closestEnemy = currentEnemy;
             }
         }
-        
-        /*
-        Enemy closestEnemy = null;
-        var allEnemiesR = GameObject.FindObjectsOfType<Enemy>();
-        foreach (Enemy currentEnemy in allEnemiesR)
-        {
-            float distanceToEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
-            if (distanceToEnemy < distanceToClosestEnemy)
-            {
-                distanceToClosestEnemy = distanceToEnemy;
-                closestEnemy = currentEnemy;
-            }
-        }
-        */
         return closestEnemy.gameObject;
     }
 
@@ -723,7 +709,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     private void SetupBoundaries()
     {
         xMin = -49.15f;
-        xMax = 49.15f;
+        xMax = 48.15f;
         yMin = -49.15f;
         yMax = 48.15f;
     }

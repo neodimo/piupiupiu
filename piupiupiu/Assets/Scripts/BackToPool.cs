@@ -7,7 +7,7 @@ public class BackToPool : MonoBehaviour
     [SerializeField] float duration = 2f;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(BackToPooling());
     }

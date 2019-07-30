@@ -9,6 +9,7 @@ TagManager:
   - Multiplier
   - Slider
   - VectorGrid
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Player Projectile
   - Enemy Projectile
   - VectorGrid
-  - 
-  - 
+  - Environment
+  - Shredder
   - 
   - 
   - 

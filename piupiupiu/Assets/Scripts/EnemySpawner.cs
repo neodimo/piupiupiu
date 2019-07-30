@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.CGF.Systems.ObjectTransform;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -137,7 +136,7 @@ public class EnemySpawner : MonoBehaviour
                 float randOffsetY = UnityEngine.Random.Range(-3f, 3f);
                 Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z); //implement maybe?
 
-                enemyPrefabs[counter] = CGFObjectPoolingManager.Instance.InstantiatePoolObject(enemyPrefab, transform.position, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
+                enemyPrefabs[counter] = ObjectPooler.SharedInstance.GetPooledObject(enemyPrefab, transform.position, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
 
                 float randVelX = UnityEngine.Random.Range(-200f, 200f);
                 float randVelY = UnityEngine.Random.Range(-200f, 200f);
@@ -176,7 +175,7 @@ public class EnemySpawner : MonoBehaviour
                 }
 
                 //Emit enemy.
-                enemyPrefabs[counter] = CGFObjectPoolingManager.Instance.InstantiatePoolObject(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject;
+                enemyPrefabs[counter] = ObjectPooler.SharedInstance.GetPooledObject(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject;
 
                 //Orient enemy direction.
                 if (position == "top")

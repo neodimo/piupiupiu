@@ -20,13 +20,14 @@ public class EnemyRoam : MonoBehaviour
 
     private void Awake()
     {
-        startTime = Time.time;
-        randomStartTime = UnityEngine.Random.Range(1f, 2f);
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        startTime = Time.time;
+        randomStartTime = UnityEngine.Random.Range(1f, 2f);
         firstGo = false;
         enemyRB2D = gameObject.GetComponent<Rigidbody2D>();
         StartCoroutine(ChangeDirection());
