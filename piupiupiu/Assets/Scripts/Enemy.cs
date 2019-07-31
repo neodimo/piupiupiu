@@ -167,7 +167,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damageDealer.GetDamage();
         damageDealer.Hit(colliderType);
-        if (health <= 0)
+        if (health <= 0 && gameObject.activeInHierarchy)
         {
             positionWhenDead = transform.position;
             GameObject explosion = ObjectPooler.SharedInstance.GetPooledObject(explosionPrefab, positionWhenDead, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
@@ -178,10 +178,9 @@ public class Enemy : MonoBehaviour
             //AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
             currentPoints = GameSession.Instance.AddToScore(points);  //FindObjectOfType<GameSession>().AddToScore(points);
             PopUpPoints();
-            //Destroy(gameObject);
-            Level.Instance.EnemyDestroyed(gameObject);
             gameObject.SetActive(false);
             health = maxHealth;
+            return;
         }
     }
 
