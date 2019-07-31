@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         Level.Instance.EnemyDestroyed(gameObject);
-        gameObject.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.identity);
+        //gameObject.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     /*

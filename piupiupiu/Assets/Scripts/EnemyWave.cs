@@ -22,13 +22,14 @@ public class EnemyWave : MonoBehaviour
 
     private void Awake()
     {
-        startTime = Time.time;
-        randomStartTime = 1f;//UnityEngine.Random.Range(1f, 2f);
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        startTime = Time.time;
+        randomStartTime = 1f;//UnityEngine.Random.Range(1f, 2f);
         firstGo = false;
         atTarget = false;
         originalPos = transform.position;
@@ -55,6 +56,11 @@ public class EnemyWave : MonoBehaviour
         }
         target = new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z);
         //enemyRB2D = gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     // Update is called once per frame
