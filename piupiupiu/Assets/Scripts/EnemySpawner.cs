@@ -132,14 +132,14 @@ public class EnemySpawner : MonoBehaviour
             if (enemyPrefab.name == "EnemyHoming" || enemyPrefab.name == "EnemyRoaming")
             {
                 yield return new WaitForSeconds(.2f);
-                float randOffsetX = UnityEngine.Random.Range(-3f, 3f);
-                float randOffsetY = UnityEngine.Random.Range(-3f, 3f);
+                float randOffsetX = UnityEngine.Random.Range(-2f, 2f);
+                float randOffsetY = UnityEngine.Random.Range(-2f, 2f);
                 Vector3 offsetPos = new Vector3(transform.position.x + randOffsetX, transform.position.y + randOffsetY, transform.position.z); //implement maybe?
 
-                enemyPrefabs[counter] = ObjectPooler.SharedInstance.GetPooledObject(enemyPrefab, transform.position, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
+                enemyPrefabs[counter] = ObjectPooler.SharedInstance.GetPooledObject(enemyPrefab, offsetPos, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
 
-                float randVelX = UnityEngine.Random.Range(-200f, 200f);
-                float randVelY = UnityEngine.Random.Range(-200f, 200f);
+                float randVelX = UnityEngine.Random.Range(-400f, 400f);
+                float randVelY = UnityEngine.Random.Range(-400f, 400f);
                 Vector2 enemyVel = new Vector2(randVelX, randVelY) * Time.deltaTime;
                 enemyPrefabs[counter].GetComponent<Rigidbody2D>().velocity = enemyVel;
                 Vector2 enemyVelNorm = enemyVel.normalized;
@@ -178,6 +178,7 @@ public class EnemySpawner : MonoBehaviour
                 enemyPrefabs[counter] = ObjectPooler.SharedInstance.GetPooledObject(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, enemyWavePos, Quaternion.identity) as GameObject;
 
                 //Orient enemy direction.
+                /*
                 if (position == "top")
                 {
                     enemyPrefabs[counter].transform.up = Vector3.down;
@@ -198,6 +199,7 @@ public class EnemySpawner : MonoBehaviour
                     enemyPrefabs[counter].transform.up = Vector3.left;
                     enemyPrefabs[counter].GetComponent<EnemyWave>().position = "right";
                 }
+                */
             }
         }
         if (tilePrefab)

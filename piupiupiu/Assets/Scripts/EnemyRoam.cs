@@ -34,6 +34,11 @@ public class EnemyRoam : MonoBehaviour
         //allPlayers = GameObject.FindObjectsOfType<Player>();
     }
 
+    private void OnDisable()
+    {
+        StopCoroutine("ChangeDirection");
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -13,16 +13,26 @@ public class EnemyFollowPlayer : MonoBehaviour
     float timePast;
     float actualSpeed = 0;
     [SerializeField] float accelleration = 2f;
+    float xMin;
+    float xMax;
+    float yMin;
+    float yMax;
 
     private void Awake()
     {
-        startTime = Time.time;
+        
+        SetupBoundaries();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         //allPlayers = GameObject.FindObjectsOfType<Player>();
+    }
+
+    private void OnEnable()
+    {
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -34,11 +44,19 @@ public class EnemyFollowPlayer : MonoBehaviour
         //distance = (float)Math.Sqrt(Math.Pow((playerPos[0] - transform.position.x), 2) + Math.Pow((playerPos[1] - transform.position.y), 2));
 
         timePast = Time.time - startTime;
-        if (timePast > .5)
+        if (timePast > 1)
         {
             //distance = Vector2.Distance(transform.position, playerPos);
             GoToPlayer();
         }
+    }
+
+    private void SetupBoundaries()
+    {
+        xMin = -49.15f;
+        xMax = 48.15f;
+        yMin = -49.15f;
+        yMax = 48.15f;
     }
 
     private void GoToPlayer()
@@ -49,10 +67,18 @@ public class EnemyFollowPlayer : MonoBehaviour
         {
             actualSpeed += accelleration;
             transform.position = Vector2.MoveTowards(transform.position, playerPos, actualSpeed * Time.deltaTime);
+            var xPos = Mathf.Clamp(transform.position.x, xMin, xMax);
+            var yPos = Mathf.Clamp(transform.position.y, yMin, yMax);
+
+            transform.position = new Vector3(xPos, yPos, transform.position.z);
         }
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, playerPos, randSpeed * Time.deltaTime);
+            var xPos = Mathf.Clamp(transform.position.x, xMin, xMax);
+            var yPos = Mathf.Clamp(transform.position.y, yMin, yMax);
+
+            transform.position = new Vector3(xPos, yPos, transform.position.z);
         }
     }
 
@@ -62,6 +88,10 @@ public class EnemyFollowPlayer : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, playerPos, actualSpeed * Time.deltaTime);
             actualSpeed -= accelleration;
+            var xPos = Mathf.Clamp(transform.position.x, xMin, xMax);
+            var yPos = Mathf.Clamp(transform.position.y, yMin, yMax);
+
+            transform.position = new Vector3(xPos, yPos, transform.position.z);
         }
     }
 
