@@ -21,17 +21,18 @@ public class EnemyFollowPlayer : MonoBehaviour
     private void Awake()
     {
         
-        SetupBoundaries();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         //allPlayers = GameObject.FindObjectsOfType<Player>();
+        //startTime = Time.time;
     }
 
     private void OnEnable()
     {
+        SetupBoundaries();
         startTime = Time.time;
     }
 

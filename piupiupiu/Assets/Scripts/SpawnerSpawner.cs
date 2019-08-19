@@ -68,24 +68,28 @@ public class SpawnerSpawner : MonoBehaviour
 
     void Update()
     {
-        percentageBasedValue = RandomWeighted();
-        playerState = Player.Instance.ProcessState(); //closestPlayerClass.ProcessState();
+        
     }
 
     IEnumerator SpawnSpawners()
     {
         yield return new WaitForSeconds(3);
 
+        percentageBasedValue = RandomWeighted();
+        playerState = Player.Instance.ProcessState();
+
         while (spawning)
         {
+            percentageBasedValue = RandomWeighted();
+            playerState = Player.Instance.ProcessState();
             while (playerState != "Sucking")
             {
                 playerPos = Player.Instance.transform.position; //FindClosestPlayer().transform.position;
                 GameObject currentSpawner;
                 if (spawnerPool[percentageBasedValue].name == "Enemy Spawner Homing" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Roaming")
                 {
-                    var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -40, 40);
-                    var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -40, 40);
+                    var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -45, 45);
+                    var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -45, 45);
                     Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
                     currentSpawner = Instantiate(spawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
                 }

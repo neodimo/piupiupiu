@@ -109,3 +109,12 @@ The following packages were updated:
   com.unity.xr.legacyinputhelpers from version 2.0.2 to 2.0.4
 The following packages were removed:
   com.unity.package-manager-ui@2.2.0
+
+=== Sun Aug 18 14:07:17 2019
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.rider from version 1.0.8 to 1.1.0
+  com.unity.xr.legacyinputhelpers from version 2.0.4 to 2.0.6

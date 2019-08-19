@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
     GameObject[] tiles;
     bool horizontal = true;
     string position;
+    float randVelX;
+    float randVelY;
 
 
     // Start is called before the first frame update
@@ -138,8 +140,17 @@ public class EnemySpawner : MonoBehaviour
 
                 enemyPrefabs[counter] = ObjectPooler.SharedInstance.GetPooledObject(enemyPrefab, offsetPos, Quaternion.identity) as GameObject; //Instantiate(enemyPrefab, offsetPos, Quaternion.identity) as GameObject;
 
-                float randVelX = UnityEngine.Random.Range(-400f, 400f);
-                float randVelY = UnityEngine.Random.Range(-400f, 400f);
+                if (enemyPrefab.name == "EnemyHoming")
+                {
+                    randVelX = UnityEngine.Random.Range(-200f, 200f);
+                    randVelY = UnityEngine.Random.Range(-200f, 200f);
+                }
+                else if (enemyPrefab.name == "EnemyRoaming")
+                {
+                    randVelX = UnityEngine.Random.Range(-400f, 400f);
+                    randVelY = UnityEngine.Random.Range(-400f, 400f);
+                }
+                
                 Vector2 enemyVel = new Vector2(randVelX, randVelY) * Time.deltaTime;
                 enemyPrefabs[counter].GetComponent<Rigidbody2D>().velocity = enemyVel;
                 Vector2 enemyVelNorm = enemyVel.normalized;
