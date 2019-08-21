@@ -75,15 +75,14 @@ public class SpawnerSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
 
-        percentageBasedValue = RandomWeighted();
-        playerState = Player.Instance.ProcessState();
-
         while (spawning)
         {
             percentageBasedValue = RandomWeighted();
             playerState = Player.Instance.ProcessState();
             while (playerState != "Sucking")
             {
+                percentageBasedValue = RandomWeighted();
+                playerState = Player.Instance.ProcessState();
                 playerPos = Player.Instance.transform.position; //FindClosestPlayer().transform.position;
                 GameObject currentSpawner;
                 if (spawnerPool[percentageBasedValue].name == "Enemy Spawner Homing" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Roaming")
