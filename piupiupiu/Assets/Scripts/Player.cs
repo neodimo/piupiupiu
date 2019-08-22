@@ -95,6 +95,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     float yMax;
 
     List<GameObject> allEnemies = new List<GameObject>();
+    public GameObject closestEnemyFound;
     //Enemy[] allEnemies;
 
     bool debugGodModeToggle;
@@ -579,7 +580,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         Vector3 diff;
         if (Level.Instance.EnemyCount() > 0) //(GameObject.FindObjectOfType<Enemy>())
         {
-            Transform enemyTransform = FindClosestEnemy().transform;
+            closestEnemyFound = FindClosestEnemy();
+            Transform enemyTransform = closestEnemyFound.transform;
             diff = enemyTransform.position - transform.position;
             body.transform.up = diff;
         }

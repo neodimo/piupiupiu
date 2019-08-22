@@ -48,11 +48,20 @@ public class EnemyAvoidPlayer : MonoBehaviour
         if (actualSpeed < randSpeed)
         {
             actualSpeed += accelleration;
-            transform.position = Vector2.MoveTowards(transform.position, playerPos, actualSpeed * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, -playerPos, actualSpeed * Time.deltaTime);
         }
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, playerPos, randSpeed * Time.deltaTime);
+            if (Player.Instance.closestEnemyFound == gameObject)
+            {
+
+                transform.position = new Vector2(transform.position.x - .6f, transform.position.y - .6f);
+            }
+            else
+            {
+                //transform.position = Vector2.MoveTowards(transform.position, playerPos, randSpeed * Time.deltaTime);
+            }
         }
     }
 

@@ -24,7 +24,7 @@ public class Drone01 : MonoBehaviour
     {
         //transform.rotation = Player.Instance.transform.GetChild(3).transform.rotation;
         transform.rotation = Quaternion.Lerp(transform.rotation, playerBody.transform.rotation, Time.deltaTime * 5);
-        Fire();
+        //Fire();
     }
 
     private void Fire()

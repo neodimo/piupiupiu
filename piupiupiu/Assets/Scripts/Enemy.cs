@@ -56,11 +56,13 @@ public class Enemy : MonoBehaviour
         //StartCoroutine(CheckForLevel());
 
         //Level.Instance.AddToEnemyCount(gameObject);
-         //FindObjectOfType<Player>();
+        //FindObjectOfType<Player>();
         //popUpList = new List<GameObject>();
 
         //FOR SHOOTING
         //shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        Level.Instance.AddToEnemyCount(gameObject);
+        closestPlayerClass = Player.Instance;
     }
 
     private void OnEnable()
