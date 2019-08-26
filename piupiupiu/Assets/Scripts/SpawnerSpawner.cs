@@ -15,7 +15,7 @@ public class SpawnerSpawner : MonoBehaviour
     float timeBetweenSpawners;
     int percentageBasedValue;
     bool spawning;
-    bool horizontal = true;
+    //bool horizontal = true;
     [SerializeField] bool spawn = true;
 
     int[] weights;
@@ -25,9 +25,10 @@ public class SpawnerSpawner : MonoBehaviour
     {
         weights = new int[spawnerPool.Length]; //number of things
 
-        weights[0] = 35;
-        weights[1] = 45;
+        weights[0] = 25;
+        weights[1] = 35;
         weights[2] = 20;
+        weights[3] = 40;
 
         weightTotal = 0;
         foreach (int w in weights)
@@ -85,7 +86,7 @@ public class SpawnerSpawner : MonoBehaviour
                 playerState = Player.Instance.ProcessState();
                 playerPos = Player.Instance.transform.position; //FindClosestPlayer().transform.position;
                 GameObject currentSpawner;
-                if (spawnerPool[percentageBasedValue].name == "Enemy Spawner Homing" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Roaming")
+                if (spawnerPool[percentageBasedValue].name == "Enemy Spawner Homing" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Roaming" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Smart")
                 {
                     var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -45, 45);
                     var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -45, 45);

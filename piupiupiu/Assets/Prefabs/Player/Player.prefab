@@ -145,6 +145,7 @@ MonoBehaviour:
   explosionVolume: 0
   defaultScale: 0.6
   defaultRadius: 0.2
+  closestEnemyFound: {fileID: 0}
   playerPos: {x: 0, y: 0}
   body: {fileID: 4619176669154800185}
   gunMiddle: {fileID: 3755754594894044174}

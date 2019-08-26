@@ -32,6 +32,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     private bool isDashing = false;
     private bool isSucking = false;
+    private bool isFiring = false;
     private bool hasSuckedOnce = false;
     private bool isDead = false;
 
@@ -48,9 +49,9 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     [SerializeField] float projectileFiringPeriod = .5f;
     [Header("Effects")]
     [SerializeField] GameObject explosionPrefab;
-    [SerializeField] AudioClip explosionSound;
+    //[SerializeField] AudioClip explosionSound;
     //[SerializeField] [Range(0, 1)] float shootingVolume = 0.2f;
-    [SerializeField] [Range(0, 1)] float explosionVolume = 0.1f;
+    //[SerializeField] [Range(0, 1)] float explosionVolume = 0.1f;
     //[SerializeField] RuntimeAnimatorController[] statusSprites;
 
     [Header("VectorGridForce")]
@@ -180,6 +181,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         {
             if (canMove)
             {
+                if (Level.Instance.EnemyCount() > 0)
+                {
+                    closestEnemyFound = FindClosestEnemy();
+                }
                 Rotate(Move());
                 Suck();
                 Jump();
@@ -187,6 +192,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             }
             score = gameSession.GetScore();
             Fire();
+            
         }
         var playerState = ProcessState();
         //Debug.Log(playerState);
@@ -212,6 +218,12 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                     vectorGridForce.m_Radius = .4f;
                     return "Sucking God";
                 }
+                else if (isFiring)
+                {
+                    vectorGridForce.m_ForceScale = -.5f;
+                    vectorGridForce.m_Radius = .4f;
+                    return "Firing God";
+                }
                 else
                 {
                     //animator.runtimeAnimatorController = statusSprites[1];
@@ -219,6 +231,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                     vectorGridForce.m_Radius = .2f;
                     return "Normal God";
                 }
+
             }
             else if (!godModeToggle.GetComponent<Toggle>().isOn)
             {
@@ -240,6 +253,11 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 {
                     StartCoroutine(SendOutWave());
                     return "Dead";
+                }
+                else if (isFiring)
+                {
+                    StartCoroutine(SendOutWave());
+                    return "Firing";
                 }
                 else
                 {
@@ -449,10 +467,12 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             if (Input.GetButtonDown("Fire1"))
             {
                 firingCoroutine = StartCoroutine(FireContinuously());
+                isFiring = true;
             }
             if (Input.GetButtonUp("Fire1") || isDead)
             {
                 StopCoroutine(firingCoroutine);
+                isFiring = false;
             }
         }
     }
@@ -580,7 +600,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         Vector3 diff;
         if (Level.Instance.EnemyCount() > 0) //(GameObject.FindObjectOfType<Enemy>())
         {
-            closestEnemyFound = FindClosestEnemy();
+            //closestEnemyFound = FindClosestEnemy();
+            //Debug.DrawRay(gameObject.transform.position, closestEnemyFound.transform.position - gameObject.transform.position);
             Transform enemyTransform = closestEnemyFound.transform;
             diff = enemyTransform.position - transform.position;
             body.transform.up = diff;

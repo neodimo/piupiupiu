@@ -12,6 +12,11 @@ public class Level : MonoBehaviour
     //SceneLoader sceneLoader;
     EnemySpawner enemySpawner;
 
+    public float xMin;
+    public float yMin;
+    public float xMax;
+    public float yMax;
+
     private void Awake()
     {
         Instance = this;
@@ -22,6 +27,7 @@ public class Level : MonoBehaviour
     private void Start()
     {
         spawnerSpawner.Init();
+        EnemySetupBoundaries();
         //sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
@@ -50,8 +56,36 @@ public class Level : MonoBehaviour
         return enemyCount;
     }
 
+    public List<GameObject> GetNeighbors(GameObject enemy, float radius)
+    {
+        List<GameObject> neighborsFound = new List<GameObject>();
+
+        foreach(var otherEnemy in enemies)
+        {
+            if (otherEnemy == enemy)
+            {
+                continue;
+            }
+            
+            if(Vector3.Distance(enemy.transform.position, otherEnemy.transform.position) <= radius)
+            {
+                neighborsFound.Add(otherEnemy);
+            }
+        }
+
+        return neighborsFound;
+    }
+
     public List<GameObject> EnemiesAlive()
     {
         return enemies;
+    }
+
+    private void EnemySetupBoundaries()
+    {
+        xMin = -49.15f;
+        xMax = 48.15f;
+        yMin = -49.15f;
+        yMax = 48.15f;
     }
 }

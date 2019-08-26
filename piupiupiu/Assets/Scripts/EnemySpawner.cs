@@ -131,7 +131,7 @@ public class EnemySpawner : MonoBehaviour
         float waveEnemyOffsetY = 0;
         for (int counter = 0; counter < enemyCount; counter++)
         {
-            if (enemyPrefab.name == "EnemyHoming" || enemyPrefab.name == "EnemyRoaming")
+            if (enemyPrefab.name == ("EnemyHoming") || enemyPrefab.name == "EnemyRoaming" || enemyPrefab.name == "EnemySmart")
             {
                 yield return new WaitForSeconds(.2f);
                 float randOffsetX = UnityEngine.Random.Range(-2f, 2f);

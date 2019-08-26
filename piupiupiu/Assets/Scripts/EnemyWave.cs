@@ -12,7 +12,7 @@ public class EnemyWave : MonoBehaviour
     float timeOfLastRedirection;
     float randomStartTime;
     bool firstGo;
-    bool atTarget;
+    //bool atTarget;
     
     public string position;
     public Vector3 target;
@@ -33,7 +33,7 @@ public class EnemyWave : MonoBehaviour
         startTime = Time.time;
         randomStartTime = 1f;//UnityEngine.Random.Range(1f, 2f);
         firstGo = false;
-        atTarget = false;
+        //atTarget = false;
         originalPos = transform.position;
 
 

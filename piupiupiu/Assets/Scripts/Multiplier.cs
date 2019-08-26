@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Multiplier : MonoBehaviour
 {
-    Player[] allPlayers;
+    //Player[] allPlayers;
     Vector2 playerPos;
     float distance;
     [SerializeField] [Range(1, 30)] float homingSpeedMin = 12;
@@ -82,6 +82,7 @@ public class Multiplier : MonoBehaviour
         }
     }
 
+    /*
     private GameObject FindClosestPlayer()
     {
         float distanceToClosestPlayer = Mathf.Infinity;
@@ -98,6 +99,7 @@ public class Multiplier : MonoBehaviour
         }
         return closestPlayer.gameObject;
     }
+    */
 
     IEnumerator BackToPool()
     {

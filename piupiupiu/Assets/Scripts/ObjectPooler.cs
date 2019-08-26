@@ -51,7 +51,7 @@ public class ObjectPooler : MonoBehaviour
         
         for (int i = 0; i < pooledObjects.Count; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].name == prefab.name)
+            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].name.Contains(prefab.name))
             {
                 pooledObjects[i].transform.position = position;
                 pooledObjects[i].transform.rotation = quaternion;

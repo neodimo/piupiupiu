@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyRoam : MonoBehaviour
 {
-    Player[] allPlayers;
+    //Player[] allPlayers;
     Vector3 playerPos;
     float distance;
     [SerializeField] [Range(1, 600)] float homingSpeedMin = 12;
@@ -14,7 +14,7 @@ public class EnemyRoam : MonoBehaviour
     float timePastSinceLastRedirection;
     float timeOfLastRedirection;
     float randomStartTime;
-    bool firstGo;
+    //bool firstGo;
     Rigidbody2D enemyRB2D;
     Vector3 direction;
 
@@ -28,7 +28,7 @@ public class EnemyRoam : MonoBehaviour
     {
         startTime = Time.time;
         randomStartTime = UnityEngine.Random.Range(1f, 2f);
-        firstGo = false;
+        //firstGo = false;
         enemyRB2D = gameObject.GetComponent<Rigidbody2D>();
         StartCoroutine(ChangeDirection());
         //allPlayers = GameObject.FindObjectsOfType<Player>();
@@ -103,6 +103,7 @@ public class EnemyRoam : MonoBehaviour
         timeOfLastRedirection = Time.time;
     }
 
+    /*
     private GameObject FindClosestPlayer()
     {
         float distanceToClosestPlayer = Mathf.Infinity;
@@ -119,4 +120,5 @@ public class EnemyRoam : MonoBehaviour
         }
         return closestPlayer.gameObject;
     }
+    */
 }

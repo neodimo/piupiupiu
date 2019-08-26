@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
 
         //FOR SHOOTING
         //shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
-        Level.Instance.AddToEnemyCount(gameObject);
+        //Level.Instance.AddToEnemyCount(gameObject);
         closestPlayerClass = Player.Instance;
     }
 
@@ -180,6 +180,7 @@ public class Enemy : MonoBehaviour
             //AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
             currentPoints = GameSession.Instance.AddToScore(points);  //FindObjectOfType<GameSession>().AddToScore(points);
             PopUpPoints();
+            Level.Instance.EnemyDestroyed(gameObject);
             gameObject.SetActive(false);
             health = maxHealth;
             return;
