@@ -36,6 +36,7 @@ public class FlockAISmart : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Player.Instance.playerState);
         playerPos = Player.Instance.transform.position;
 
         timePast = Time.time - startTime;
@@ -47,9 +48,10 @@ public class FlockAISmart : MonoBehaviour
             velocity = Vector3.ClampMagnitude(velocity, brain.maxVelocity);
             if (Level.Instance.EnemyCount() > 0)
             {
-                if (Player.Instance.closestEnemyFound == gameObject || Player.Instance.ProcessState() == "Firing" || Player.Instance.ProcessState() == "Firing God")
+                if ((Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing") || 
+                    (Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing God"))
                 {
-                    velocity = velocity * 3;
+                    velocity = velocity * 2;
                 }
             }
             
@@ -66,16 +68,19 @@ public class FlockAISmart : MonoBehaviour
     {
         float avoidancePriority = brain.avoidancePriority;
         float separationPriority = brain.separationPriority;
+        float toPlayerPriority = brain.toPlayerPriority;
         if (Level.Instance.EnemyCount() > 0)
         {
-            if (Player.Instance.closestEnemyFound == gameObject || Player.Instance.ProcessState() == "Firing" || Player.Instance.ProcessState() == "Firing God")
+            if ((Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing" ) || 
+                (Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing God"))
             {
-                avoidancePriority = brain.avoidancePriority * 1000;
+                avoidancePriority = brain.avoidancePriority * 5000;
+                toPlayerPriority = 0;
                 //separationPriority = brain.separationPriority * 6000;
             }
         }
 
-        Vector3 finalVec = brain.cohesionPriority * Cohesion() + brain.toPlayerPriority * GoToPlayer()
+        Vector3 finalVec = brain.cohesionPriority * Cohesion() + toPlayerPriority * GoToPlayer()
             + brain.alignmentPriority * Alignment() + brain.separationPriority * Separation()
             + avoidancePriority * Avoidance();
 
@@ -136,7 +141,7 @@ public class FlockAISmart : MonoBehaviour
     Vector3 Alignment()
     {
         Vector3 alignVector = new Vector3();
-        var neighbors = Level.Instance.GetNeighbors(gameObject, brain.cohesionRadius);
+        var neighbors = Level.Instance.GetNeighbors(gameObject, brain.alignmentRadius);
         if (neighbors.Count == 0)
             return alignVector;
 

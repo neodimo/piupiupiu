@@ -67,7 +67,7 @@ public class Level : MonoBehaviour
                 continue;
             }
             
-            if(Vector3.Distance(enemy.transform.position, otherEnemy.transform.position) <= radius)
+            if(Vector3.Distance(enemy.transform.position, otherEnemy.transform.position) <= radius && otherEnemy.name == enemy.name)
             {
                 neighborsFound.Add(otherEnemy);
             }

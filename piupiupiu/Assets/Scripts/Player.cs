@@ -111,6 +111,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     public Vector2 playerPos;
 
+    public String playerState;
+
     //Children
     [SerializeField] GameObject body;
     [SerializeField] GameObject gunMiddle;
@@ -177,7 +179,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     // Update is called once per frame
     void Update() {
-        if(isDead == false)
+        playerState = ProcessState();
+        if (isDead == false)
         {
             if (canMove)
             {
@@ -194,7 +197,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             Fire();
             
         }
-        var playerState = ProcessState();
+        
         //Debug.Log(playerState);
     }
 
@@ -202,9 +205,9 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         if (godModeToggle != null)
         {
-            if (godModeToggle.GetComponent<Toggle>().isOn)
+            if (godMode)
             {
-                godMode = true;
+                //godMode = true;
                 if (isDashing)
                 {
                     //animator.runtimeAnimatorController = statusSprites[2];
@@ -233,9 +236,9 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 }
 
             }
-            else if (!godModeToggle.GetComponent<Toggle>().isOn)
+            else if (!godMode)
             {
-                godMode = false;
+                //godMode = false;
                 if (isDashing)
                 {
                     //animator.runtimeAnimatorController = statusSprites[2];
@@ -256,7 +259,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 }
                 else if (isFiring)
                 {
-                    StartCoroutine(SendOutWave());
                     return "Firing";
                 }
                 else
@@ -290,6 +292,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             {
                 StartCoroutine(SendOutWave());
                 return "Dead";
+            }
+            else if (isFiring)
+            {
+                return "Firing";
             }
             else
             {
@@ -466,8 +472,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                firingCoroutine = StartCoroutine(FireContinuously());
                 isFiring = true;
+                firingCoroutine = StartCoroutine(FireContinuously());
             }
             if (Input.GetButtonUp("Fire1") || isDead)
             {
