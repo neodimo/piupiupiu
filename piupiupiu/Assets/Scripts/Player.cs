@@ -125,6 +125,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     GameSession gameSession;
     string score;
 
+    public Vector3 behindVector;
+
     //
     private void Awake()
     {
@@ -616,6 +618,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         {
             body.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveVector);
         }
+        //Debug.DrawLine(transform.position, transform.position - (body.transform.up*20));
+        behindVector = transform.position - (body.transform.up * 20);
     }
 
     private void Jump()

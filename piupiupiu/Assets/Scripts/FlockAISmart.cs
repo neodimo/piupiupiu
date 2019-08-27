@@ -7,7 +7,7 @@ public class FlockAISmart : MonoBehaviour
     //
 
     Player[] allPlayers;
-    Vector2 playerPos;
+    Vector3 playerPos;
     //float distance;
     float startTime;
     float timePast;
@@ -16,6 +16,10 @@ public class FlockAISmart : MonoBehaviour
     Vector3 wanderTarget;
     public Vector3 acceleration;
     public Vector3 velocity;
+    public SpriteRenderer sprite;
+
+    public float angle;
+
     FlockAISmartBrain brain;
 
     private void Awake()
@@ -27,6 +31,7 @@ public class FlockAISmart : MonoBehaviour
     {
         brain = FindObjectOfType<FlockAISmartBrain>();
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), 0);
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void OnEnable()
@@ -36,7 +41,6 @@ public class FlockAISmart : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Player.Instance.playerState);
         playerPos = Player.Instance.transform.position;
 
         timePast = Time.time - startTime;
@@ -51,7 +55,7 @@ public class FlockAISmart : MonoBehaviour
                 if ((Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing") || 
                     (Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing God"))
                 {
-                    velocity = velocity * 2;
+                    //velocity = velocity * 2;
                 }
             }
             
@@ -71,12 +75,21 @@ public class FlockAISmart : MonoBehaviour
         float toPlayerPriority = brain.toPlayerPriority;
         if (Level.Instance.EnemyCount() > 0)
         {
-            if ((Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing" ) || 
+            if ((Player.Instance.closestEnemyFound == gameObject || Player.Instance.ProcessState() == "Firing" ) || 
                 (Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing God"))
             {
                 avoidancePriority = brain.avoidancePriority * 5000;
                 toPlayerPriority = 0;
                 //separationPriority = brain.separationPriority * 6000;
+            }
+            if (isInRearFOV(Player.Instance.transform.position))
+            {
+                sprite.color = new Color(255, 0, 0);
+                //toPlayerPriority *= 100000;
+            }
+            else
+            {
+                sprite.color = new Color(255, 255, 255);
             }
         }
 
@@ -199,6 +212,13 @@ public class FlockAISmart : MonoBehaviour
     bool isInFOV(Vector3 vec)
     {
         return Vector3.Angle(velocity, vec - transform.position) <= brain.maxFOV;
+    }
+
+    bool isInRearFOV(Vector3 vec)
+    {
+        //Debug.DrawLine(playerPos, transform.position);
+        angle = Vector3.Angle(velocity, vec - transform.position);
+        return Vector3.Angle(velocity, vec - transform.position) >= 150;
     }
 
     private GameObject FindClosestPlayer()
