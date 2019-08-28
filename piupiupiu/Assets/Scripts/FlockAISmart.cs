@@ -18,7 +18,7 @@ public class FlockAISmart : MonoBehaviour
     public Vector3 velocity;
     public SpriteRenderer sprite;
 
-    public float angle;
+    public float dot;
 
     FlockAISmartBrain brain;
 
@@ -82,7 +82,11 @@ public class FlockAISmart : MonoBehaviour
                 toPlayerPriority = 0;
                 //separationPriority = brain.separationPriority * 6000;
             }
-            if (isInRearFOV(Player.Instance.transform.position))
+            var playerBody = Player.Instance.transform.GetChild(3);
+            Vector3 forward = playerBody.transform.TransformDirection(Vector3.forward);
+            Vector3 toMe = transform.position - Player.Instance.transform.position;
+            dot = Vector3.Dot(forward, toMe);
+            if (dot > 0)
             {
                 sprite.color = new Color(255, 0, 0);
                 //toPlayerPriority *= 100000;
@@ -93,9 +97,9 @@ public class FlockAISmart : MonoBehaviour
             }
         }
 
-        Vector3 finalVec = brain.cohesionPriority * Cohesion() + toPlayerPriority * GoToPlayer()
+        Vector3 finalVec = (brain.cohesionPriority * Cohesion() + toPlayerPriority * GoToPlayer()
             + brain.alignmentPriority * Alignment() + brain.separationPriority * Separation()
-            + avoidancePriority * Avoidance();
+            + avoidancePriority * Avoidance()) * brain.brainOn;
 
         /*
          * Vector3 finalVec = brain.cohesionPriority * Cohesion() + brain.wanderPriority * Wander()
@@ -212,13 +216,6 @@ public class FlockAISmart : MonoBehaviour
     bool isInFOV(Vector3 vec)
     {
         return Vector3.Angle(velocity, vec - transform.position) <= brain.maxFOV;
-    }
-
-    bool isInRearFOV(Vector3 vec)
-    {
-        //Debug.DrawLine(playerPos, transform.position);
-        angle = Vector3.Angle(velocity, vec - transform.position);
-        return Vector3.Angle(velocity, vec - transform.position) >= 150;
     }
 
     private GameObject FindClosestPlayer()

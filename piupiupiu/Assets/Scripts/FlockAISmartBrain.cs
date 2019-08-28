@@ -32,4 +32,6 @@ public class FlockAISmartBrain : MonoBehaviour
 
     public float toPlayerRadius;
     public float toPlayerPriority;
+
+    public float brainOn;
 }
