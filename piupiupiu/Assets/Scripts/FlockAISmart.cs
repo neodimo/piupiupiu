@@ -18,6 +18,9 @@ public class FlockAISmart : MonoBehaviour
     public Vector3 velocity;
     public SpriteRenderer sprite;
 
+    public Vector3 forward;
+    public Vector3 toMe;
+
     public float dot;
 
     FlockAISmartBrain brain;
@@ -78,22 +81,24 @@ public class FlockAISmart : MonoBehaviour
             if ((Player.Instance.closestEnemyFound == gameObject || Player.Instance.ProcessState() == "Firing" ) || 
                 (Player.Instance.closestEnemyFound == gameObject && Player.Instance.ProcessState() == "Firing God"))
             {
-                avoidancePriority = brain.avoidancePriority * 5000;
-                toPlayerPriority = 0;
+                avoidancePriority = brain.avoidancePriority * 50000;
+                toPlayerPriority = 30;
                 //separationPriority = brain.separationPriority * 6000;
             }
             var playerBody = Player.Instance.transform.GetChild(3);
-            Vector3 forward = playerBody.transform.TransformDirection(Vector3.forward);
-            Vector3 toMe = transform.position - Player.Instance.transform.position;
-            dot = Vector3.Dot(forward, toMe);
-            if (dot > 0)
+            forward = playerBody.transform.TransformDirection(Vector3.up);
+            toMe = transform.position - Player.Instance.transform.position;
+            dot = Vector3.Dot(forward, toMe.normalized);
+            if (dot < 0)
             {
-                sprite.color = new Color(255, 0, 0);
-                //toPlayerPriority *= 100000;
+                //sprite.color = new Color(255, 0, 0);
+                sprite.color = Color.Lerp(sprite.color, Color.red, Time.deltaTime*2f);
+                toPlayerPriority *= 100000;
             }
             else
             {
-                sprite.color = new Color(255, 255, 255);
+                sprite.color = Color.Lerp(sprite.color, Color.white, Time.deltaTime*2f);
+                //sprite.color = new Color(255, 255, 255);
             }
         }
 

@@ -125,7 +125,12 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     GameSession gameSession;
     string score;
 
-    public Vector3 behindVector;
+    int axisCounter = 0;
+    bool startShooting = false;
+    bool stopShooting = false;
+
+    bool isMouse = false;
+    bool isController = false;
 
     //
     private void Awake()
@@ -182,6 +187,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     // Update is called once per frame
     void Update() {
         playerState = ProcessState();
+        //Debug.Log("r_horizontal = " + Input.GetAxis("Horizontal_R") + " r_vertical = " + Input.GetAxis("Vertical_R"));
         if (isDead == false)
         {
             if (canMove)
@@ -190,7 +196,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 {
                     closestEnemyFound = FindClosestEnemy();
                 }
-                Rotate(Move());
+                Move();
+                Rotate();
                 Suck();
                 Jump();
                 //ProcessDash();
@@ -271,7 +278,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                     return "Normal";
                 }
             }
-            
             else return "Normal";
         }
         else if (godModeToggle == null)
@@ -297,6 +303,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             }
             else if (isFiring)
             {
+                vectorGridForce.m_ForceScale = defaultScale; //.6f;
+                vectorGridForce.m_Radius = defaultRadius;
                 return "Firing";
             }
             else
@@ -472,15 +480,53 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         if (canFire == true)
         {
-            if (Input.GetButtonDown("Fire1"))
+            
+
+            if ((Input.GetAxis("Vertical_R") > 0.2f || Input.GetAxis("Vertical_R") < -0.2f) && axisCounter == 0)
+            {
+                if (Input.GetAxis("Horizontal_R") < 0.2f && Input.GetAxis("Horizontal_R") > -0.2f)
+                {
+                    startShooting = true;
+                }
+                axisCounter++;
+            }
+            else if ((Input.GetAxis("Horizontal_R") > 0.2f || Input.GetAxis("Horizontal_R") < -0.2f) && axisCounter == 0)
+            {
+                if (Input.GetAxis("Vertical_R") < 0.2f && Input.GetAxis("Vertical_R") > -0.2f)
+                {
+                    startShooting = true;
+                }
+                axisCounter++;
+            }
+            else if ((Input.GetAxis("Horizontal_R") < 0.2f && Input.GetAxis("Horizontal_R") > -0.2f) && (Input.GetAxis("Vertical_R") < 0.2f && Input.GetAxis("Vertical_R") > -0.2f))
+            {
+                if (axisCounter > 0)
+                {
+                    stopShooting = true;
+                }
+                startShooting = false;
+                axisCounter = 0;
+            }
+            /*
+            else
+            {
+                Debug.Log("not in range of axis checks");
+                stopShooting = true;
+                startShooting = false;
+                axisCounter = 0;
+            }
+            */
+            if (Input.GetButtonDown("Fire1") || startShooting == true)
             {
                 isFiring = true;
                 firingCoroutine = StartCoroutine(FireContinuously());
+                startShooting = false;
             }
-            if (Input.GetButtonUp("Fire1") || isDead)
+            if (Input.GetButtonUp("Fire1") || stopShooting == true || isDead)
             {
                 StopCoroutine(firingCoroutine);
                 isFiring = false;
+                stopShooting = false;
             }
         }
     }
@@ -535,11 +581,23 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     }
 
-    private Vector3 Move()
+    void Move()
     {
-        moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
-        var deltaX = Vector3.right * Time.deltaTime * playerSpeed;
-        var deltaY = Vector3.up * Time.deltaTime * playerSpeed;
+        if (joystick.Horizontal == 0 && joystick.Vertical == 0)
+        {
+            isMouse = false;
+            isController = true;
+            moveVector = (Vector3.right * Input.GetAxis("Horizontal") + Vector3.up * Input.GetAxis("Vertical"));
+        }
+        else
+        {
+            isController = false;
+            isMouse = true;
+            moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
+        }
+        
+        //var deltaX = Vector3.right * Time.deltaTime * playerSpeed;
+        //var deltaY = Vector3.up * Time.deltaTime * playerSpeed;
 
         if (moveVector != Vector3.zero)
         {
@@ -550,8 +608,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
             transform.position = new Vector3(xPos, yPos, transform.position.z);
         }
 
-        var direction = new Vector3(moveVector[0], moveVector[1], transform.position.z);
-        return direction;
+        //var direction = new Vector3(moveVector[0], moveVector[1], transform.position.z);
+        //return direction;
     }
 
     private void Suck()
@@ -592,7 +650,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         }
     }
 
-    public void Rotate(Vector3 direction)
+    public void Rotate()
     {
         /* Trig Answer
         // get the angle
@@ -606,20 +664,31 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
         //Simple Answer
         Vector3 diff;
-        if (Level.Instance.EnemyCount() > 0) //(GameObject.FindObjectOfType<Enemy>())
+
+        //Rotation is pointed directly at the closest enemy.
+        if (isMouse)
         {
-            //closestEnemyFound = FindClosestEnemy();
-            //Debug.DrawRay(gameObject.transform.position, closestEnemyFound.transform.position - gameObject.transform.position);
-            Transform enemyTransform = closestEnemyFound.transform;
-            diff = enemyTransform.position - transform.position;
-            body.transform.up = diff;
+            if (Level.Instance.EnemyCount() > 0)
+            {
+                Transform enemyTransform = closestEnemyFound.transform;
+                diff = enemyTransform.position - transform.position;
+                body.transform.up = diff;
+            }
+            else if (moveVector != Vector3.zero)
+            {
+                body.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveVector);
+            }
         }
-        else
+        else if (isController)
         {
-            body.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveVector);
+            Vector3 moveVectorController = new Vector3(Input.GetAxis("Horizontal_R"), -Input.GetAxis("Vertical_R"), 0);
+            if (moveVectorController != Vector3.zero)
+            {
+                body.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveVectorController);
+            }
         }
-        //Debug.DrawLine(transform.position, transform.position - (body.transform.up*20));
-        behindVector = transform.position - (body.transform.up * 20);
+
+        //body.transform.rotation = Quaternion.LookRotation(Vector3.forward, new Vector3(Input.GetAxis("Horizontal_R"), -Input.GetAxis("Vertical_R"), 0));
     }
 
     private void Jump()
@@ -708,11 +777,6 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     public float GetHealth()
     {
         return health;
-    }
-
-    public Vector2 GetPos()
-    {
-        return transform.position;
     }
 
     private void Die()
