@@ -12,7 +12,7 @@ public class SpawnerSpawner : MonoBehaviour
     float timeSincePlayerDied;
     float startTime;
     float timeSinceStarted;
-    float timeBetweenSpawners;
+    [SerializeField] float timeBetweenSpawners;
     int percentageBasedValue;
     bool spawning;
     //bool horizontal = true;
@@ -55,7 +55,6 @@ public class SpawnerSpawner : MonoBehaviour
     public void Init()
     {
         startTime = Time.time;
-        timeBetweenSpawners = 5f;
         spawning = true;
         //allPlayers = GameObject.FindObjectsOfType<Player>();
         //closestPlayerClass = FindObjectOfType<Player>();
