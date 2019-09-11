@@ -12,11 +12,14 @@ public class GameSession : MonoBehaviour {
     public static GameSession Instance;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI multText;
+    [SerializeField] TextMeshProUGUI highScoreTitleText;
+    [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] bool isAutoPlayEnabled;
 
     int multiplier;
 
     [SerializeField] int currentScore = 0;
+    int highScore = 0;
     //int currentHealth = 0;
 
     private void Awake()
@@ -45,6 +48,33 @@ public class GameSession : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 		Time.timeScale = gameSpeed;
+        if (currentScore > highScore)
+        {
+            highScore = currentScore;
+            highScoreText.text = highScore.ToString();
+        }
+        
+        //Score Text Viewability
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            scoreText.gameObject.SetActive(false);
+            multText.gameObject.SetActive(false);
+            if (highScoreText != null)
+            {
+                highScoreTitleText.gameObject.SetActive(true);
+                highScoreText.gameObject.SetActive(true);
+            }
+        }
+        else if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            scoreText.gameObject.SetActive(true);
+            multText.gameObject.SetActive(true);
+            if (highScoreText != null)
+            {
+                highScoreTitleText.gameObject.SetActive(false);
+                highScoreText.gameObject.SetActive(false);
+            }
+        }
     }
 
     public int AddToScore(int points)

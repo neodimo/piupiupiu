@@ -211,11 +211,14 @@ MonoBehaviour:
     mAndroidMaxLoginRequests: 0
     mGpgsDebugLogEnabled: 0
     mGpgsPopupGravity: 0
-    mLeaderboards: []
+    mLeaderboards:
+    - _name: PiuPiuPiu High Scores
+      _iosId: com.piupiupiu.leaderboardTest
+      _androidId: 
     mAchievements: []
     mAndroidXmlResources: 
     mEnableMultiplayer: 0
-    mEnableSavedGames: 0
+    mEnableSavedGames: 1
     mAutoConflictResolutionStrategy: 0
     mGpgsDataSource: 0
   mInAppPurchaseSettings:
@@ -324,4 +327,4 @@ MonoBehaviour:
   mIsNotificationModuleEnable: 0
   mIsSharingModuleEnable: 0
   mActiveModuleIndex: 1
-  mIsSelectingModule: 1
+  mIsSelectingModule: 0
