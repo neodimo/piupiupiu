@@ -99,8 +99,7 @@ namespace EasyMobile.Editor
                 string pbxPath = PBXProject.GetPBXProjectPath(path);
                 PBXProject project = new PBXProject();
                 project.ReadFromFile(pbxPath);
-
-                string targetName = PBXProject.GetUnityTargetName();
+                string targetName = PBXProject.GetUnityTestTargetName(); //PBXProject.GetUnityTargetName();
                 string targetGUID = project.TargetGuidByName(targetName);
 
                 // Add frameworks here if needed.

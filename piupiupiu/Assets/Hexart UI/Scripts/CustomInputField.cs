@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-namespace Michsky.UI.Zone
+namespace Michsky.UI.Hexart
 {
     public class CustomInputField : MonoBehaviour
     {
@@ -12,7 +11,7 @@ namespace Michsky.UI.Zone
 
         [Header("OBJECTS")]
         public GameObject fieldTrigger;
-        public TMP_InputField inputText;
+        public Text inputText;
 
         // [Header("SETTINGS")]
         private bool isEmpty = true;
@@ -24,17 +23,25 @@ namespace Michsky.UI.Zone
         {
             // Check if text is empty or not
             if (inputText.text.Length == 0 || inputText.text.Length <= 0)
+            {
                 isEmpty = true;
+            }
 
             else
+            {
                 isEmpty = false;
+            }
 
             // Animate if it's empty
             if (isEmpty == true)
+            {
                 inputFieldAnimator.Play(outAnim);
+            }
 
             else
+            {
                 inputFieldAnimator.Play(inAnim);
+            }
         }
 
         void Update()

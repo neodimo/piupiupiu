@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using MoreMountains.NiceVibrations;
+using System;
 
 public class GameSession : MonoBehaviour {
 
@@ -18,8 +19,8 @@ public class GameSession : MonoBehaviour {
 
     int multiplier;
 
-    [SerializeField] int currentScore = 0;
-    int highScore = 0;
+    [SerializeField] int currentScore;
+    int highScore = 20;
     //int currentHealth = 0;
 
     private void Awake()
@@ -52,6 +53,7 @@ public class GameSession : MonoBehaviour {
         {
             highScore = currentScore;
             highScoreText.text = highScore.ToString();
+            highScoreText.text = currentScore.ToString();
         }
         
         //Score Text Viewability
@@ -97,7 +99,18 @@ public class GameSession : MonoBehaviour {
 
     public void ResetGame()
     {
-        Destroy(gameObject);
+        StartCoroutine(ResetCurrentScore());
+        
+        //Destroy(gameObject);
+    }
+
+    IEnumerator ResetCurrentScore()
+    {
+        yield return new WaitForSeconds(0.25f);
+        currentScore = 0;
+        scoreText.text = currentScore.ToString();
+        multiplier = 1;
+        multText.text = "x" + multiplier.ToString();
     }
 
     public bool IsAutoPlayEnabled()
