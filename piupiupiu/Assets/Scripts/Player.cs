@@ -196,8 +196,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 {
                     closestEnemyFound = FindClosestEnemy();
                 }
-                Move();
                 Rotate();
+
+                Move();
+                
                 Suck();
                 Jump();
                 //ProcessDash();
@@ -586,8 +588,11 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         if (joystick.Horizontal == 0 && joystick.Vertical == 0)
         {
             isMouse = false;
-            isController = true;
             moveVector = (Vector3.right * Input.GetAxis("Horizontal") + Vector3.up * Input.GetAxis("Vertical"));
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                isController = true;
+            }
         }
         else
         {
@@ -666,7 +671,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         Vector3 diff;
 
         //Rotation is pointed directly at the closest enemy.
-        if (isMouse)
+        if (!isController)
         {
             if (Level.Instance.EnemyCount() > 0)
             {

@@ -6,7 +6,7 @@ public class SpawnerSpawner : MonoBehaviour
 {
     [SerializeField] GameObject[] spawnerPool;
     Vector2 playerPos;
-    Player[] allPlayers;
+    //Player[] allPlayers;
     Player closestPlayerClass;
     string playerState;
     float timeSincePlayerDied;
@@ -135,6 +135,8 @@ public class SpawnerSpawner : MonoBehaviour
         }
     }
 
+    /* 
+     * ENABLE WHEN MAKING MULTIPLAYER
     private GameObject FindClosestPlayer()
     {
         float distanceToClosestPlayer = Mathf.Infinity;
@@ -151,4 +153,5 @@ public class SpawnerSpawner : MonoBehaviour
         }
         return closestPlayer.gameObject;
     }
+    */
 }

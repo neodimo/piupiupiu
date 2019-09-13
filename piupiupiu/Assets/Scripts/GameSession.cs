@@ -35,6 +35,9 @@ public class GameSession : MonoBehaviour {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        LoadScore();
+
         MMVibrationManager.iOSInitializeHaptics();
     }
 
@@ -53,7 +56,6 @@ public class GameSession : MonoBehaviour {
         {
             highScore = currentScore;
             highScoreText.text = highScore.ToString();
-            highScoreText.text = currentScore.ToString();
         }
         
         //Score Text Viewability
@@ -116,5 +118,26 @@ public class GameSession : MonoBehaviour {
     public bool IsAutoPlayEnabled()
     {
         return isAutoPlayEnabled;
+    }
+
+    public void SaveScore()
+    {
+        SaveGame.SaveScore(this);
+    }
+
+    public void LoadScore()
+    {
+        ScoreData data = SaveGame.LoadScore();
+
+        if (highScoreText != null)
+        {
+            highScore = data.highScore;
+            highScoreText.text = highScore.ToString();
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveScore();
     }
 }
