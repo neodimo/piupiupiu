@@ -2,7 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SavedGame : MonoBehaviour
+[System.Serializable]
+public class SavedGame
 {
+    public int highScore;
+    public int multiplier;
+
+    public void ScoreData (GameSession gameSession)
+    {
+        highScore = gameSession.highScore;
+        multiplier = gameSession.multiplier;
+    }
 
 }

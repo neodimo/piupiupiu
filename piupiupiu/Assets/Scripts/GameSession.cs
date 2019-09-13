@@ -8,6 +8,7 @@ using System;
 
 public class GameSession : MonoBehaviour {
 
+
     [Range(0f, 10f)][SerializeField] float gameSpeed = 1f;
     int pointsPerEnemyDestroyed;
     public static GameSession Instance;
@@ -17,11 +18,10 @@ public class GameSession : MonoBehaviour {
     [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] bool isAutoPlayEnabled;
 
-    int multiplier;
-
-    [SerializeField] int currentScore;
-    int highScore = 20;
-    //int currentHealth = 0;
+    // PlayerData for save data
+    [SerializeField] public int currentScore;
+    public int highScore;
+    public int multiplier;
 
     private void Awake()
     {
