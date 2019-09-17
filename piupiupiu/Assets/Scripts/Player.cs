@@ -123,7 +123,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     GameObject[] guns;
 
     GameSession gameSession;
-    string score;
+    int score;
 
     int axisCounter = 0;
     bool startShooting = false;
@@ -538,14 +538,14 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         while (!isDead)
         {
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
-            if (Convert.ToInt32(score) >= 0 && Convert.ToInt32(score) < 9999)
+            if (GameSession.Instance.currentScore >= 0 && GameSession.Instance.currentScore < 9999)
             {
                 GameObject laser = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laser.transform.localScale = transform.localScale * 3;
                 laser.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
                 yield return new WaitForSeconds(projectileFiringPeriod);
             }
-            if (Convert.ToInt32(score) > 9999 && Convert.ToInt32(score) < 199999)
+            if (GameSession.Instance.currentScore > 9999 && GameSession.Instance.currentScore < 199999)
             {
                 GameObject laserMiddle = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laserMiddle.transform.localScale = transform.localScale * 3;
@@ -560,7 +560,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 laserRight01.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
                 yield return new WaitForSeconds(projectileFiringPeriod/5);
             }
-            if (Convert.ToInt32(score) > 199999)
+            if (GameSession.Instance.currentScore > 199999)
             {
                 GameObject laserMiddle = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject; //Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laserMiddle.transform.localScale = transform.localScale * 3;

@@ -23,6 +23,9 @@ public class GameSession : MonoBehaviour {
     public int highScore;
     public int multiplier;
 
+    Vector3 InStartHSTPos;
+    Vector3 InStartHSPos;
+
     private void Awake()
     {
         int gameStatusCount = FindObjectsOfType<GameSession>().Length;
@@ -43,10 +46,13 @@ public class GameSession : MonoBehaviour {
 
     private void Start()
     {
-        scoreText.text = currentScore.ToString();
+        scoreText.text = String.Format("{0:n0}", currentScore);
         Application.targetFrameRate = 60;
         multiplier = 1;
         //healthText.text = currentHealth.ToString();
+
+        InStartHSTPos = highScoreTitleText.gameObject.transform.position;
+        InStartHSPos = highScoreText.gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -55,7 +61,7 @@ public class GameSession : MonoBehaviour {
         if (currentScore > highScore)
         {
             highScore = currentScore;
-            highScoreText.text = highScore.ToString();
+            highScoreText.text = String.Format("{0:n0}", highScore);
         }
         
         //Score Text Viewability
@@ -65,6 +71,12 @@ public class GameSession : MonoBehaviour {
             multText.gameObject.SetActive(false);
             if (highScoreText != null)
             {
+                highScoreTitleText.gameObject.transform.position = InStartHSTPos;
+
+                highScoreText.gameObject.transform.position = InStartHSPos;
+                highScoreText.alignment = TextAlignmentOptions.Right;
+                highScoreText.fontSize = 115f;
+
                 highScoreTitleText.gameObject.SetActive(true);
                 highScoreText.gameObject.SetActive(true);
             }
@@ -75,8 +87,17 @@ public class GameSession : MonoBehaviour {
             multText.gameObject.SetActive(true);
             if (highScoreText != null)
             {
-                highScoreTitleText.gameObject.SetActive(false);
-                highScoreText.gameObject.SetActive(false);
+                // Set High Score Position When In Game
+                Vector3 InGameHSTPos = new Vector3(InStartHSTPos.x-800, InStartHSTPos.y, InStartHSTPos.z);
+                highScoreTitleText.gameObject.transform.position = InGameHSTPos;
+
+                Vector3 InGameHSPos = new Vector3(InStartHSPos.x + 35, InStartHSPos.y, InStartHSPos.z);
+                highScoreText.gameObject.transform.position = InGameHSPos;
+                highScoreText.alignment = TextAlignmentOptions.Left;
+                highScoreText.fontSize = 80f;
+
+                //highScoreTitleText.gameObject.SetActive(false);
+                //highScoreText.gameObject.SetActive(false);
             }
         }
     }
@@ -84,19 +105,19 @@ public class GameSession : MonoBehaviour {
     public int AddToScore(int points)
     {
         currentScore += points * multiplier;
-        scoreText.text = currentScore.ToString();
+        scoreText.text = String.Format("{0:n0}", currentScore);
         return points*multiplier;
     }
 
     public void AddToMult()
     {
         multiplier += 1;
-        multText.text = "x" + multiplier.ToString();
+        multText.text = "x" + String.Format("{0:n0}", multiplier);
     }
 
-    public string GetScore()
+    public int GetScore()
     {
-        return scoreText.text;
+        return currentScore;
     }
 
     public void ResetGame()
@@ -127,12 +148,21 @@ public class GameSession : MonoBehaviour {
 
     public void LoadScore()
     {
-        ScoreData data = SaveGame.LoadScore();
+        ScoreData data;
+        if (SaveGame.LoadScore() != null)
+        {
+            data = SaveGame.LoadScore();
+        }
+        else
+        {
+            SaveGame.SaveScore(this);
+            data = SaveGame.LoadScore();
+        }
 
         if (highScoreText != null)
         {
             highScore = data.highScore;
-            highScoreText.text = highScore.ToString();
+            highScoreText.text = String.Format("{0:n0}", highScore);
         }
     }
 
