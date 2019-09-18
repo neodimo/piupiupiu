@@ -29,16 +29,6 @@ public static class SaveGame
 
             return data;
         }
-        else if (!File.Exists(path))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            ScoreData data = formatter.Deserialize(stream) as ScoreData;
-            stream.Close();
-
-            return data;
-        }
         else
         {
             Debug.LogError("Save file not found in " + path);

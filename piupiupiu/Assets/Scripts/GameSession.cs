@@ -72,6 +72,7 @@ public class GameSession : MonoBehaviour {
             if (highScoreText != null)
             {
                 highScoreTitleText.gameObject.transform.position = InStartHSTPos;
+                highScoreTitleText.fontSize = 50f;
 
                 highScoreText.gameObject.transform.position = InStartHSPos;
                 highScoreText.alignment = TextAlignmentOptions.Right;
@@ -88,10 +89,11 @@ public class GameSession : MonoBehaviour {
             if (highScoreText != null)
             {
                 // Set High Score Position When In Game
-                Vector3 InGameHSTPos = new Vector3(InStartHSTPos.x-800, InStartHSTPos.y, InStartHSTPos.z);
+                Vector3 InGameHSTPos = new Vector3(InStartHSTPos.x-875, InStartHSTPos.y, InStartHSTPos.z);
                 highScoreTitleText.gameObject.transform.position = InGameHSTPos;
+                highScoreTitleText.fontSize = 35f;
 
-                Vector3 InGameHSPos = new Vector3(InStartHSPos.x + 35, InStartHSPos.y, InStartHSPos.z);
+                Vector3 InGameHSPos = new Vector3(InStartHSPos.x + 90, InStartHSPos.y, InStartHSPos.z);
                 highScoreText.gameObject.transform.position = InGameHSPos;
                 highScoreText.alignment = TextAlignmentOptions.Left;
                 highScoreText.fontSize = 80f;
@@ -155,7 +157,8 @@ public class GameSession : MonoBehaviour {
         }
         else
         {
-            SaveGame.SaveScore(this);
+            SaveScore();
+            Debug.Log("No save found, creating new one");
             data = SaveGame.LoadScore();
         }
 
