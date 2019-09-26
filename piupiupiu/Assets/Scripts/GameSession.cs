@@ -7,21 +7,31 @@ using MoreMountains.NiceVibrations;
 using System;
 
 public class GameSession : MonoBehaviour {
-
-
-    [Range(0f, 10f)][SerializeField] float gameSpeed = 1f;
     int pointsPerEnemyDestroyed;
     public static GameSession Instance;
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] TextMeshProUGUI multText;
-    [SerializeField] TextMeshProUGUI highScoreTitleText;
-    [SerializeField] TextMeshProUGUI highScoreText;
+
+    [Range(0f, 10f)][SerializeField] float gameSpeed = 1f;
     [SerializeField] bool isAutoPlayEnabled;
 
+    [Header("Main Menu UI")]
+    [SerializeField] TextMeshProUGUI highScoreTitleTextStartMenu;
+    [SerializeField] TextMeshProUGUI highScoreTextStartMenu;
+
+    [Header("Main Level UI")]
+    [SerializeField] TextMeshProUGUI highScoreTitleTextMainLevel;
+    [SerializeField] TextMeshProUGUI highScoreTextMainLevel;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI multText;
+
+
+
+    [Header("Player Data")]
     // PlayerData for save data
     [SerializeField] public int currentScore;
     public int highScore;
     public int multiplier;
+    public int level;
+    public float exp;
 
     Vector3 InStartHSTPos;
     Vector3 InStartHSPos;
@@ -51,8 +61,41 @@ public class GameSession : MonoBehaviour {
         multiplier = 1;
         //healthText.text = currentHealth.ToString();
 
-        InStartHSTPos = highScoreTitleText.gameObject.transform.position;
-        InStartHSPos = highScoreText.gameObject.transform.position;
+        //InStartHSTPos = highScoreTitleTextStartMenu.gameObject.transform.position;
+        //InStartHSPos = highScoreTextStartMenu.gameObject.transform.position;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded (Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Start Menu")
+        {
+            scoreText.gameObject.SetActive(false);
+            multText.gameObject.SetActive(false);
+            highScoreTitleTextMainLevel.gameObject.SetActive(false);
+            highScoreTextMainLevel.gameObject.SetActive(false);
+
+            highScoreTitleTextStartMenu.gameObject.SetActive(true);
+            highScoreTextStartMenu.gameObject.SetActive(true);
+        }
+        else if (scene.name == "Main Level")
+        {
+            highScoreTitleTextStartMenu.gameObject.SetActive(false);
+            highScoreTextStartMenu.gameObject.SetActive(false);
+
+            highScoreTitleTextMainLevel.gameObject.SetActive(true);
+            highScoreTextMainLevel.gameObject.SetActive(true);
+            scoreText.gameObject.SetActive(true);
+            multText.gameObject.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -61,47 +104,10 @@ public class GameSession : MonoBehaviour {
         if (currentScore > highScore)
         {
             highScore = currentScore;
-            highScoreText.text = String.Format("{0:n0}", highScore);
+            highScoreTextStartMenu.text = String.Format("{0:n0}", highScore);
+            highScoreTextMainLevel.text = String.Format("{0:n0}", highScore);
         }
         
-        //Score Text Viewability
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            scoreText.gameObject.SetActive(false);
-            multText.gameObject.SetActive(false);
-            if (highScoreText != null)
-            {
-                highScoreTitleText.gameObject.transform.position = InStartHSTPos;
-                highScoreTitleText.fontSize = 50f;
-
-                highScoreText.gameObject.transform.position = InStartHSPos;
-                highScoreText.alignment = TextAlignmentOptions.Right;
-                highScoreText.fontSize = 115f;
-
-                highScoreTitleText.gameObject.SetActive(true);
-                highScoreText.gameObject.SetActive(true);
-            }
-        }
-        else if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            scoreText.gameObject.SetActive(true);
-            multText.gameObject.SetActive(true);
-            if (highScoreText != null)
-            {
-                // Set High Score Position When In Game
-                Vector3 InGameHSTPos = new Vector3(InStartHSTPos.x-875, InStartHSTPos.y, InStartHSTPos.z);
-                highScoreTitleText.gameObject.transform.position = InGameHSTPos;
-                highScoreTitleText.fontSize = 35f;
-
-                Vector3 InGameHSPos = new Vector3(InStartHSPos.x + 90, InStartHSPos.y, InStartHSPos.z);
-                highScoreText.gameObject.transform.position = InGameHSPos;
-                highScoreText.alignment = TextAlignmentOptions.Left;
-                highScoreText.fontSize = 80f;
-
-                //highScoreTitleText.gameObject.SetActive(false);
-                //highScoreText.gameObject.SetActive(false);
-            }
-        }
     }
 
     public int AddToScore(int points)
@@ -162,10 +168,11 @@ public class GameSession : MonoBehaviour {
             data = SaveGame.LoadScore();
         }
 
-        if (highScoreText != null)
+        if (highScoreTextStartMenu != null)
         {
             highScore = data.highScore;
-            highScoreText.text = String.Format("{0:n0}", highScore);
+            highScoreTextStartMenu.text = String.Format("{0:n0}", highScore);
+            highScoreTextMainLevel.text = String.Format("{0:n0}", highScore);
         }
     }
 
