@@ -195,7 +195,7 @@ MonoBehaviour:
   multPrefab: {fileID: 3108611466150865320, guid: 835fd527a8d3f334e9e7886163c5406a,
     type: 3}
   multCountMin: 1
-  multCountMax: 15
+  multCountMax: 3
   popUpText: {fileID: 6499300873041219245, guid: b2f888f96073aff4b92ce68082c1c1a5,
     type: 3}
 --- !u!114 &2795799106643662155

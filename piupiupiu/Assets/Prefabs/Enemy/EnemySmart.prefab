@@ -174,7 +174,7 @@ MonoBehaviour:
   multPrefab: {fileID: 3108611466150865320, guid: 835fd527a8d3f334e9e7886163c5406a,
     type: 3}
   multCountMin: 1
-  multCountMax: 15
+  multCountMax: 3
   popUpText: {fileID: 6499300873041219245, guid: b2f888f96073aff4b92ce68082c1c1a5,
     type: 3}
 --- !u!114 &7411067978192813989
@@ -191,6 +191,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  sprite: {fileID: 0}
+  forward: {x: 0, y: 0, z: 0}
+  toMe: {x: 0, y: 0, z: 0}
+  dot: 0
 --- !u!114 &4617205585045155167
 MonoBehaviour:
   m_ObjectHideFlags: 0
