@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using MoreMountains.NiceVibrations;
 using System;
+using UnityEngine.iOS;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour {
     int pointsPerEnemyDestroyed;
@@ -23,6 +25,12 @@ public class GameSession : MonoBehaviour {
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI multText;
 
+    [Header("ExpBar")]
+    [SerializeField] GameObject expBarObjNonIphoneX;
+    [SerializeField] GameObject expBarObjIphoneX;
+    Image expBarImageComponent;
+    int expBarPercentage;
+    [SerializeField] Sprite[] expBarSprites;
 
 
     [Header("Player Data")]
@@ -31,10 +39,13 @@ public class GameSession : MonoBehaviour {
     public int highScore;
     public int multiplier;
     public int level;
-    public float exp;
+    public int exp;
 
-    Vector3 InStartHSTPos;
-    Vector3 InStartHSPos;
+    public static DeviceGeneration generation;
+    bool GoodForIphoneXAndOn;
+
+    //Vector3 InStartHSTPos;
+    //Vector3 InStartHSPos;
 
     private void Awake()
     {
@@ -51,7 +62,21 @@ public class GameSession : MonoBehaviour {
 
         LoadScore();
 
-        MMVibrationManager.iOSInitializeHaptics();
+        CheckDeviceCompatability();
+
+        if (GoodForIphoneXAndOn)
+        {
+            MMVibrationManager.iOSInitializeHaptics();
+        }
+    }
+
+    private void CheckDeviceCompatability()
+    {
+        if (generation.ToString() == "iPhone11Pro" || generation.ToString() == "iPhone11" || generation.ToString() == "iPhone11ProMax"
+            || generation.ToString() == "iPhoneXS" || generation.ToString() == "iPhoneXSMax" || generation.ToString() == "iPhoneXR" || generation.ToString() == "iPhoneX")
+        {
+            GoodForIphoneXAndOn = true;
+        }
     }
 
     private void Start()
@@ -59,6 +84,11 @@ public class GameSession : MonoBehaviour {
         scoreText.text = String.Format("{0:n0}", currentScore);
         Application.targetFrameRate = 60;
         multiplier = 1;
+
+        expBarImageComponent = expBarObjIphoneX.GetComponent<Image>();
+        expBarPercentage = 0;
+        expBarImageComponent.overrideSprite = expBarSprites[expBarPercentage];
+
         //healthText.text = currentHealth.ToString();
 
         //InStartHSTPos = highScoreTitleTextStartMenu.gameObject.transform.position;
@@ -108,6 +138,13 @@ public class GameSession : MonoBehaviour {
             highScoreTextMainLevel.text = String.Format("{0:n0}", highScore);
         }
         
+    }
+
+    public void AddOneExperience()
+    {
+        expBarPercentage += 1;
+        expBarImageComponent.overrideSprite = expBarSprites[expBarPercentage];
+        Debug.Log(expBarImageComponent.sprite);
     }
 
     public int AddToScore(int points)
