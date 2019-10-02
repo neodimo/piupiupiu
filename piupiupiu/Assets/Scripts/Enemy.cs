@@ -179,6 +179,7 @@ public class Enemy : MonoBehaviour
             }
             //AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
             currentPoints = GameSession.Instance.AddToScore(points);  //FindObjectOfType<GameSession>().AddToScore(points);
+            GameSession.Instance.AddOneExperience();
             PopUpPoints();
             Level.Instance.EnemyDestroyed(gameObject);
             gameObject.SetActive(false);
