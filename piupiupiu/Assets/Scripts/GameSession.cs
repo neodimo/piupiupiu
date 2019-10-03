@@ -9,7 +9,6 @@ using UnityEngine.iOS;
 using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour {
-    int pointsPerEnemyDestroyed;
     public static GameSession Instance;
 
     [Range(0f, 10f)][SerializeField] float gameSpeed = 1f;
@@ -28,8 +27,10 @@ public class GameSession : MonoBehaviour {
     [Header("ExpBar")]
     [SerializeField] GameObject expBarObjNonIphoneX;
     [SerializeField] GameObject expBarObjIphoneX;
+    [SerializeField] TextMeshProUGUI expText;
+    [SerializeField] TextMeshProUGUI levelText;
     Image expBarImageComponent;
-    int expBarPercentage;
+    float expBarPercentage = 0;
     [SerializeField] Sprite[] expBarSprites;
 
 
@@ -39,7 +40,8 @@ public class GameSession : MonoBehaviour {
     public int highScore;
     public int multiplier;
     public int level;
-    public int exp;
+    int[] levelEXP = new int[1000];
+    public float exp;
 
     public static DeviceGeneration generation;
     bool GoodForIphoneXAndOn;
@@ -61,6 +63,8 @@ public class GameSession : MonoBehaviour {
         }
 
         LoadScore();
+        //LoadExpAndLvl();
+        level = 1;
 
         CheckDeviceCompatability();
 
@@ -85,9 +89,11 @@ public class GameSession : MonoBehaviour {
         Application.targetFrameRate = 60;
         multiplier = 1;
 
+        ExperiencePerLevel();
+        expText.text = exp + " / " + levelEXP[level];
+
         expBarImageComponent = expBarObjIphoneX.GetComponent<Image>();
-        expBarPercentage = 0;
-        expBarImageComponent.overrideSprite = expBarSprites[expBarPercentage];
+        expBarImageComponent.overrideSprite = expBarSprites[(int)expBarPercentage];
 
         //healthText.text = currentHealth.ToString();
 
@@ -140,11 +146,32 @@ public class GameSession : MonoBehaviour {
         
     }
 
+    public void ExperiencePerLevel()
+    {
+        //after each level increase experience requirements. lvl 1 = 100 lvl 2 = 150 etc
+        levelEXP[0] = 50;
+        for (int i = 1; i < levelEXP.Length; i++) {
+            levelEXP[i] = levelEXP[i - 1] * 2; //(Convert.ToInt32((100*i)/Math.Pow(i, i)));
+        }
+    }
+
     public void AddOneExperience()
     {
         expBarPercentage += 1;
-        expBarImageComponent.overrideSprite = expBarSprites[expBarPercentage];
-        Debug.Log(expBarImageComponent.sprite);
+        expBarImageComponent.overrideSprite = expBarSprites[(int)expBarPercentage];
+    }
+
+    public void AddExperience(int experience)
+    {
+        exp += experience;
+        if (exp > levelEXP[level])
+        {
+            level += 1;
+            levelText.text = level.ToString();
+        }
+        expBarPercentage = (exp / levelEXP[level])*100;
+        expText.text = exp + " / " + levelEXP[level];
+        expBarImageComponent.overrideSprite = expBarSprites[(int)expBarPercentage];
     }
 
     public int AddToScore(int points)
@@ -202,6 +229,7 @@ public class GameSession : MonoBehaviour {
         {
             SaveScore();
             Debug.Log("No save found, creating new one");
+
             data = SaveGame.LoadScore();
         }
 
