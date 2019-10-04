@@ -30,10 +30,11 @@ public class GameSession : MonoBehaviour {
     [SerializeField] TextMeshProUGUI expText;
     [SerializeField] TextMeshProUGUI levelText;
     Image expBarImageComponent;
-    float expNeeded;
-    float expAtStartOfNewLevel;
-    float expBarPercentage = 0;
     [SerializeField] Sprite[] expBarSprites;
+    float expNeeded;
+    public float expAtStartOfNewLevel;
+    public float expBarPercentage = 0;
+    
 
 
     [Header("Player Data")]
@@ -166,7 +167,7 @@ public class GameSession : MonoBehaviour {
 
     public void AddExperience(int experience)
     {
-        exp += experience;
+        exp += experience/3;
         if (exp > levelEXP[level])
         {
             expAtStartOfNewLevel = exp - levelEXP[level];
@@ -177,16 +178,14 @@ public class GameSession : MonoBehaviour {
         if (expAtStartOfNewLevel == -1)
         {
             expBarPercentage = (exp / levelEXP[level]) * 100;
-            Debug.Log("running at level 1");
         }
         else
         {
-            expAtStartOfNewLevel += exp;
+            expAtStartOfNewLevel += experience/3;
             expBarPercentage = (expAtStartOfNewLevel / expNeeded) * 100;
-            Debug.Log("running at level 2 and on");
         }
         expText.text = exp + " / " + levelEXP[level];
-        expBarImageComponent.overrideSprite = expBarSprites[(int)expBarPercentage];
+        expBarImageComponent.overrideSprite = expBarSprites[Mathf.Clamp((int)expBarPercentage, 0, 99)];
     }
 
     public int AddToScore(int points)
