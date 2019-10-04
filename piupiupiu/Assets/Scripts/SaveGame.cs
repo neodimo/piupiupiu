@@ -4,19 +4,21 @@ using UnityEngine;
 
 public static class SaveGame
 {
-    public static void SaveScore (GameSession gameSession)
+    public static void SaveGameData (GameSession gameSession)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/score.txt";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        ScoreData data = new ScoreData(gameSession);
+        SaveData data = new SaveData(gameSession);
 
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public static ScoreData LoadScore()
+
+
+    public static SaveData LoadGameData()
     {
         string path = Application.persistentDataPath + "/score.txt";
         if (File.Exists(path))
@@ -24,7 +26,7 @@ public static class SaveGame
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            ScoreData data = formatter.Deserialize(stream) as ScoreData;
+            SaveData data = formatter.Deserialize(stream) as SaveData;
             stream.Close();
 
             return data;

@@ -65,7 +65,7 @@ public class GameSession : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         }
 
-        LoadScore();
+        LoadGameData();
         //LoadExpAndLvl();
         level = 1;
         expAtStartOfNewLevel = -1;
@@ -227,24 +227,24 @@ public class GameSession : MonoBehaviour {
         return isAutoPlayEnabled;
     }
 
-    public void SaveScore()
+    public void SaveGameData()
     {
-        SaveGame.SaveScore(this);
+        SaveGame.SaveGameData(this);
     }
 
-    public void LoadScore()
+    public void LoadGameData()
     {
-        ScoreData data;
-        if (SaveGame.LoadScore() != null)
+        SaveData data;
+        if (SaveGame.LoadGameData() != null)
         {
-            data = SaveGame.LoadScore();
+            data = SaveGame.LoadGameData();
         }
         else
         {
-            SaveScore();
+            SaveGameData();
             Debug.Log("No save found, creating new one");
 
-            data = SaveGame.LoadScore();
+            data = SaveGame.LoadGameData();
         }
 
         if (highScoreTextStartMenu != null)
@@ -257,6 +257,6 @@ public class GameSession : MonoBehaviour {
 
     private void OnApplicationQuit()
     {
-        SaveScore();
+        SaveGameData();
     }
 }
