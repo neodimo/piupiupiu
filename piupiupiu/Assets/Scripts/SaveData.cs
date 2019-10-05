@@ -11,6 +11,7 @@ public class SaveData
     public float exp;
     public float expAtStartOfNewLevel;
     public float expBarPercentage;
+    public float expNeeded;
 
     public SaveData (GameSession gameSession)
     {
@@ -20,5 +21,6 @@ public class SaveData
         exp = gameSession.exp;
         expAtStartOfNewLevel = gameSession.expAtStartOfNewLevel;
         expBarPercentage = gameSession.expBarPercentage;
+        expNeeded = gameSession.expNeeded;
     }
 }

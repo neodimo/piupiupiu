@@ -31,11 +31,9 @@ public class GameSession : MonoBehaviour {
     [SerializeField] TextMeshProUGUI levelText;
     Image expBarImageComponent;
     [SerializeField] Sprite[] expBarSprites;
-    float expNeeded;
+    public float expNeeded;
     public float expAtStartOfNewLevel;
     public float expBarPercentage = 0;
-    
-
 
     [Header("Player Data")]
     // PlayerData for save data
@@ -64,11 +62,10 @@ public class GameSession : MonoBehaviour {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
+        expBarImageComponent = expBarObjIphoneX.GetComponent<Image>();
+        level = 1;
         LoadGameData();
         //LoadExpAndLvl();
-        level = 1;
-        expAtStartOfNewLevel = -1;
 
         CheckDeviceCompatability();
 
@@ -96,8 +93,7 @@ public class GameSession : MonoBehaviour {
         ExperiencePerLevel();
         expText.text = exp + " / " + levelEXP[level];
 
-        expBarImageComponent = expBarObjIphoneX.GetComponent<Image>();
-        expBarImageComponent.overrideSprite = expBarSprites[(int)expBarPercentage];
+        
 
         //healthText.text = currentHealth.ToString();
 
@@ -159,12 +155,6 @@ public class GameSession : MonoBehaviour {
         }
     }
 
-    public void AddOneExperience()
-    {
-        expBarPercentage += 1;
-        expBarImageComponent.overrideSprite = expBarSprites[(int)expBarPercentage];
-    }
-
     public void AddExperience(int experience)
     {
         exp += experience/3;
@@ -175,7 +165,7 @@ public class GameSession : MonoBehaviour {
             levelText.text = level.ToString();
             expNeeded = levelEXP[level] - exp;
         }
-        if (expAtStartOfNewLevel == -1)
+        if (level == 1)
         {
             expBarPercentage = (exp / levelEXP[level]) * 100;
         }
@@ -252,7 +242,35 @@ public class GameSession : MonoBehaviour {
             highScore = data.highScore;
             highScoreTextStartMenu.text = String.Format("{0:n0}", highScore);
             highScoreTextMainLevel.text = String.Format("{0:n0}", highScore);
+
+            level = data.level;
+            levelText.text = level.ToString();
+
+            exp = data.exp;
+
+            expAtStartOfNewLevel = data.expAtStartOfNewLevel;
+
+            expNeeded = data.expNeeded;
+
+            expBarPercentage = data.expBarPercentage;
+            expText.text = exp + " / " + levelEXP[level];
+            expBarImageComponent.overrideSprite = expBarSprites[Mathf.Clamp((int)expBarPercentage, 0, 99)];
         }
+    }
+
+    public void ResetGameData()
+    {
+        highScore = 0;
+        currentScore = 0;
+        scoreText.text = String.Format("{0:n0}", currentScore);
+        multiplier = 1;
+        level = 1;
+        exp = 0;
+        expAtStartOfNewLevel = 0;
+        expNeeded = 0;
+        expBarPercentage = 0;
+        SaveGameData();
+        LoadGameData();
     }
 
     private void OnApplicationQuit()
