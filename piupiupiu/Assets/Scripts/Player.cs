@@ -800,11 +800,11 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         if (value == true)
         {
-            Debug.Log("God Mode On");
+            //Debug.Log("God Mode On");
         }
         if (value == false)
         {
-            Debug.Log("God Mode Off");
+            //Debug.Log("God Mode Off");
         }
     }
 

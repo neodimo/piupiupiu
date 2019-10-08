@@ -25,12 +25,16 @@ public class GameSession : MonoBehaviour {
     [SerializeField] TextMeshProUGUI multText;
 
     [Header("ExpBar")]
-    [SerializeField] GameObject expBarObjNonIphoneX;
+    [SerializeField] GameObject expBarObjIphoneRectangle;
+    [SerializeField] GameObject expBarObjIphoneRectangleBase;
     [SerializeField] GameObject expBarObjIphoneX;
+    [SerializeField] GameObject expBarObjIphoneXBase;
     [SerializeField] TextMeshProUGUI expText;
     [SerializeField] TextMeshProUGUI levelText;
     Image expBarImageComponent;
-    [SerializeField] Sprite[] expBarSprites;
+    [SerializeField] Sprite[] expBarSpritesIphoneRectangle;
+    [SerializeField] Sprite[] expBarSpritesIphonex;
+    Sprite[] expBarSprites = new Sprite[100];
     public float expNeeded;
     public float expAtStartOfNewLevel;
     public float expBarPercentage = 0;
@@ -46,7 +50,7 @@ public class GameSession : MonoBehaviour {
 
     public static DeviceGeneration generation;
     bool GoodForIphoneXAndOn;
-
+    
     //Vector3 InStartHSTPos;
     //Vector3 InStartHSPos;
 
@@ -62,17 +66,37 @@ public class GameSession : MonoBehaviour {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        expBarImageComponent = expBarObjIphoneX.GetComponent<Image>();
+        
         level = 1;
-        LoadGameData();
-        //LoadExpAndLvl();
+        
 
         CheckDeviceCompatability();
 
         if (GoodForIphoneXAndOn)
         {
             MMVibrationManager.iOSInitializeHaptics();
+            expBarSprites = expBarSpritesIphonex;
+            expBarImageComponent = expBarObjIphoneX.GetComponent<Image>();
+
+            expBarObjIphoneRectangle.SetActive(false);
+            expBarObjIphoneRectangleBase.SetActive(false);
+
+            expBarObjIphoneX.SetActive(true);
+            expBarObjIphoneXBase.SetActive(true);
         }
+        else
+        {
+            expBarSprites = expBarSpritesIphoneRectangle;
+            expBarImageComponent = expBarObjIphoneRectangle.GetComponent<Image>();
+
+            expBarObjIphoneRectangle.SetActive(true);
+            expBarObjIphoneRectangleBase.SetActive(true);
+
+            expBarObjIphoneX.SetActive(false);
+            expBarObjIphoneXBase.SetActive(false);
+        }
+
+        LoadGameData();
     }
 
     private void CheckDeviceCompatability()
