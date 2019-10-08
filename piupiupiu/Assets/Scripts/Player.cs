@@ -102,7 +102,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     bool debugGodModeToggle;
 
     bool hasPressedSpace = false;
-    bool canMove;
+    bool canMove = false;
 
     float playerBaseScaleX;
     float playerBaseScaleY;
@@ -143,12 +143,13 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             canMove = true;
+            SetupBoundaries();
+            allEnemies = Level.Instance.EnemiesAlive(); //GameObject.FindObjectsOfType<Enemy>();
         }
 
         playerBaseScaleX = transform.localScale.x;
         playerBaseScaleY = transform.localScale.y;
-        SetupBoundaries();
-        allEnemies = Level.Instance.EnemiesAlive(); //GameObject.FindObjectsOfType<Enemy>();
+        
         animator = GetComponent<Animator>();
         vectorGridForce = gameObject.GetComponent<VectorGridForce2>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -186,18 +187,21 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
 
     // Update is called once per frame
     void Update() {
-        playerState = ProcessState();
+        if (canMove)
+        {
+            playerState = ProcessState();
+        }
+        
         //Debug.Log("r_horizontal = " + Input.GetAxis("Horizontal_R") + " r_vertical = " + Input.GetAxis("Vertical_R"));
         if (isDead == false)
         {
+            if (Level.Instance.EnemyCount() > 0)
+            {
+                closestEnemyFound = FindClosestEnemy();
+            }
+            Rotate();
             if (canMove)
             {
-                if (Level.Instance.EnemyCount() > 0)
-                {
-                    closestEnemyFound = FindClosestEnemy();
-                }
-                Rotate();
-
                 Move();
                 
                 Suck();

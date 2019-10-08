@@ -5,16 +5,16 @@ using UnityEngine;
 public class ZoomInNOut : MonoBehaviour
 {
     public float speed;
-    float posX;
-    float posY;
-    float posZ;
+    [SerializeField] float zoomAmount;
+    float scaleAnim;
+    float scaleInitX;
     bool switchFlag = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        scaleInitX = transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -22,21 +22,23 @@ public class ZoomInNOut : MonoBehaviour
     {
         if (switchFlag == false)
         {
-            posZ = Mathf.Lerp(-100f, -250f, Mathf.PingPong((0.5f*Time.time), 1));
-            if (posZ <= -250f)
+            scaleAnim = Mathf.SmoothStep(scaleInitX, scaleInitX + zoomAmount, Mathf.PingPong((speed * Time.time), 1));
+            //scaleAnim = Mathf.Lerp(scaleInitX, scaleInitX + zoomAmount, Mathf.PingPong((speed*Time.time), 1));
+            if (scaleAnim >= scaleInitX + zoomAmount)
             {
                 switchFlag = true;
             }
         }
         else if (switchFlag == true)
         {
-            posZ = Mathf.Lerp(-250f, -100f, Mathf.PingPong((0.5f * Time.time), 1));
-            if (posZ >= -100f)
+            scaleAnim = Mathf.SmoothStep(scaleInitX + zoomAmount, scaleInitX, Mathf.PingPong((speed * Time.time), 1));
+            //scaleAnim = Mathf.Lerp(scaleInitX+zoomAmount, scaleInitX, Mathf.PingPong((speed * Time.time), 1));
+            if (scaleAnim <= scaleInitX)
             {
                 switchFlag = false;
             }
         }
-        Debug.Log(0.5f * Time.time);
-        transform.position = new Vector3(transform.position.x, transform.position.y, posZ);
+        //Debug.Log(0.5f * Time.time);
+        transform.localScale = new Vector3(scaleAnim, scaleAnim, transform.localScale.z);
     }
 }

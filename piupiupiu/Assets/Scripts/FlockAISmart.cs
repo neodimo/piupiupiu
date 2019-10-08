@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class FlockAISmart : MonoBehaviour
@@ -23,6 +24,8 @@ public class FlockAISmart : MonoBehaviour
 
     public float dot;
 
+    public bool aggressive = true;
+
     FlockAISmartBrain brain;
 
     private void Awake()
@@ -35,6 +38,10 @@ public class FlockAISmart : MonoBehaviour
         brain = FindObjectOfType<FlockAISmartBrain>();
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), 0);
         sprite = GetComponent<SpriteRenderer>();
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            aggressive = false;
+        }
     }
 
     void OnEnable()
@@ -93,11 +100,16 @@ public class FlockAISmart : MonoBehaviour
             {
                 //sprite.color = new Color(255, 0, 0);
                 sprite.color = Color.Lerp(sprite.color, Color.red, Time.deltaTime*2f);
-                toPlayerPriority *= 100000;
+                if (aggressive)
+                {
+                    toPlayerPriority *= 100000;
+                }
+                
             }
             else
             {
                 sprite.color = Color.Lerp(sprite.color, Color.white, Time.deltaTime*2f);
+                toPlayerPriority = brain.toPlayerPriority;
                 //sprite.color = new Color(255, 255, 255);
             }
         }

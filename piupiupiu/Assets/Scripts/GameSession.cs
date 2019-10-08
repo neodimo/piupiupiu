@@ -76,24 +76,26 @@ public class GameSession : MonoBehaviour {
         {
             MMVibrationManager.iOSInitializeHaptics();
             expBarSprites = expBarSpritesIphonex;
-            expBarImageComponent = expBarObjIphoneX.GetComponent<Image>();
 
             expBarObjIphoneRectangle.SetActive(false);
             expBarObjIphoneRectangleBase.SetActive(false);
 
             expBarObjIphoneX.SetActive(true);
             expBarObjIphoneXBase.SetActive(true);
+
+            expBarImageComponent = expBarObjIphoneX.GetComponent<Image>();
         }
         else
         {
             expBarSprites = expBarSpritesIphoneRectangle;
-            expBarImageComponent = expBarObjIphoneRectangle.GetComponent<Image>();
-
+            
             expBarObjIphoneRectangle.SetActive(true);
             expBarObjIphoneRectangleBase.SetActive(true);
 
             expBarObjIphoneX.SetActive(false);
             expBarObjIphoneXBase.SetActive(false);
+
+            expBarImageComponent = expBarObjIphoneRectangle.GetComponent<Image>();
         }
 
         LoadGameData();

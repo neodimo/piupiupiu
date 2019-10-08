@@ -17,6 +17,7 @@ public class SpawnerSpawner : MonoBehaviour
     bool spawning;
     //bool horizontal = true;
     [SerializeField] bool spawn = true;
+    [SerializeField] bool demoMode = false;
 
     int[] weights;
     int weightTotal;
