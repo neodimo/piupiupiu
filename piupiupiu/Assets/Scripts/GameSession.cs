@@ -50,6 +50,8 @@ public class GameSession : MonoBehaviour {
 
     public static DeviceGeneration generation;
     bool GoodForIphoneXAndOn;
+
+    bool demoMode;
     
     //Vector3 InStartHSTPos;
     //Vector3 InStartHSPos;
@@ -158,6 +160,15 @@ public class GameSession : MonoBehaviour {
             scoreText.gameObject.SetActive(true);
             multText.gameObject.SetActive(true);
         }
+
+        if (SpawnerSpawner.Instance.demoMode)
+        {
+            demoMode = true;
+        }
+        else
+        {
+            demoMode = false;
+        }
     }
 
     // Update is called once per frame
@@ -183,38 +194,51 @@ public class GameSession : MonoBehaviour {
 
     public void AddExperience(int experience)
     {
-        exp += experience/3;
-        if (exp > levelEXP[level])
+        if (!demoMode)
         {
-            expAtStartOfNewLevel = exp - levelEXP[level];
-            level += 1;
-            levelText.text = level.ToString();
-            expNeeded = levelEXP[level] - exp;
+            exp += experience / 3;
+            if (exp > levelEXP[level])
+            {
+                expAtStartOfNewLevel = exp - levelEXP[level];
+                level += 1;
+                levelText.text = level.ToString();
+                expNeeded = levelEXP[level] - exp;
+            }
+            if (level == 1)
+            {
+                expBarPercentage = (exp / levelEXP[level]) * 100;
+            }
+            else
+            {
+                expAtStartOfNewLevel += experience / 3;
+                expBarPercentage = (expAtStartOfNewLevel / expNeeded) * 100;
+            }
+            expText.text = exp + " / " + levelEXP[level];
+            expBarImageComponent.overrideSprite = expBarSprites[Mathf.Clamp((int)expBarPercentage, 0, 99)];
         }
-        if (level == 1)
-        {
-            expBarPercentage = (exp / levelEXP[level]) * 100;
-        }
-        else
-        {
-            expAtStartOfNewLevel += experience/3;
-            expBarPercentage = (expAtStartOfNewLevel / expNeeded) * 100;
-        }
-        expText.text = exp + " / " + levelEXP[level];
-        expBarImageComponent.overrideSprite = expBarSprites[Mathf.Clamp((int)expBarPercentage, 0, 99)];
     }
 
     public int AddToScore(int points)
     {
-        currentScore += points * multiplier;
-        scoreText.text = String.Format("{0:n0}", currentScore);
-        return points*multiplier;
+        if (!demoMode)
+        {
+            currentScore += points * multiplier;
+            scoreText.text = String.Format("{0:n0}", currentScore);
+            return points * multiplier;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public void AddToMult()
     {
-        multiplier += 1;
-        multText.text = "x" + String.Format("{0:n0}", multiplier);
+        if (!demoMode)
+        {
+            multiplier += 1;
+            multText.text = "x" + String.Format("{0:n0}", multiplier);
+        }
     }
 
     public int GetScore()

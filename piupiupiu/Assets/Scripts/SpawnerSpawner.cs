@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnerSpawner : MonoBehaviour
 {
+    public static SpawnerSpawner Instance;
+
     [SerializeField] GameObject[] spawnerPool;
     Vector2 playerPos;
     //Player[] allPlayers;
@@ -17,7 +19,7 @@ public class SpawnerSpawner : MonoBehaviour
     bool spawning;
     //bool horizontal = true;
     [SerializeField] bool spawn = true;
-    [SerializeField] bool demoMode = false;
+    [SerializeField] public bool demoMode = false;
 
     int[] weights;
     int weightTotal;
@@ -36,6 +38,8 @@ public class SpawnerSpawner : MonoBehaviour
         {
             weightTotal += w;
         }
+
+        Instance = this;
     }
 
     int RandomWeighted()
@@ -76,7 +80,7 @@ public class SpawnerSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
 
-        while (spawning)
+        while ((spawning && Level.Instance.enemies.Count < 200 && !demoMode) || (spawning && Level.Instance.enemies.Count < 30 && demoMode))
         {
             percentageBasedValue = RandomWeighted();
             playerState = Player.Instance.ProcessState();
@@ -88,8 +92,19 @@ public class SpawnerSpawner : MonoBehaviour
                 GameObject currentSpawner;
                 if (spawnerPool[percentageBasedValue].name == "Enemy Spawner Homing" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Roaming" || spawnerPool[percentageBasedValue].name == "Enemy Spawner Smart")
                 {
-                    var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -45, 45);
-                    var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -45, 45);
+                    float randomPosFromPlayerRadiusX;
+                    float randomPosFromPlayerRadiusY;
+
+                    if (!demoMode)
+                    {
+                        randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -45, 45);
+                        randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -45, 45);
+                    }
+                    else
+                    {
+                        randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 40, playerPos.x + 40), -45, 45);
+                        randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 40, playerPos.y + 40), -45, 45);
+                    }
                     Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
                     currentSpawner = Instantiate(spawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
                 }
@@ -104,31 +119,62 @@ public class SpawnerSpawner : MonoBehaviour
                 }
                 else
                 {
-                    var randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -40, 40);
-                    var randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -40, 40);
+                    float randomPosFromPlayerRadiusX;
+                    float randomPosFromPlayerRadiusY;
+
+                    if (!demoMode)
+                    {
+                        randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 10, playerPos.x + 10), -40, 40);
+                        randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 10, playerPos.y + 10), -40, 40);
+                    }
+                    else
+                    {
+                        randomPosFromPlayerRadiusX = Mathf.Clamp(UnityEngine.Random.Range(playerPos.x - 40, playerPos.x + 40), -40, 40);
+                        randomPosFromPlayerRadiusY = Mathf.Clamp(UnityEngine.Random.Range(playerPos.y - 40, playerPos.y + 40), -40, 40);
+                    }
+
                     Vector2 randomPosFromPlayerRadius = new Vector2(randomPosFromPlayerRadiusX, randomPosFromPlayerRadiusY);
                     currentSpawner = Instantiate(spawnerPool[percentageBasedValue], randomPosFromPlayerRadius, Quaternion.identity) as GameObject;
                 }
 
                 timeSinceStarted = Time.time - startTime;
-                if (timeSinceStarted < 30f)
+                if (demoMode)
                 {
-                    timeBetweenSpawners = 5f;
+                    timeBetweenSpawners = 6f;
+                    currentSpawner.GetComponent<EnemySpawner>().enemyCountMin = 1;
+                    currentSpawner.GetComponent<EnemySpawner>().enemyCountMax = 2;
                 }
-                else if (timeSinceStarted > 30f && timeSinceStarted < 60f)
+                else
                 {
-                    timeBetweenSpawners = 3f;
-                    currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(10);
-                }
-                else if (timeSinceStarted > 60f && timeSinceStarted < 90f)
-                {
-                    timeBetweenSpawners = 2f;
-                    currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(20);
-                }
-                else if (timeSinceStarted > 90f)
-                {
-                    timeBetweenSpawners = 1f;
-                    currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(30);
+                    if (timeSinceStarted < 30f)
+                    {
+                        timeBetweenSpawners = 5f;
+                    }
+                    else if (timeSinceStarted > 30f && timeSinceStarted < 60f)
+                    {
+                        timeBetweenSpawners = 3f;
+                        currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(10);
+                    }
+                    else if (timeSinceStarted > 60f && timeSinceStarted < 90f)
+                    {
+                        timeBetweenSpawners = 2f;
+                        currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(15);
+                    }
+                    else if (timeSinceStarted > 90f)
+                    {
+                        timeBetweenSpawners = 1f;
+                        currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(20);
+                    }
+                    else if (timeSinceStarted > 120f)
+                    {
+                        timeBetweenSpawners = 1f;
+                        currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(25);
+                    }
+                    else if (timeSinceStarted > 150f)
+                    {
+                        timeBetweenSpawners = 1f;
+                        currentSpawner.GetComponent<EnemySpawner>().UpdateEnemySpawnCount(30);
+                    }
                 }
                 yield return new WaitForSeconds(timeBetweenSpawners);
             }

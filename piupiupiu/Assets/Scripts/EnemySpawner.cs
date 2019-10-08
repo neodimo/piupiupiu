@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] int enemyCountMin, enemyCountMax;
+    [SerializeField] public int enemyCountMin, enemyCountMax;
     int enemyCount;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] GameObject tilePrefab;
@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyCount = UnityEngine.Random.Range(enemyCountMin, enemyCountMax);
+        enemyCount = Mathf.Clamp(UnityEngine.Random.Range(enemyCountMin, enemyCountMax), 0, 40);
         EmitEnemies();
         if (enemyPrefab.name == "EnemyWave")
         {
@@ -125,7 +125,7 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        //int enemyCount = UnityEngine.Random.Range(enemyCountMin, enemyCountMax);
+        //int enemyCount = Mathf.Clamp(UnityEngine.Random.Range(enemyCountMin, enemyCountMax), 0, 40);
         GameObject[] enemyPrefabs = new GameObject[enemyCount];
         float waveEnemyOffsetX = 0;
         float waveEnemyOffsetY = 0;

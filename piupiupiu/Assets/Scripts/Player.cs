@@ -132,6 +132,8 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     bool isMouse = false;
     bool isController = false;
 
+    bool demoMode = false;
+
     //
     private void Awake()
     {
@@ -183,6 +185,15 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         canDash = true;
 
         guns = new GameObject[] {gunMiddle, gunLeft01, gunRight01};
+
+        if (SpawnerSpawner.Instance.demoMode)
+        {
+            demoMode = true;
+        }
+        else
+        {
+            demoMode = false;
+        }
     }
 
     // Update is called once per frame
@@ -542,14 +553,15 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         while (!isDead)
         {
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
-            if (GameSession.Instance.currentScore >= 0 && GameSession.Instance.currentScore < 9999)
+            int gameSessionCurrentScore = GameSession.Instance.currentScore;
+            if (gameSessionCurrentScore >= 0 && gameSessionCurrentScore < 9999)
             {
                 GameObject laser = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laser.transform.localScale = transform.localScale * 3;
                 laser.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
                 yield return new WaitForSeconds(projectileFiringPeriod);
             }
-            if (GameSession.Instance.currentScore > 9999 && GameSession.Instance.currentScore < 199999)
+            if (gameSessionCurrentScore > 9999 && gameSessionCurrentScore < 199999)
             {
                 GameObject laserMiddle = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;//Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laserMiddle.transform.localScale = transform.localScale * 3;
@@ -564,7 +576,7 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
                 laserRight01.GetComponent<Rigidbody2D>().velocity = body.transform.up * projectileSpeed;
                 yield return new WaitForSeconds(projectileFiringPeriod/5);
             }
-            if (GameSession.Instance.currentScore > 199999)
+            if (gameSessionCurrentScore > 199999)
             {
                 GameObject laserMiddle = ObjectPooler.SharedInstance.GetPooledObject(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject; //Instantiate(laserPrefab, gunMiddle.transform.position, body.transform.rotation) as GameObject;
                 laserMiddle.transform.localScale = transform.localScale * 3;
@@ -751,11 +763,14 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
         {
             ProcessHit(damageDealer);
         }
-        if (other.gameObject.tag == "Multiplier")
+        if (!demoMode)
         {
-            ProcessMultiplier();
-            //Destroy(other.gameObject);
-            other.gameObject.SetActive(false);
+            if (other.gameObject.tag == "Multiplier")
+            {
+                ProcessMultiplier();
+                //Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
+            }
         }
     }
 
