@@ -7,6 +7,7 @@ using MoreMountains.NiceVibrations;
 using System;
 using UnityEngine.iOS;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class GameSession : MonoBehaviour {
     public static GameSession Instance;
@@ -52,6 +53,8 @@ public class GameSession : MonoBehaviour {
     bool GoodForIphoneXAndOn;
 
     bool demoMode;
+
+    [SerializeField] TextMeshProUGUI iphoneVersion;
     
     //Vector3 InStartHSTPos;
     //Vector3 InStartHSPos;
@@ -110,11 +113,13 @@ public class GameSession : MonoBehaviour {
         {
             GoodForIphoneXAndOn = true;
         }
+        
     }
 
     private void Start()
     {
         scoreText.text = String.Format("{0:n0}", currentScore);
+        iphoneVersion.text = generation.ToString();
         Application.targetFrameRate = 60;
         multiplier = 1;
 
