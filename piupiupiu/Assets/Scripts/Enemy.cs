@@ -37,6 +37,8 @@ public class Enemy : MonoBehaviour
     string playerState;
     string colliderType;
 
+    bool demoMode;
+
     Vector3 positionWhenDead;
 
     //List<GameObject> popUpList;
@@ -63,6 +65,8 @@ public class Enemy : MonoBehaviour
         //shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         //Level.Instance.AddToEnemyCount(gameObject);
         closestPlayerClass = Player.Instance;
+
+        demoMode = SpawnerSpawner.Instance.demoMode;
     }
 
     private void OnEnable()
@@ -173,14 +177,17 @@ public class Enemy : MonoBehaviour
         {
             positionWhenDead = transform.position;
             GameObject explosion = ObjectPooler.SharedInstance.GetPooledObject(explosionPrefab, positionWhenDead, explosionPrefab.transform.rotation) as GameObject; //Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
-            if (!dealerIsPlayerBody && playerState != "Sucking")
+            if (!dealerIsPlayerBody && playerState != "Sucking" && !demoMode)
             {
                 EmitMultipliers();
             }
             //AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
             currentPoints = GameSession.Instance.AddToScore(points);  //FindObjectOfType<GameSession>().AddToScore(points);
             GameSession.Instance.AddExperience(points);
-            PopUpPoints();
+            if (!demoMode)
+            {
+                PopUpPoints();
+            }
             Level.Instance.EnemyDestroyed(gameObject);
             gameObject.SetActive(false);
             health = maxHealth;
