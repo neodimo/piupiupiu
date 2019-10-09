@@ -73,7 +73,6 @@ public class GameSession : MonoBehaviour {
         }
         
         level = 1;
-        
 
         CheckDeviceCompatability();
 
@@ -108,18 +107,27 @@ public class GameSession : MonoBehaviour {
 
     private void CheckDeviceCompatability()
     {
+        var screenRatio = (1.0f * Screen.height) / (1.0f * Screen.width);
+        Debug.Log(screenRatio);
+        if (screenRatio > 2.0f)
+        {
+            GoodForIphoneXAndOn = true;
+            iphoneVersion.text = "iPhoneX and on";
+        }
+        /*
         if (generation.ToString() == "iPhone11Pro" || generation.ToString() == "iPhone11" || generation.ToString() == "iPhone11ProMax"
             || generation.ToString() == "iPhoneXS" || generation.ToString() == "iPhoneXSMax" || generation.ToString() == "iPhoneXR" || generation.ToString() == "iPhoneX")
         {
             GoodForIphoneXAndOn = true;
         }
+        */
         
     }
 
     private void Start()
     {
         scoreText.text = String.Format("{0:n0}", currentScore);
-        iphoneVersion.text = generation.ToString();
+        
         Application.targetFrameRate = 60;
         multiplier = 1;
 
