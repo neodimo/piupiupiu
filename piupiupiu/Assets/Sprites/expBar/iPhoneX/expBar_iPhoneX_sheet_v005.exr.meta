@@ -1,0 +1,2528 @@
+fileFormatVersion: 2
+guid: 67ea19137aff4504591c9b330e43ff9a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4012799787348402243
+    second: expBar_iPhoneX_sheet_v005_0
+  - first:
+      213: -7102597391903400314
+    second: expBar_iPhoneX_sheet_v005_1
+  - first:
+      213: -1514878207414665053
+    second: expBar_iPhoneX_sheet_v005_2
+  - first:
+      213: 1271567165234906721
+    second: expBar_iPhoneX_sheet_v005_3
+  - first:
+      213: 6038662440214158439
+    second: expBar_iPhoneX_sheet_v005_4
+  - first:
+      213: -1938974943234730115
+    second: expBar_iPhoneX_sheet_v005_5
+  - first:
+      213: -1657402417982593621
+    second: expBar_iPhoneX_sheet_v005_6
+  - first:
+      213: -5865750993036597187
+    second: expBar_iPhoneX_sheet_v005_7
+  - first:
+      213: 8193170714097897822
+    second: expBar_iPhoneX_sheet_v005_8
+  - first:
+      213: 7302751003942964072
+    second: expBar_iPhoneX_sheet_v005_9
+  - first:
+      213: 2889271974630477012
+    second: expBar_iPhoneX_sheet_v005_10
+  - first:
+      213: 6201411446857400380
+    second: expBar_iPhoneX_sheet_v005_11
+  - first:
+      213: 6109100804355673901
+    second: expBar_iPhoneX_sheet_v005_12
+  - first:
+      213: -1994053996838175640
+    second: expBar_iPhoneX_sheet_v005_13
+  - first:
+      213: 3655910830801131383
+    second: expBar_iPhoneX_sheet_v005_14
+  - first:
+      213: 2557307302974875311
+    second: expBar_iPhoneX_sheet_v005_15
+  - first:
+      213: -3710126216482458004
+    second: expBar_iPhoneX_sheet_v005_16
+  - first:
+      213: -1309874578419354891
+    second: expBar_iPhoneX_sheet_v005_17
+  - first:
+      213: 5752131644579959736
+    second: expBar_iPhoneX_sheet_v005_18
+  - first:
+      213: -8919516101553808625
+    second: expBar_iPhoneX_sheet_v005_19
+  - first:
+      213: 442167084388399256
+    second: expBar_iPhoneX_sheet_v005_20
+  - first:
+      213: -2918199092505336022
+    second: expBar_iPhoneX_sheet_v005_21
+  - first:
+      213: 3020501183402037359
+    second: expBar_iPhoneX_sheet_v005_22
+  - first:
+      213: -6434398178443665580
+    second: expBar_iPhoneX_sheet_v005_23
+  - first:
+      213: 3813806495185335297
+    second: expBar_iPhoneX_sheet_v005_24
+  - first:
+      213: 404659712738386339
+    second: expBar_iPhoneX_sheet_v005_25
+  - first:
+      213: -7425797475493061779
+    second: expBar_iPhoneX_sheet_v005_26
+  - first:
+      213: 5744172185733813866
+    second: expBar_iPhoneX_sheet_v005_27
+  - first:
+      213: 1796756397138562638
+    second: expBar_iPhoneX_sheet_v005_28
+  - first:
+      213: -6764467350254776288
+    second: expBar_iPhoneX_sheet_v005_29
+  - first:
+      213: 4438191790781551612
+    second: expBar_iPhoneX_sheet_v005_30
+  - first:
+      213: -9191392769526295743
+    second: expBar_iPhoneX_sheet_v005_31
+  - first:
+      213: 6382016319730935358
+    second: expBar_iPhoneX_sheet_v005_32
+  - first:
+      213: 8531406962824018408
+    second: expBar_iPhoneX_sheet_v005_33
+  - first:
+      213: -7615368447958957207
+    second: expBar_iPhoneX_sheet_v005_34
+  - first:
+      213: 5624527118001743197
+    second: expBar_iPhoneX_sheet_v005_35
+  - first:
+      213: 9174658511445741205
+    second: expBar_iPhoneX_sheet_v005_36
+  - first:
+      213: -2062190258239057879
+    second: expBar_iPhoneX_sheet_v005_37
+  - first:
+      213: -1079636913043456774
+    second: expBar_iPhoneX_sheet_v005_38
+  - first:
+      213: -4554643363573708765
+    second: expBar_iPhoneX_sheet_v005_39
+  - first:
+      213: -4909880023729539382
+    second: expBar_iPhoneX_sheet_v005_40
+  - first:
+      213: 984817526536468678
+    second: expBar_iPhoneX_sheet_v005_41
+  - first:
+      213: -8618625958192091415
+    second: expBar_iPhoneX_sheet_v005_42
+  - first:
+      213: -3876901568654024883
+    second: expBar_iPhoneX_sheet_v005_43
+  - first:
+      213: 2353200235624172954
+    second: expBar_iPhoneX_sheet_v005_44
+  - first:
+      213: 303477384106660254
+    second: expBar_iPhoneX_sheet_v005_45
+  - first:
+      213: -6374201243100688820
+    second: expBar_iPhoneX_sheet_v005_46
+  - first:
+      213: -2335636913546589136
+    second: expBar_iPhoneX_sheet_v005_47
+  - first:
+      213: 6983359696218166347
+    second: expBar_iPhoneX_sheet_v005_48
+  - first:
+      213: -5062859441956828765
+    second: expBar_iPhoneX_sheet_v005_49
+  - first:
+      213: 4071198905555163330
+    second: expBar_iPhoneX_sheet_v005_50
+  - first:
+      213: -5823851046826557977
+    second: expBar_iPhoneX_sheet_v005_51
+  - first:
+      213: -7457466445113740651
+    second: expBar_iPhoneX_sheet_v005_52
+  - first:
+      213: 6446921483083401867
+    second: expBar_iPhoneX_sheet_v005_53
+  - first:
+      213: 5417486014814976446
+    second: expBar_iPhoneX_sheet_v005_54
+  - first:
+      213: 4222946392327547528
+    second: expBar_iPhoneX_sheet_v005_55
+  - first:
+      213: -5615013190111011181
+    second: expBar_iPhoneX_sheet_v005_56
+  - first:
+      213: 1020328542714987286
+    second: expBar_iPhoneX_sheet_v005_57
+  - first:
+      213: -4877961742182668799
+    second: expBar_iPhoneX_sheet_v005_58
+  - first:
+      213: 7456291272523809779
+    second: expBar_iPhoneX_sheet_v005_59
+  - first:
+      213: -8972459163374367719
+    second: expBar_iPhoneX_sheet_v005_60
+  - first:
+      213: 6953391209099863200
+    second: expBar_iPhoneX_sheet_v005_61
+  - first:
+      213: 7692003366301699597
+    second: expBar_iPhoneX_sheet_v005_62
+  - first:
+      213: 666948899121392008
+    second: expBar_iPhoneX_sheet_v005_63
+  - first:
+      213: -2067577561024342939
+    second: expBar_iPhoneX_sheet_v005_64
+  - first:
+      213: 4813371910218673431
+    second: expBar_iPhoneX_sheet_v005_65
+  - first:
+      213: 504171316521761505
+    second: expBar_iPhoneX_sheet_v005_66
+  - first:
+      213: -2097948505899963202
+    second: expBar_iPhoneX_sheet_v005_67
+  - first:
+      213: -6712787238390518863
+    second: expBar_iPhoneX_sheet_v005_68
+  - first:
+      213: 3819614064591278218
+    second: expBar_iPhoneX_sheet_v005_69
+  - first:
+      213: -3324031168149183383
+    second: expBar_iPhoneX_sheet_v005_70
+  - first:
+      213: -2344906572626275779
+    second: expBar_iPhoneX_sheet_v005_71
+  - first:
+      213: 7303528772706527394
+    second: expBar_iPhoneX_sheet_v005_72
+  - first:
+      213: 2342345296100706729
+    second: expBar_iPhoneX_sheet_v005_73
+  - first:
+      213: -3015683907245757475
+    second: expBar_iPhoneX_sheet_v005_74
+  - first:
+      213: 1119959690480487202
+    second: expBar_iPhoneX_sheet_v005_75
+  - first:
+      213: -3693991267803447799
+    second: expBar_iPhoneX_sheet_v005_76
+  - first:
+      213: 3256133397749675947
+    second: expBar_iPhoneX_sheet_v005_77
+  - first:
+      213: -9190421591597344214
+    second: expBar_iPhoneX_sheet_v005_78
+  - first:
+      213: -6469423077123913946
+    second: expBar_iPhoneX_sheet_v005_79
+  - first:
+      213: -1185121624806399898
+    second: expBar_iPhoneX_sheet_v005_80
+  - first:
+      213: 8632198278655550290
+    second: expBar_iPhoneX_sheet_v005_81
+  - first:
+      213: 4517512341958815901
+    second: expBar_iPhoneX_sheet_v005_82
+  - first:
+      213: -1023855705743854270
+    second: expBar_iPhoneX_sheet_v005_83
+  - first:
+      213: 8826259041966659997
+    second: expBar_iPhoneX_sheet_v005_84
+  - first:
+      213: -8916431619815807308
+    second: expBar_iPhoneX_sheet_v005_85
+  - first:
+      213: -4281473790146118488
+    second: expBar_iPhoneX_sheet_v005_86
+  - first:
+      213: 264632090783487558
+    second: expBar_iPhoneX_sheet_v005_87
+  - first:
+      213: -6316862538218678817
+    second: expBar_iPhoneX_sheet_v005_88
+  - first:
+      213: 1485384184961297984
+    second: expBar_iPhoneX_sheet_v005_89
+  - first:
+      213: -8209029502362840844
+    second: expBar_iPhoneX_sheet_v005_90
+  - first:
+      213: 4581127832484804188
+    second: expBar_iPhoneX_sheet_v005_91
+  - first:
+      213: -7729235678076641308
+    second: expBar_iPhoneX_sheet_v005_92
+  - first:
+      213: 3313992056478596265
+    second: expBar_iPhoneX_sheet_v005_93
+  - first:
+      213: 1329668142569235004
+    second: expBar_iPhoneX_sheet_v005_94
+  - first:
+      213: -3100146369549545881
+    second: expBar_iPhoneX_sheet_v005_95
+  - first:
+      213: -7349779048322519619
+    second: expBar_iPhoneX_sheet_v005_96
+  - first:
+      213: 5460905882851338462
+    second: expBar_iPhoneX_sheet_v005_97
+  - first:
+      213: 7992957667314513354
+    second: expBar_iPhoneX_sheet_v005_98
+  - first:
+      213: 1348371938373940557
+    second: expBar_iPhoneX_sheet_v005_99
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d8d2b104641194bb901598484962c0
+      internalID: -4012799787348402243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_1
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5378edb4e417f94abb5a0f4450c1113
+      internalID: -7102597391903400314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_2
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60873209aadaf354a8dd16a81c9977c1
+      internalID: -1514878207414665053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_3
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c5f838955ef8344b557a1fcfccab77
+      internalID: 1271567165234906721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_4
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d217e7695c568545b7f00c62f1035ef
+      internalID: 6038662440214158439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_5
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 442220d9a2a0e7745b97c883c97aeb48
+      internalID: -1938974943234730115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_6
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5dcaa0ca9941724a9c05b7540f9cf5b
+      internalID: -1657402417982593621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_7
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b096ab9c7014c54fb406ff176cea5eb
+      internalID: -5865750993036597187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_8
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c910b03b9eb053546b892af72ac9ee07
+      internalID: 8193170714097897822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_9
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 1575
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321593fb8acf0724ca8ecd0b9a5c4746
+      internalID: 7302751003942964072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552fd3bee7da3554d807425c96e14e69
+      internalID: 2889271974630477012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_11
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb27a1457f69b2049bc668fadb63b1c0
+      internalID: 6201411446857400380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_12
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42c7c6c21ef672846916f70ff1179c0d
+      internalID: 6109100804355673901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_13
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 925e788b1e5d4f748a2a55bcd448c9d3
+      internalID: -1994053996838175640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_14
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7d711a61917ef44ad87ebf357c5e94
+      internalID: 3655910830801131383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_15
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e4bf0d7ecb6c454db5479bb730e90eb
+      internalID: 2557307302974875311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_16
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1063d0311e054d84382cacc359cc60ff
+      internalID: -3710126216482458004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_17
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8360132c3fe96f7498328f1e0fd6bc24
+      internalID: -1309874578419354891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_18
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef37b49cc73cf549a45e82b29c38ac1
+      internalID: 5752131644579959736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_19
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 1400
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9213f77ee3b6e3479fba09dcceca4cd
+      internalID: -8919516101553808625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85115ea57d0385c4d9be68c4c93c2b04
+      internalID: 442167084388399256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_21
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60efc49a84e304742a90e7fb9bf5d6e8
+      internalID: -2918199092505336022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_22
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315209a0bef38e9489fd0c0b39b8392d
+      internalID: 3020501183402037359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_23
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af4d4ffd11a6a97449902f562045bcdb
+      internalID: -6434398178443665580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_24
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1086920c52716e644bf5f0a0ccc1420e
+      internalID: 3813806495185335297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_25
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 089f37e9a29a5534f9508a3673c0e259
+      internalID: 404659712738386339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_26
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a24024c570ed084ea1f75e7a9962c3d
+      internalID: -7425797475493061779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_27
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dca3a155718ce3e4592db794f06158d0
+      internalID: 5744172185733813866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_28
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f818c67840dd76469013f743c9b0556
+      internalID: 1796756397138562638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_29
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 1225
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ffa5e139dffcb4a9182b9e47e687ad
+      internalID: -6764467350254776288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f4d91d3edceffe40851ef48272bc579
+      internalID: 4438191790781551612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_31
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096eb6d45745df34ebd40167c1b7c441
+      internalID: -9191392769526295743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_32
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3597ae5b0ea41d47ae09d2a62d27039
+      internalID: 6382016319730935358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_33
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435f056500ac9ca46a048882cea3f675
+      internalID: 8531406962824018408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_34
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62aee6e961dcfbd438519ad76b0b86cc
+      internalID: -7615368447958957207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_35
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c42fdcddefc72d44f8c14fd5c8fb5b63
+      internalID: 5624527118001743197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_36
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bc1b57bd01500e45a9fad5186e769f6
+      internalID: 9174658511445741205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_37
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8a523ced5bac04c86cd157aba88646
+      internalID: -2062190258239057879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_38
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3bf13627c9c884d85b11f19ee96ac4
+      internalID: -1079636913043456774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_39
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 1050
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ababedd662b98ae47b6914176b2a3175
+      internalID: -4554643363573708765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f20274c0b0985dc4398ad742c796de5d
+      internalID: -4909880023729539382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_41
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f5b6999ef78bf3428232da04d2a2c41
+      internalID: 984817526536468678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_42
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c5b6c22b7a9a0e4686337d8d309a520
+      internalID: -8618625958192091415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_43
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90eecc3d58fbba6468ac179a0bb10301
+      internalID: -3876901568654024883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_44
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84a3abcd5774d3945aaad82389ce3fb1
+      internalID: 2353200235624172954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_45
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 598f59a443bcfe84f806c62fd7d65938
+      internalID: 303477384106660254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_46
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 560ea06c8eec6d34c88dca8f18ce6af2
+      internalID: -6374201243100688820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_47
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45214d2c27bdeb49939bcb12f62e9a3
+      internalID: -2335636913546589136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_48
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1421e64f8ef2fb4a99b865992645710
+      internalID: 6983359696218166347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_49
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 875
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e44532c6ca484fd478ba212ebba328dd
+      internalID: -5062859441956828765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b148fcc282aa32b49845323ef09ce6ac
+      internalID: 4071198905555163330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_51
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b523efb57f0d0f4cb5bab6aa3474ed7
+      internalID: -5823851046826557977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_52
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8c7b6c0468c86643bc9a38ee9daee38
+      internalID: -7457466445113740651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_53
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e891973209d9c4b97e79d896f3b9be
+      internalID: 6446921483083401867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_54
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c187538fdd7952a47aa1bb7ccfa09db8
+      internalID: 5417486014814976446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_55
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7d845aa8df572f4abaf5bd89776ff31
+      internalID: 4222946392327547528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_56
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 010881f2f86fade488b822c4b2eb70da
+      internalID: -5615013190111011181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_57
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e215567f5d8ef40b5e3d8603e8fbc3
+      internalID: 1020328542714987286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_58
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f5d9043aee85c4c9afe61d154cf3f3
+      internalID: -4877961742182668799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_59
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 700
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f6b3c176a359349a2d70e1f9cfc631
+      internalID: 7456291272523809779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 579c231c4694ef54abb70d2d6603d65f
+      internalID: -8972459163374367719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_61
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5022ffa58ebe1e43979479bef6ae33d
+      internalID: 6953391209099863200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_62
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07a396f07d0c25a44933a556dea7ed05
+      internalID: 7692003366301699597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_63
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1da4ecaf61c0444ae25f2aabeb2f56
+      internalID: 666948899121392008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_64
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94eada881b1d6bc4d84a92aedcb1f2e0
+      internalID: -2067577561024342939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_65
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f098883589915f45b412a913ce318f6
+      internalID: 4813371910218673431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_66
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31f1e63048b316d4eabab5f9473637e8
+      internalID: 504171316521761505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_67
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e8b1045341ea3e47b2e1a157c38ee08
+      internalID: -2097948505899963202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_68
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4093a78591d803e4da756ed4afc97eec
+      internalID: -6712787238390518863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_69
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 525
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff425259857dcc6419bf4981609e137c
+      internalID: 3819614064591278218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92cd824c5273d9541ae12a7a4320cb0a
+      internalID: -3324031168149183383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_71
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a4721e81e978dc44ae79d1f58d8d142
+      internalID: -2344906572626275779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_72
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6967b01e9157f4f44857ce7ee650247c
+      internalID: 7303528772706527394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_73
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 464b1ae6170c91149b56123e923707c0
+      internalID: 2342345296100706729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_74
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10bba1a58ca11b849b982fb573ce3bf1
+      internalID: -3015683907245757475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_75
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa53e4e787e44149889310ceccb2c59
+      internalID: 1119959690480487202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_76
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52872b3f74d80ce4794a12b1e4e98342
+      internalID: -3693991267803447799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_77
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76130b30c0dd41d469f953390b539ca2
+      internalID: 3256133397749675947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_78
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fb7e2d583c4c9346957192c48076915
+      internalID: -9190421591597344214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_79
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 350
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 003da3f77c2527b4b82aafc4177de795
+      internalID: -6469423077123913946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12c119dca36f3b40b93b879259a3399
+      internalID: -1185121624806399898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_81
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e630b830c9cd9745b93e53736b6b15e
+      internalID: 8632198278655550290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_82
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a675ff42c0959a047be08e14116737d8
+      internalID: 4517512341958815901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_83
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 093339419346c0a4fb3d498864c8ed45
+      internalID: -1023855705743854270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_84
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 756ea566b2c7e244daa22285b03b9f65
+      internalID: 8826259041966659997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_85
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13058b0df981f5b4385baba014d972a0
+      internalID: -8916431619815807308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_86
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28a3dd028944e9443810eddc58523c9c
+      internalID: -4281473790146118488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_87
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d54558e704466c4d85010dcb7f16545
+      internalID: 264632090783487558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_88
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f98399b6cef8a1648b19d124d05624db
+      internalID: -6316862538218678817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_89
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 175
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1076de2c9e5981f4ba022ec5173b494e
+      internalID: 1485384184961297984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc7a7e3e726d624c803f2d21a301e21
+      internalID: -8209029502362840844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_91
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fb6bcb033302ea499139ced83b124ab
+      internalID: 4581127832484804188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_92
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25673e764e49cad46b1f0e0cdb5019aa
+      internalID: -7729235678076641308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_93
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f2327175b1dd314fa0986c664c0fcb6
+      internalID: 3313992056478596265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_94
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 521fcb07d9794af44a7498fb39b6dd4b
+      internalID: 1329668142569235004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_95
+      rect:
+        serializedVersion: 2
+        x: 2810
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2046c6e268201be4d957cb2695906996
+      internalID: -3100146369549545881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_96
+      rect:
+        serializedVersion: 2
+        x: 3372
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69260dacd596c984da4b18125fbd78c5
+      internalID: -7349779048322519619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_97
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 914574e0f362b4d4a8c81f9f71881383
+      internalID: 5460905882851338462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_98
+      rect:
+        serializedVersion: 2
+        x: 4496
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 869da917cd60ea14b8faf2ded7b2fc77
+      internalID: 7992957667314513354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: expBar_iPhoneX_sheet_v005_99
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 0
+        width: 562
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dc9b897c7d44dd4da39cfe9bc2d7e00
+      internalID: 1348371938373940557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
