@@ -108,7 +108,6 @@ public class GameSession : MonoBehaviour {
     private void CheckDeviceCompatability()
     {
         var screenRatio = (1.0f * Screen.height) / (1.0f * Screen.width);
-        Debug.Log(screenRatio);
         if (screenRatio > 2.0f)
         {
             GoodForIphoneXAndOn = true;
