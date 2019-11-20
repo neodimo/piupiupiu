@@ -8,6 +8,8 @@ using System;
 using UnityEngine.iOS;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.Rendering.PostProcessing;
+using Michsky.UI.Hexart;
 
 public class GameSession : MonoBehaviour {
     public static GameSession Instance;
@@ -31,6 +33,7 @@ public class GameSession : MonoBehaviour {
     [SerializeField] GameObject expBarObjIphoneX;
     [SerializeField] GameObject expBarObjIphoneXBase;
     [SerializeField] TextMeshProUGUI expText;
+    [SerializeField] TextMeshProUGUI expLabelText;
     [SerializeField] TextMeshProUGUI levelText;
     Image expBarImageComponent;
     [SerializeField] Sprite[] expBarSpritesIphoneRectangle;
@@ -49,13 +52,34 @@ public class GameSession : MonoBehaviour {
     int[] levelEXP = new int[1000];
     public float exp;
 
+    // Settings Variables
+    public bool showHighScoreInGame = true;
+    public bool showExpNumbers = true;
+    public bool chromaticAberration = true;
+    public bool hapticFeedback = true;
+
+    // Variables tied to Settings Variables
+    PostProcessVolume postProcessVolume;
+    ChromaticAberration chromaticAberrationLayer;
+
+
+
+    // Phone Generation Variables
     public static DeviceGeneration generation;
     bool GoodForIphoneXAndOn;
 
+    //DemoMode bool
     bool demoMode;
 
     [SerializeField] TextMeshProUGUI iphoneVersion;
-    
+
+    [Header("SettingsSwitches")]
+    [SerializeField] GameObject showHighScoreSwitchObject;
+    [SerializeField] GameObject showExpNumbersSwitchObject;
+    [SerializeField] GameObject chromaticAberrationSwitchObject;
+    [SerializeField] GameObject hapticFeedbackSwitchObject;
+
+
     //Vector3 InStartHSTPos;
     //Vector3 InStartHSPos;
 
@@ -91,6 +115,7 @@ public class GameSession : MonoBehaviour {
         }
         else
         {
+            MMVibrationManager.iOSInitializeHaptics();
             expBarSprites = expBarSpritesIphoneRectangle;
             
             expBarObjIphoneRectangle.SetActive(true);
@@ -101,6 +126,11 @@ public class GameSession : MonoBehaviour {
 
             expBarImageComponent = expBarObjIphoneRectangle.GetComponent<Image>();
         }
+
+        //Init settings variables to respective gameobjects
+        postProcessVolume = Camera.main.GetComponent<PostProcessVolume>();
+        postProcessVolume.profile.TryGetSettings(out chromaticAberrationLayer);
+
 
         LoadGameData();
     }
@@ -167,8 +197,16 @@ public class GameSession : MonoBehaviour {
             highScoreTitleTextStartMenu.gameObject.SetActive(false);
             highScoreTextStartMenu.gameObject.SetActive(false);
 
-            highScoreTitleTextMainLevel.gameObject.SetActive(true);
-            highScoreTextMainLevel.gameObject.SetActive(true);
+            /*
+             * Settings Check!!!
+             */
+
+            if (showHighScoreInGame == true)
+            {
+                highScoreTitleTextMainLevel.gameObject.SetActive(true);
+                highScoreTextMainLevel.gameObject.SetActive(true);
+            }
+                
             scoreText.gameObject.SetActive(true);
             multText.gameObject.SetActive(true);
         }
@@ -317,7 +355,66 @@ public class GameSession : MonoBehaviour {
             expBarPercentage = data.expBarPercentage;
             expText.text = exp + " / " + levelEXP[level];
             expBarImageComponent.overrideSprite = expBarSprites[Mathf.Clamp((int)expBarPercentage, 0, 99)];
+
+            /*
+             * SETTINGS VALUES
+             */
+
+            showHighScoreInGame = data.showHighScoreInGame;
+            showHighScoreSwitchObject.GetComponent<SwitchAnim>().isOn = showHighScoreInGame;
+
+            showExpNumbers = data.showExpNumbers;
+            showExpNumbersSwitchObject.GetComponent<SwitchAnim>().isOn = showExpNumbers;
+
+            chromaticAberration = data.chromaticAberration;
+            chromaticAberrationSwitchObject.GetComponent<SwitchAnim>().isOn = chromaticAberration;
+
+            hapticFeedback = data.hapticFeedback;
+            hapticFeedbackSwitchObject.GetComponent<SwitchAnim>().isOn = hapticFeedback;
         }
+    }
+
+    public void showHighScoreInGameOff()
+    {
+        showHighScoreInGame = false;
+    }
+
+    public void showHighScoreInGameOn()
+    {
+        showHighScoreInGame = true;
+    }
+
+    public void showExpNumbersOff()
+    {
+        showExpNumbers = false;
+        expText.enabled = false;
+        expLabelText.enabled = false;
+    }
+
+    public void showExpNumbersOn()
+    {
+        showExpNumbers = true;
+        expText.enabled = true;
+        expLabelText.enabled = true;
+    }
+
+    public void chromaticAberrationOff()
+    {
+        chromaticAberrationLayer.enabled.value = false;
+    }
+    public void chromaticAberrationOn()
+    {
+        chromaticAberrationLayer.enabled.value = true;
+    }
+
+    public void hapticFeedbackOff()
+    {
+        hapticFeedback = false;
+    }
+
+    public void hapticFeedbackOn()
+    {
+        hapticFeedback = true;
     }
 
     public void ResetGameData()

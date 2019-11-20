@@ -13,6 +13,12 @@ public class SaveData
     public float expBarPercentage;
     public float expNeeded;
 
+    // Settings Variables
+    public bool showHighScoreInGame;
+    public bool showExpNumbers;
+    public bool chromaticAberration;
+    public bool hapticFeedback;
+
     public SaveData (GameSession gameSession)
     {
         highScore = gameSession.highScore;
@@ -22,5 +28,11 @@ public class SaveData
         expAtStartOfNewLevel = gameSession.expAtStartOfNewLevel;
         expBarPercentage = gameSession.expBarPercentage;
         expNeeded = gameSession.expNeeded;
+
+        // Settings Data
+        showHighScoreInGame = gameSession.showHighScoreInGame;
+        showExpNumbers = gameSession.showExpNumbers;
+        chromaticAberration = gameSession.chromaticAberration;
+        hapticFeedback = gameSession.hapticFeedback;
     }
 }

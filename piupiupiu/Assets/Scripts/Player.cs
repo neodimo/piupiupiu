@@ -552,7 +552,10 @@ public class Player : MonoBehaviour//, IDragHandler//, IPointerDownHandler//, IP
     {
         while (!isDead)
         {
-            MMVibrationManager.Haptic(HapticTypes.MediumImpact);
+            if (GameSession.Instance.hapticFeedback == true)
+            {
+                MMVibrationManager.Haptic(HapticTypes.MediumImpact);
+            }
             int gameSessionCurrentScore = GameSession.Instance.currentScore;
             if (gameSessionCurrentScore >= 0 && gameSessionCurrentScore < 9999)
             {
