@@ -321,6 +321,7 @@ MonoBehaviour:
   expBarObjIphoneX: {fileID: 6327588138493715045}
   expBarObjIphoneXBase: {fileID: 4824817344278289354}
   expText: {fileID: 7705280592899353588}
+  expLabelText: {fileID: 0}
   levelText: {fileID: 2346973491881225977}
   expBarSpritesIphoneRectangle:
   - {fileID: 7143567605447792739, guid: 31b9069ab0a3f0249be302d9a758c886, type: 3}
@@ -532,7 +533,15 @@ MonoBehaviour:
   multiplier: 0
   level: 0
   exp: 0
+  showHighScoreInGame: 1
+  showExpNumbers: 1
+  chromaticAberration: 1
+  hapticFeedback: 1
   iphoneVersion: {fileID: 3648654936058661484}
+  showHighScoreSwitchObject: {fileID: 0}
+  showExpNumbersSwitchObject: {fileID: 0}
+  chromaticAberrationSwitchObject: {fileID: 0}
+  hapticFeedbackSwitchObject: {fileID: 0}
 --- !u!1 &205245910229298674
 GameObject:
   m_ObjectHideFlags: 0

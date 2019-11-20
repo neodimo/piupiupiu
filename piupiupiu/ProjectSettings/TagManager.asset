@@ -10,6 +10,10 @@ TagManager:
   - Slider
   - VectorGrid
   - Environment
+  - ShowHighScoreInGame
+  - ShowExpNumber
+  - chromaticAberration
+  - hapticFeedback
   layers:
   - Default
   - TransparentFX

@@ -130,9 +130,6 @@ public class GameSession : MonoBehaviour {
         //Init settings variables to respective gameobjects
         postProcessVolume = Camera.main.GetComponent<PostProcessVolume>();
         postProcessVolume.profile.TryGetSettings(out chromaticAberrationLayer);
-
-
-        LoadGameData();
     }
 
     private void CheckDeviceCompatability()
@@ -184,6 +181,13 @@ public class GameSession : MonoBehaviour {
     {
         if (scene.name == "Start Menu")
         {
+            showHighScoreSwitchObject = GameObject.FindGameObjectWithTag("ShowHighScoreInGame");
+            showExpNumbersSwitchObject = GameObject.FindGameObjectWithTag("ShowExpNumber");
+            chromaticAberrationSwitchObject = GameObject.FindGameObjectWithTag("chromaticAberration");
+            hapticFeedbackSwitchObject = GameObject.FindGameObjectWithTag("hapticFeedback");
+
+            LoadGameData();
+
             scoreText.gameObject.SetActive(false);
             multText.gameObject.SetActive(false);
             highScoreTitleTextMainLevel.gameObject.SetActive(false);
@@ -191,6 +195,7 @@ public class GameSession : MonoBehaviour {
 
             highScoreTitleTextStartMenu.gameObject.SetActive(true);
             highScoreTextStartMenu.gameObject.SetActive(true);
+
         }
         else if (scene.name == "Main Level")
         {
@@ -205,6 +210,16 @@ public class GameSession : MonoBehaviour {
             {
                 highScoreTitleTextMainLevel.gameObject.SetActive(true);
                 highScoreTextMainLevel.gameObject.SetActive(true);
+            }
+            postProcessVolume = Camera.main.GetComponent<PostProcessVolume>();
+            postProcessVolume.profile.TryGetSettings(out chromaticAberrationLayer);
+            if (chromaticAberration == true)
+            {
+                chromaticAberrationLayer.enabled.value = true;
+            }
+            else
+            {
+                chromaticAberrationLayer.enabled.value = false;
             }
                 
             scoreText.gameObject.SetActive(true);
@@ -223,6 +238,8 @@ public class GameSession : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        Debug.Log(chromaticAberration);
+
 		Time.timeScale = gameSpeed;
         if (currentScore > highScore)
         {
@@ -401,10 +418,12 @@ public class GameSession : MonoBehaviour {
     public void chromaticAberrationOff()
     {
         chromaticAberrationLayer.enabled.value = false;
+        chromaticAberration = false;
     }
     public void chromaticAberrationOn()
     {
         chromaticAberrationLayer.enabled.value = true;
+        chromaticAberration = true;
     }
 
     public void hapticFeedbackOff()
