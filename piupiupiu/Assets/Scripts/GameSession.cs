@@ -225,6 +225,17 @@ public class GameSession : MonoBehaviour {
             scoreText.gameObject.SetActive(true);
             multText.gameObject.SetActive(true);
         }
+        else if (scene.name == "Game Over")
+        {
+            if (chromaticAberration == true)
+            {
+                chromaticAberrationLayer.enabled.value = true;
+            }
+            else
+            {
+                chromaticAberrationLayer.enabled.value = false;
+            }
+        }
 
         if (SpawnerSpawner.Instance.demoMode)
         {
