@@ -248,9 +248,8 @@ public class GameSession : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        Debug.Log(chromaticAberration);
-
+    void Update () 
+    {
 		Time.timeScale = gameSpeed;
         if (currentScore > highScore)
         {
