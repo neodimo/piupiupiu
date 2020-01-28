@@ -13,7 +13,7 @@ public class FollowPlayer : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex != 2)
         {
-            player = FindObjectOfType<Player>().gameObject;
+            player = Player.Instance.gameObject;
         }
     }
 
