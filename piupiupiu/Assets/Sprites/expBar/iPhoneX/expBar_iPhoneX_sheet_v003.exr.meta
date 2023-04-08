@@ -303,7 +303,7 @@ TextureImporter:
       213: -7015256264406625411
     second: expBar_iPhoneX_sheet_v003_99
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -320,9 +320,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -332,8 +335,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -354,10 +357,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -397,6 +405,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: 4
@@ -2520,9 +2540,109 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      expBar_iPhoneX_sheet_v003_0: -712921459960785560
+      expBar_iPhoneX_sheet_v003_1: -7056840925829441235
+      expBar_iPhoneX_sheet_v003_10: 8380198870029553135
+      expBar_iPhoneX_sheet_v003_11: -7660399661126235874
+      expBar_iPhoneX_sheet_v003_12: 8866679527631950075
+      expBar_iPhoneX_sheet_v003_13: 3402929046681211870
+      expBar_iPhoneX_sheet_v003_14: 8436258212591881695
+      expBar_iPhoneX_sheet_v003_15: -8871071822056054022
+      expBar_iPhoneX_sheet_v003_16: 5894941996703960498
+      expBar_iPhoneX_sheet_v003_17: -4332760741323009661
+      expBar_iPhoneX_sheet_v003_18: -8101931802138807123
+      expBar_iPhoneX_sheet_v003_19: -5621130362978184046
+      expBar_iPhoneX_sheet_v003_2: -2005414754767420522
+      expBar_iPhoneX_sheet_v003_20: -7637324751860465587
+      expBar_iPhoneX_sheet_v003_21: 326336341745061498
+      expBar_iPhoneX_sheet_v003_22: -2131480010321221307
+      expBar_iPhoneX_sheet_v003_23: -157149588684986871
+      expBar_iPhoneX_sheet_v003_24: -7838239358916057619
+      expBar_iPhoneX_sheet_v003_25: -577728286188803163
+      expBar_iPhoneX_sheet_v003_26: 8325858118362668062
+      expBar_iPhoneX_sheet_v003_27: -1307332921761320802
+      expBar_iPhoneX_sheet_v003_28: 2234400026215605265
+      expBar_iPhoneX_sheet_v003_29: 3874532944074602071
+      expBar_iPhoneX_sheet_v003_3: 6405144212820826354
+      expBar_iPhoneX_sheet_v003_30: -6785859753529839324
+      expBar_iPhoneX_sheet_v003_31: -6297447249624414132
+      expBar_iPhoneX_sheet_v003_32: -996866795173534180
+      expBar_iPhoneX_sheet_v003_33: 4949449619151843829
+      expBar_iPhoneX_sheet_v003_34: 2806359619719040009
+      expBar_iPhoneX_sheet_v003_35: 3026167147479612122
+      expBar_iPhoneX_sheet_v003_36: -2858030135036470009
+      expBar_iPhoneX_sheet_v003_37: -231297905985301011
+      expBar_iPhoneX_sheet_v003_38: 4261539993040958044
+      expBar_iPhoneX_sheet_v003_39: -4709796840384399225
+      expBar_iPhoneX_sheet_v003_4: 649715897197101019
+      expBar_iPhoneX_sheet_v003_40: -5222784781996198713
+      expBar_iPhoneX_sheet_v003_41: 5124422709829711468
+      expBar_iPhoneX_sheet_v003_42: -8557721418378606087
+      expBar_iPhoneX_sheet_v003_43: 4243258737147286276
+      expBar_iPhoneX_sheet_v003_44: -8592959602528794845
+      expBar_iPhoneX_sheet_v003_45: 8580338661698409440
+      expBar_iPhoneX_sheet_v003_46: -6527764798985685573
+      expBar_iPhoneX_sheet_v003_47: 3380523762234236289
+      expBar_iPhoneX_sheet_v003_48: -3666278306225888757
+      expBar_iPhoneX_sheet_v003_49: -788748004845644557
+      expBar_iPhoneX_sheet_v003_5: 2335510135003172753
+      expBar_iPhoneX_sheet_v003_50: 476451577075839368
+      expBar_iPhoneX_sheet_v003_51: -8821604061446934456
+      expBar_iPhoneX_sheet_v003_52: 8036914523021869493
+      expBar_iPhoneX_sheet_v003_53: 1990342929200938299
+      expBar_iPhoneX_sheet_v003_54: -6936215676483957035
+      expBar_iPhoneX_sheet_v003_55: -4124868037610615424
+      expBar_iPhoneX_sheet_v003_56: 4132210167623463984
+      expBar_iPhoneX_sheet_v003_57: -1214290706795402923
+      expBar_iPhoneX_sheet_v003_58: 5123333265533296621
+      expBar_iPhoneX_sheet_v003_59: 1038114980592410526
+      expBar_iPhoneX_sheet_v003_6: 1325403336271735521
+      expBar_iPhoneX_sheet_v003_60: 6788859082851385525
+      expBar_iPhoneX_sheet_v003_61: 9039063074552407842
+      expBar_iPhoneX_sheet_v003_62: -7385617011833910647
+      expBar_iPhoneX_sheet_v003_63: 6340254852688916041
+      expBar_iPhoneX_sheet_v003_64: -5217919044313030058
+      expBar_iPhoneX_sheet_v003_65: -3529807126249332979
+      expBar_iPhoneX_sheet_v003_66: -5413530662716612474
+      expBar_iPhoneX_sheet_v003_67: -5611263210823709398
+      expBar_iPhoneX_sheet_v003_68: -2861957986812749560
+      expBar_iPhoneX_sheet_v003_69: -4838201417354693482
+      expBar_iPhoneX_sheet_v003_7: 4461458004018328249
+      expBar_iPhoneX_sheet_v003_70: 8876974143443789544
+      expBar_iPhoneX_sheet_v003_71: -5272345077091772117
+      expBar_iPhoneX_sheet_v003_72: -8749973831839649296
+      expBar_iPhoneX_sheet_v003_73: 9145553599521581790
+      expBar_iPhoneX_sheet_v003_74: 1607460733611210973
+      expBar_iPhoneX_sheet_v003_75: 522781971967499839
+      expBar_iPhoneX_sheet_v003_76: -5676317242899300369
+      expBar_iPhoneX_sheet_v003_77: -2922452167488673502
+      expBar_iPhoneX_sheet_v003_78: -5440678846469707896
+      expBar_iPhoneX_sheet_v003_79: -4832897399137805534
+      expBar_iPhoneX_sheet_v003_8: -7649580928994504317
+      expBar_iPhoneX_sheet_v003_80: 8052021295827753446
+      expBar_iPhoneX_sheet_v003_81: 5518265081117044094
+      expBar_iPhoneX_sheet_v003_82: -3591548620738204244
+      expBar_iPhoneX_sheet_v003_83: 7480520231409679805
+      expBar_iPhoneX_sheet_v003_84: 8227305546573847209
+      expBar_iPhoneX_sheet_v003_85: -1213816533396950708
+      expBar_iPhoneX_sheet_v003_86: -3695370281964297533
+      expBar_iPhoneX_sheet_v003_87: -6511142221381548319
+      expBar_iPhoneX_sheet_v003_88: -8095973421439752679
+      expBar_iPhoneX_sheet_v003_89: -8796880856720662970
+      expBar_iPhoneX_sheet_v003_9: -7611067039549547208
+      expBar_iPhoneX_sheet_v003_90: 7575691666338610293
+      expBar_iPhoneX_sheet_v003_91: -8062967776454575282
+      expBar_iPhoneX_sheet_v003_92: 2345145104964034611
+      expBar_iPhoneX_sheet_v003_93: 7845765944555350032
+      expBar_iPhoneX_sheet_v003_94: 8398655008419426776
+      expBar_iPhoneX_sheet_v003_95: -6725066214388683576
+      expBar_iPhoneX_sheet_v003_96: -3772481421961794437
+      expBar_iPhoneX_sheet_v003_97: -2069393799173685888
+      expBar_iPhoneX_sheet_v003_98: -5846404548825696938
+      expBar_iPhoneX_sheet_v003_99: -7015256264406625411
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

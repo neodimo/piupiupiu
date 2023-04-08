@@ -75,7 +75,7 @@ TextureImporter:
       213: 5393668333340957606
     second: player_green_spriteSheet_23
   externalObjects: {}
-  serializedVersion: 8
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -92,9 +92,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -104,8 +107,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -126,11 +129,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -141,7 +150,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -152,7 +162,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -163,7 +174,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -174,6 +186,19 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -691,9 +716,33 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      player_green_spriteSheet_0: -7527902694691165827
+      player_green_spriteSheet_1: 2542361253830810559
+      player_green_spriteSheet_10: 8025855362422137629
+      player_green_spriteSheet_11: 2623705981838925964
+      player_green_spriteSheet_12: -3902081086766826174
+      player_green_spriteSheet_13: 7920755452499405976
+      player_green_spriteSheet_14: -1135697502847720227
+      player_green_spriteSheet_15: -3115343897294063649
+      player_green_spriteSheet_16: 1276067805222885780
+      player_green_spriteSheet_17: 6284518244981230030
+      player_green_spriteSheet_18: 7652175469399505782
+      player_green_spriteSheet_19: 6119363389798865750
+      player_green_spriteSheet_2: -5499922798686499816
+      player_green_spriteSheet_20: 3015705770882639542
+      player_green_spriteSheet_21: 2898766374378682319
+      player_green_spriteSheet_22: 5012552965417194519
+      player_green_spriteSheet_23: 5393668333340957606
+      player_green_spriteSheet_3: 6068895583339110139
+      player_green_spriteSheet_4: -517895336921222356
+      player_green_spriteSheet_5: -1075330069994091809
+      player_green_spriteSheet_6: 8385544134484903656
+      player_green_spriteSheet_7: 5262809404351930457
+      player_green_spriteSheet_8: -4550869355136134876
+      player_green_spriteSheet_9: 3454637999156934057
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

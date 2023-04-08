@@ -303,7 +303,7 @@ TextureImporter:
       213: -7727811358025521366
     second: expBar_iPhoneRectangle_sheet_v004_99
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -320,9 +320,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -332,8 +335,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -354,10 +357,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -397,6 +405,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: 4
@@ -2520,9 +2540,109 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      expBar_iPhoneRectangle_sheet_v004_0: 7143567605447792739
+      expBar_iPhoneRectangle_sheet_v004_1: 1717991660339787018
+      expBar_iPhoneRectangle_sheet_v004_10: -8640784775819873481
+      expBar_iPhoneRectangle_sheet_v004_11: -268629566991595673
+      expBar_iPhoneRectangle_sheet_v004_12: -4230062486660426042
+      expBar_iPhoneRectangle_sheet_v004_13: -6693801494715027669
+      expBar_iPhoneRectangle_sheet_v004_14: -1721987659102330176
+      expBar_iPhoneRectangle_sheet_v004_15: -213564734180521424
+      expBar_iPhoneRectangle_sheet_v004_16: 3006537778123588476
+      expBar_iPhoneRectangle_sheet_v004_17: 7564884001735201285
+      expBar_iPhoneRectangle_sheet_v004_18: -6195659237867298686
+      expBar_iPhoneRectangle_sheet_v004_19: 7005456455636642132
+      expBar_iPhoneRectangle_sheet_v004_2: -3923571533616651676
+      expBar_iPhoneRectangle_sheet_v004_20: 3518953611293287794
+      expBar_iPhoneRectangle_sheet_v004_21: 7413351180505353524
+      expBar_iPhoneRectangle_sheet_v004_22: 5142830042859891692
+      expBar_iPhoneRectangle_sheet_v004_23: 209924153510624621
+      expBar_iPhoneRectangle_sheet_v004_24: 6095261377056578158
+      expBar_iPhoneRectangle_sheet_v004_25: 2050601491774806850
+      expBar_iPhoneRectangle_sheet_v004_26: -1989746841997582634
+      expBar_iPhoneRectangle_sheet_v004_27: 5393271465522200481
+      expBar_iPhoneRectangle_sheet_v004_28: -4056257775243431623
+      expBar_iPhoneRectangle_sheet_v004_29: 6090806547361487420
+      expBar_iPhoneRectangle_sheet_v004_3: 8604836014015777126
+      expBar_iPhoneRectangle_sheet_v004_30: 788448353935589627
+      expBar_iPhoneRectangle_sheet_v004_31: 8795869595377003529
+      expBar_iPhoneRectangle_sheet_v004_32: 5126767804726126053
+      expBar_iPhoneRectangle_sheet_v004_33: 3496264053193169052
+      expBar_iPhoneRectangle_sheet_v004_34: -1697203357782292711
+      expBar_iPhoneRectangle_sheet_v004_35: 586664939296403607
+      expBar_iPhoneRectangle_sheet_v004_36: 1007585700930019150
+      expBar_iPhoneRectangle_sheet_v004_37: 7500186824784308354
+      expBar_iPhoneRectangle_sheet_v004_38: 6578631225246926931
+      expBar_iPhoneRectangle_sheet_v004_39: 338825061906830893
+      expBar_iPhoneRectangle_sheet_v004_4: 989784908757383235
+      expBar_iPhoneRectangle_sheet_v004_40: 164290769479382630
+      expBar_iPhoneRectangle_sheet_v004_41: -6968195152697157286
+      expBar_iPhoneRectangle_sheet_v004_42: -5491369675621505944
+      expBar_iPhoneRectangle_sheet_v004_43: -3053576378582000394
+      expBar_iPhoneRectangle_sheet_v004_44: 605849693038219762
+      expBar_iPhoneRectangle_sheet_v004_45: 8835704330868197482
+      expBar_iPhoneRectangle_sheet_v004_46: 401821940155914615
+      expBar_iPhoneRectangle_sheet_v004_47: 5363171858964165123
+      expBar_iPhoneRectangle_sheet_v004_48: 6766580518710691149
+      expBar_iPhoneRectangle_sheet_v004_49: -6048711297118844311
+      expBar_iPhoneRectangle_sheet_v004_5: 1755802881219883685
+      expBar_iPhoneRectangle_sheet_v004_50: 2818011905236904750
+      expBar_iPhoneRectangle_sheet_v004_51: -4552330182236468609
+      expBar_iPhoneRectangle_sheet_v004_52: 8151718439136973909
+      expBar_iPhoneRectangle_sheet_v004_53: -8616243133836049288
+      expBar_iPhoneRectangle_sheet_v004_54: -6017686786505933332
+      expBar_iPhoneRectangle_sheet_v004_55: 12023257535335222
+      expBar_iPhoneRectangle_sheet_v004_56: -664245210597555433
+      expBar_iPhoneRectangle_sheet_v004_57: 1663412459755240631
+      expBar_iPhoneRectangle_sheet_v004_58: -4657548289649011621
+      expBar_iPhoneRectangle_sheet_v004_59: -1872243848090476160
+      expBar_iPhoneRectangle_sheet_v004_6: -2289671360695386555
+      expBar_iPhoneRectangle_sheet_v004_60: -2586363156826849788
+      expBar_iPhoneRectangle_sheet_v004_61: 7790106027613152756
+      expBar_iPhoneRectangle_sheet_v004_62: 5413036253890744599
+      expBar_iPhoneRectangle_sheet_v004_63: 3983429124471634950
+      expBar_iPhoneRectangle_sheet_v004_64: -4752156069036572091
+      expBar_iPhoneRectangle_sheet_v004_65: 265627093404736861
+      expBar_iPhoneRectangle_sheet_v004_66: -1681703773913674190
+      expBar_iPhoneRectangle_sheet_v004_67: 5103776607175301960
+      expBar_iPhoneRectangle_sheet_v004_68: -6138988659102079174
+      expBar_iPhoneRectangle_sheet_v004_69: 4091418400665389155
+      expBar_iPhoneRectangle_sheet_v004_7: 8073118485720556735
+      expBar_iPhoneRectangle_sheet_v004_70: -8742519110209077770
+      expBar_iPhoneRectangle_sheet_v004_71: -3807081979075639843
+      expBar_iPhoneRectangle_sheet_v004_72: -3349226388307486993
+      expBar_iPhoneRectangle_sheet_v004_73: -3608125235166787477
+      expBar_iPhoneRectangle_sheet_v004_74: -5863404583167891056
+      expBar_iPhoneRectangle_sheet_v004_75: -4935730023467355793
+      expBar_iPhoneRectangle_sheet_v004_76: -5988751979801661004
+      expBar_iPhoneRectangle_sheet_v004_77: 7058116006331468680
+      expBar_iPhoneRectangle_sheet_v004_78: -5405931168489786458
+      expBar_iPhoneRectangle_sheet_v004_79: -753140883865894797
+      expBar_iPhoneRectangle_sheet_v004_8: 7473137566437873999
+      expBar_iPhoneRectangle_sheet_v004_80: 1517138430794421095
+      expBar_iPhoneRectangle_sheet_v004_81: 623218479162334015
+      expBar_iPhoneRectangle_sheet_v004_82: -1064348542627217779
+      expBar_iPhoneRectangle_sheet_v004_83: -8909031117581685681
+      expBar_iPhoneRectangle_sheet_v004_84: 3383734343935484380
+      expBar_iPhoneRectangle_sheet_v004_85: 5493222112048738008
+      expBar_iPhoneRectangle_sheet_v004_86: 6776767837347210449
+      expBar_iPhoneRectangle_sheet_v004_87: 7150404485237141335
+      expBar_iPhoneRectangle_sheet_v004_88: -3605936881439867121
+      expBar_iPhoneRectangle_sheet_v004_89: 3208440066577414436
+      expBar_iPhoneRectangle_sheet_v004_9: 7018815773312264275
+      expBar_iPhoneRectangle_sheet_v004_90: -853639277116790433
+      expBar_iPhoneRectangle_sheet_v004_91: 8994421740744197307
+      expBar_iPhoneRectangle_sheet_v004_92: -5032837016105072796
+      expBar_iPhoneRectangle_sheet_v004_93: 7190733332811283740
+      expBar_iPhoneRectangle_sheet_v004_94: 385126136792159048
+      expBar_iPhoneRectangle_sheet_v004_95: -8973343889467101734
+      expBar_iPhoneRectangle_sheet_v004_96: -7092307377589740895
+      expBar_iPhoneRectangle_sheet_v004_97: 870222279822574165
+      expBar_iPhoneRectangle_sheet_v004_98: 7489436973381159767
+      expBar_iPhoneRectangle_sheet_v004_99: -7727811358025521366
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

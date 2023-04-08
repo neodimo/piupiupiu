@@ -147,7 +147,7 @@ TextureImporter:
       213: -2622576981129305324
     second: enemy_green_spriteSheet_v002_47
   externalObjects: {}
-  serializedVersion: 8
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -164,9 +164,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -176,8 +179,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -198,11 +201,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -213,7 +222,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -224,7 +234,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -235,7 +246,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -246,6 +258,19 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1267,9 +1292,57 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      enemy_green_spriteSheet_v002_0: -5355718252034267610
+      enemy_green_spriteSheet_v002_1: 8159424455857625323
+      enemy_green_spriteSheet_v002_10: -4820289857658759231
+      enemy_green_spriteSheet_v002_11: -1748110876137479294
+      enemy_green_spriteSheet_v002_12: -5480723122735641193
+      enemy_green_spriteSheet_v002_13: 1189885604426904194
+      enemy_green_spriteSheet_v002_14: 1040079380318220267
+      enemy_green_spriteSheet_v002_15: 2948499689587897940
+      enemy_green_spriteSheet_v002_16: 2885623631475825552
+      enemy_green_spriteSheet_v002_17: -7199648007336541085
+      enemy_green_spriteSheet_v002_18: 645966655496005677
+      enemy_green_spriteSheet_v002_19: 660666630505975198
+      enemy_green_spriteSheet_v002_2: -1327332722623068578
+      enemy_green_spriteSheet_v002_20: 7843985496263738062
+      enemy_green_spriteSheet_v002_21: -3637393343067265272
+      enemy_green_spriteSheet_v002_22: 6436891704219955275
+      enemy_green_spriteSheet_v002_23: 795397040699916660
+      enemy_green_spriteSheet_v002_24: -1682685863290224414
+      enemy_green_spriteSheet_v002_25: 8196531345619740599
+      enemy_green_spriteSheet_v002_26: -2717750954347316730
+      enemy_green_spriteSheet_v002_27: -179802361223148067
+      enemy_green_spriteSheet_v002_28: -4099952673142162779
+      enemy_green_spriteSheet_v002_29: 3639981456676329908
+      enemy_green_spriteSheet_v002_3: 6861132561676279600
+      enemy_green_spriteSheet_v002_30: -2855371939349795733
+      enemy_green_spriteSheet_v002_31: 8937380896545647939
+      enemy_green_spriteSheet_v002_32: -5537485331803331087
+      enemy_green_spriteSheet_v002_33: -3328045687129800519
+      enemy_green_spriteSheet_v002_34: -7935245486626796427
+      enemy_green_spriteSheet_v002_35: -658439315931490622
+      enemy_green_spriteSheet_v002_36: -8723492159632697282
+      enemy_green_spriteSheet_v002_37: -8080572991206408140
+      enemy_green_spriteSheet_v002_38: -8215972732233783541
+      enemy_green_spriteSheet_v002_39: -6274942206246779580
+      enemy_green_spriteSheet_v002_4: -8067360318999375030
+      enemy_green_spriteSheet_v002_40: 8275554127883830094
+      enemy_green_spriteSheet_v002_41: 4607689549685319792
+      enemy_green_spriteSheet_v002_42: -403116063715548493
+      enemy_green_spriteSheet_v002_43: -4296539099846456396
+      enemy_green_spriteSheet_v002_44: -2546094720609361419
+      enemy_green_spriteSheet_v002_45: -68057326856562690
+      enemy_green_spriteSheet_v002_46: -7479780162436818162
+      enemy_green_spriteSheet_v002_47: -2622576981129305324
+      enemy_green_spriteSheet_v002_5: -8870386389896107909
+      enemy_green_spriteSheet_v002_6: 7324160666679339539
+      enemy_green_spriteSheet_v002_7: 1743305552785647756
+      enemy_green_spriteSheet_v002_8: -293826686947231861
+      enemy_green_spriteSheet_v002_9: -1062619667223713361
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

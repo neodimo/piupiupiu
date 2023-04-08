@@ -303,7 +303,7 @@ TextureImporter:
       213: 737678057129809091
     second: expBar_sheet_v002_99
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -320,9 +320,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -332,8 +335,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -354,10 +357,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -397,6 +405,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 1
+    textureFormat: 4
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 8192
     resizeAlgorithm: 1
     textureFormat: 4
@@ -2520,9 +2540,109 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      expBar_sheet_v002_0: 4663345128643983340
+      expBar_sheet_v002_1: -7605299635506379937
+      expBar_sheet_v002_10: -4464210322261023172
+      expBar_sheet_v002_11: -7375225752926710617
+      expBar_sheet_v002_12: 19059787958215605
+      expBar_sheet_v002_13: -7768879980229646962
+      expBar_sheet_v002_14: -2729791101075413569
+      expBar_sheet_v002_15: 7967250954485205154
+      expBar_sheet_v002_16: 566053909612766428
+      expBar_sheet_v002_17: -8933950554522582190
+      expBar_sheet_v002_18: 6351267871916543623
+      expBar_sheet_v002_19: -6016972896555842511
+      expBar_sheet_v002_2: 3282661282338202667
+      expBar_sheet_v002_20: -1262392613199650890
+      expBar_sheet_v002_21: 5302681180379895733
+      expBar_sheet_v002_22: -8505231162298904071
+      expBar_sheet_v002_23: 2955991220888693605
+      expBar_sheet_v002_24: -2213105874980344718
+      expBar_sheet_v002_25: -6508790869559427119
+      expBar_sheet_v002_26: -6693416533952789588
+      expBar_sheet_v002_27: -214275386688696549
+      expBar_sheet_v002_28: 6466882429835305232
+      expBar_sheet_v002_29: 3042334031003621768
+      expBar_sheet_v002_3: -1299384482961899916
+      expBar_sheet_v002_30: -4824557167488275028
+      expBar_sheet_v002_31: 408262223959558618
+      expBar_sheet_v002_32: 3124039625037519235
+      expBar_sheet_v002_33: -7180886053088510594
+      expBar_sheet_v002_34: 1129807238446239749
+      expBar_sheet_v002_35: -2520252643942348544
+      expBar_sheet_v002_36: 2784632217384571132
+      expBar_sheet_v002_37: 1641776123688329007
+      expBar_sheet_v002_38: -8279989560657081799
+      expBar_sheet_v002_39: -8110585118221925210
+      expBar_sheet_v002_4: -7733624897689627301
+      expBar_sheet_v002_40: -1471892047530939287
+      expBar_sheet_v002_41: -4374743000453573417
+      expBar_sheet_v002_42: 7515757261730226664
+      expBar_sheet_v002_43: -2981468306698911697
+      expBar_sheet_v002_44: -4189877788600825342
+      expBar_sheet_v002_45: -1868171879246170066
+      expBar_sheet_v002_46: -1547015653289570013
+      expBar_sheet_v002_47: -2226690922711734048
+      expBar_sheet_v002_48: 6376522759821255713
+      expBar_sheet_v002_49: -1569196071361226418
+      expBar_sheet_v002_5: 3965358020154674264
+      expBar_sheet_v002_50: 690776059643535164
+      expBar_sheet_v002_51: -5952441827704673150
+      expBar_sheet_v002_52: -110834078907675598
+      expBar_sheet_v002_53: -7320163112983154000
+      expBar_sheet_v002_54: 6072826169927559990
+      expBar_sheet_v002_55: 8762360279021479759
+      expBar_sheet_v002_56: 4534193428891702407
+      expBar_sheet_v002_57: 1111381599049257945
+      expBar_sheet_v002_58: -533616903524902216
+      expBar_sheet_v002_59: -5421511012878275055
+      expBar_sheet_v002_6: -7579022218136569577
+      expBar_sheet_v002_60: 753689592599824399
+      expBar_sheet_v002_61: 4791896375556719737
+      expBar_sheet_v002_62: 6989241851697361586
+      expBar_sheet_v002_63: 4289473206943257984
+      expBar_sheet_v002_64: 5650790640296228714
+      expBar_sheet_v002_65: -4427645062876641101
+      expBar_sheet_v002_66: 7354995923139793543
+      expBar_sheet_v002_67: -4387085310312167671
+      expBar_sheet_v002_68: 7265808612773906644
+      expBar_sheet_v002_69: -2732049023692412404
+      expBar_sheet_v002_7: -9068799411768994828
+      expBar_sheet_v002_70: -2284734053908821030
+      expBar_sheet_v002_71: -9166849267933217172
+      expBar_sheet_v002_72: 6077999719637308830
+      expBar_sheet_v002_73: -7980275336773620024
+      expBar_sheet_v002_74: 8753698748735963842
+      expBar_sheet_v002_75: 3133752228832334259
+      expBar_sheet_v002_76: -8786830722886042808
+      expBar_sheet_v002_77: -440446102895645407
+      expBar_sheet_v002_78: 500044165135908885
+      expBar_sheet_v002_79: 7663280890076084393
+      expBar_sheet_v002_8: 3857035169713791553
+      expBar_sheet_v002_80: -6346271485466190480
+      expBar_sheet_v002_81: 4615293843359495785
+      expBar_sheet_v002_82: -5232589047979035784
+      expBar_sheet_v002_83: -8507333058119895131
+      expBar_sheet_v002_84: 1634844315757945804
+      expBar_sheet_v002_85: -3937355409284518312
+      expBar_sheet_v002_86: 3724901223095824269
+      expBar_sheet_v002_87: 7918670748219484653
+      expBar_sheet_v002_88: -9007811684133475212
+      expBar_sheet_v002_89: -2389995542810824565
+      expBar_sheet_v002_9: 3664870989496013146
+      expBar_sheet_v002_90: 1751885751169356930
+      expBar_sheet_v002_91: -6200132322259681739
+      expBar_sheet_v002_92: -582311920600813543
+      expBar_sheet_v002_93: -3396643704501131804
+      expBar_sheet_v002_94: -6428752186672784847
+      expBar_sheet_v002_95: -6077837796113868491
+      expBar_sheet_v002_96: 5728345950252079859
+      expBar_sheet_v002_97: 1757048756013459599
+      expBar_sheet_v002_98: 2042351562882506489
+      expBar_sheet_v002_99: 737678057129809091
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
