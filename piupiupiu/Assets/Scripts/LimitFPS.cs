@@ -5,6 +5,6 @@ public class LimitFPS : MonoBehaviour
 {
     void Start()
     {
-        //Application.targetFrameRate = 60;
+        UnityEngine.Application.targetFrameRate = 60;
     }
 }
