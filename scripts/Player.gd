@@ -22,6 +22,9 @@ func _ready() -> void:
 	instance = self
 	_target = global_position
 	add_to_group("player")
+	var sprite := $Sprite as AnimatedSprite2D
+	sprite.sprite_frames = SheetAnim.build(load("res://art/player_sheet.png"), 36, 18.0)
+	sprite.play("default")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:

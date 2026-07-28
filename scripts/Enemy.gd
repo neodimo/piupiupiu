@@ -15,6 +15,10 @@ func _ready() -> void:
 	_health = max_health
 	_rand_speed = randf_range(homing_speed_min, homing_speed_max)
 	add_to_group("enemies")
+	var sprite := $Sprite as AnimatedSprite2D
+	sprite.sprite_frames = SheetAnim.build(load("res://art/enemy_green_sheet.png"), 36, 20.0)
+	sprite.frame = randi() % 48  # desync so the swarm doesn't pulse in lockstep
+	sprite.play("default")
 
 func _physics_process(delta: float) -> void:
 	var player := Player.instance
