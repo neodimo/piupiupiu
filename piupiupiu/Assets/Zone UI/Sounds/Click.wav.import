@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bfkhchl8qp07f"
+path="res://.godot/imported/Click.wav-88e39b8092675f13e1e051aee6a82f17.sample"
+
+[deps]
+
+source_file="res://piupiupiu/Assets/Zone UI/Sounds/Click.wav"
+dest_files=["res://.godot/imported/Click.wav-88e39b8092675f13e1e051aee6a82f17.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

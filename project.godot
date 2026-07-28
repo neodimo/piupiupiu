@@ -1,0 +1,28 @@
+; Engine configuration file — piupiupiu (Godot rewrite)
+; Original Unity build preserved on branch `unity-original` / tag `v1-unity`.
+
+config_version=5
+
+[application]
+
+config/name="piupiupiu"
+config/description="One-finger neon arena survivor. Godot 4 rewrite of the original Unity build."
+run/main_scene="res://scenes/Main.tscn"
+config/features=PackedStringArray("4.7", "Forward Plus")
+config/icon="res://art/player_sheet.png"
+
+[autoload]
+
+GameSession="*res://scripts/GameSession.gd"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=1920
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/handheld/orientation="portrait"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.03, 0.03, 0.06, 1)
