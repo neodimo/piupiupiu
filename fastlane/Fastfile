@@ -14,10 +14,10 @@ platform :ios do
     cert(api_key: api_key)
     profile_path = sigh(
       api_key: api_key,
-      app_identifier: "com.neodimo.piupiupiu",
+      app_identifier: "com.hectick.PiuPiuPiu",
       platform: "ios"
     )
-    profile_name = ENV["sigh_com.neodimo.piupiupiu_appstore_profile-name"] ||
+    profile_name = ENV["sigh_com.hectick.PiuPiuPiu_appstore_profile-name"] ||
                    File.basename(profile_path, ".mobileprovision")
 
     build_app(
@@ -28,7 +28,7 @@ platform :ios do
         signingStyle: "manual",
         teamID: ENV["APPLE_TEAM_ID"],
         provisioningProfiles: {
-          "com.neodimo.piupiupiu" => profile_name
+          "com.hectick.PiuPiuPiu" => profile_name
         }
       },
       xcargs: "DEVELOPMENT_TEAM=#{ENV['APPLE_TEAM_ID']} CODE_SIGN_STYLE=Manual"

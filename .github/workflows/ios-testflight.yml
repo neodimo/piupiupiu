@@ -35,6 +35,8 @@ jobs:
           set -e
           # Godot requires the team id in the preset even for project-only export.
           sed -i '' "s|application/app_store_team_id=\"\"|application/app_store_team_id=\"${APPLE_TEAM_ID}\"|" export_presets.cfg
+          # Unique, monotonically-increasing build number so TestFlight never sees a duplicate.
+          sed -i '' "s|application/version=\"1\"|application/version=\"${GITHUB_RUN_NUMBER}\"|" export_presets.cfg
           mkdir -p build/ios
           Godot --headless --path . --import
           Godot --headless --path . --export-release "iOS" build/ios/piupiupiu.xcodeproj
