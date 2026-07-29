@@ -1,0 +1,42 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build the Godot-exported Xcode project and ship to TestFlight"
+  lane :beta do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_#{ENV['ASC_KEY_ID']}.p8"),
+      in_house: false
+    )
+
+    # Cloud signing: create/fetch the distribution cert + App Store profile via the API key.
+    cert(api_key: api_key)
+    profile_path = sigh(
+      api_key: api_key,
+      app_identifier: "com.neodimo.piupiupiu",
+      platform: "ios"
+    )
+    profile_name = ENV["sigh_com.neodimo.piupiupiu_appstore_profile-name"] ||
+                   File.basename(profile_path, ".mobileprovision")
+
+    build_app(
+      project: "build/ios/piupiupiu.xcodeproj",
+      scheme: "piupiupiu",
+      export_method: "app-store",
+      export_options: {
+        signingStyle: "manual",
+        teamID: ENV["APPLE_TEAM_ID"],
+        provisioningProfiles: {
+          "com.neodimo.piupiupiu" => profile_name
+        }
+      },
+      xcargs: "DEVELOPMENT_TEAM=#{ENV['APPLE_TEAM_ID']} CODE_SIGN_STYLE=Manual"
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true
+    )
+  end
+end

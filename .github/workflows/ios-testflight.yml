@@ -1,0 +1,51 @@
+name: iOS TestFlight
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: "4.7.1"
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Godot + iOS export templates
+        run: |
+          set -e
+          BASE="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable"
+          curl -L -o godot.zip "$BASE/Godot_v${GODOT_VERSION}-stable_macos.universal.zip"
+          unzip -q godot.zip
+          sudo mv Godot.app /Applications/Godot.app
+          echo "/Applications/Godot.app/Contents/MacOS" >> "$GITHUB_PATH"
+          curl -L -o templates.tpz "$BASE/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          unzip -q templates.tpz
+          TDIR="$HOME/Library/Application Support/Godot/export_templates/${GODOT_VERSION}.stable"
+          mkdir -p "$TDIR"
+          mv templates/* "$TDIR/"
+
+      - name: Export Godot iOS Xcode project
+        run: |
+          set -e
+          mkdir -p build/ios
+          Godot --headless --path . --import
+          Godot --headless --path . --export-release "iOS" build/ios/piupiupiu.xcodeproj
+
+      - name: Write App Store Connect API key
+        run: |
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "${{ secrets.ASC_KEY_P8 }}" | base64 --decode > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.ASC_KEY_ID }}.p8
+
+      - name: Build + upload to TestFlight
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          gem install bundler >/dev/null
+          bundle install
+          bundle exec fastlane ios beta
