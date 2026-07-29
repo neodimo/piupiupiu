@@ -44,6 +44,16 @@ jobs:
           Godot --headless --path . --import
           Godot --headless --path . --export-release "iOS" build/ios/piupiupiu.xcodeproj
 
+      - name: Dump exported Info.plist (compatibility metadata)
+        run: |
+          set -e
+          echo "== Info.plist files under build/ios =="
+          find build/ios -name "*Info.plist" -print
+          for p in $(find build/ios -name "*Info.plist"); do
+            echo "===== $p ====="
+            plutil -p "$p" | grep -Ei "MinimumOSVersion|UIDeviceFamily|UIRequiredDeviceCapabilities|CFBundleShortVersion|CFBundleVersion|arm64|metal" || plutil -p "$p"
+          done
+
       - name: Write App Store Connect API key
         env:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
@@ -61,3 +71,13 @@ jobs:
           gem install bundler >/dev/null
           bundle install
           bundle exec fastlane ios beta
+
+      - name: Keep IPA for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: piupiupiu-ipa
+          path: |
+            **/*.ipa
+          if-no-files-found: warn
+          retention-days: 7
