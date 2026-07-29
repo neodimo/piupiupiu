@@ -9,7 +9,7 @@ config/name="piupiupiu"
 config/description="One-finger neon arena survivor. Godot 4 rewrite of the original Unity build."
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://art/player_sheet.png"
+config/icon="res://art/icon.png"
 
 [autoload]
 
@@ -25,4 +25,5 @@ window/handheld/orientation="portrait"
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.03, 0.03, 0.06, 1)
