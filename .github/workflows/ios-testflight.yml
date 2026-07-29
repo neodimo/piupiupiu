@@ -36,9 +36,12 @@ jobs:
           Godot --headless --path . --export-release "iOS" build/ios/piupiupiu.xcodeproj
 
       - name: Write App Store Connect API key
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
-          echo "${{ secrets.ASC_KEY_P8 }}" | base64 --decode > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.ASC_KEY_ID }}.p8
+          printf '%s' "$ASC_KEY_P8" > ~/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8
 
       - name: Build + upload to TestFlight
         env:
