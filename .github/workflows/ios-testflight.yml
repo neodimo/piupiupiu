@@ -29,8 +29,12 @@ jobs:
           mv templates/* "$TDIR/"
 
       - name: Export Godot iOS Xcode project
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           set -e
+          # Godot requires the team id in the preset even for project-only export.
+          sed -i '' "s|application/app_store_team_id=\"\"|application/app_store_team_id=\"${APPLE_TEAM_ID}\"|" export_presets.cfg
           mkdir -p build/ios
           Godot --headless --path . --import
           Godot --headless --path . --export-release "iOS" build/ios/piupiupiu.xcodeproj
