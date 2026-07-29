@@ -31,7 +31,9 @@ platform :ios do
           "com.hectick.PiuPiuPiu" => profile_name
         }
       },
-      xcargs: "DEVELOPMENT_TEAM=#{ENV['APPLE_TEAM_ID']} CODE_SIGN_STYLE=Manual"
+      xcargs: "DEVELOPMENT_TEAM=#{ENV['APPLE_TEAM_ID']} CODE_SIGN_STYLE=Manual " \
+              "PROVISIONING_PROFILE_SPECIFIER=\"#{profile_name}\" " \
+              "CODE_SIGN_IDENTITY=\"Apple Distribution\""
     )
 
     upload_to_testflight(
