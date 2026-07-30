@@ -76,7 +76,7 @@ func _die() -> void:
 	var grid := get_tree().get_first_node_in_group("spring_grid")
 	if grid != null and grid.has_method("disturb"):
 		grid.disturb(global_position, 700.0)
-	Main.spawn_death_vfx(global_position, Color(1.0, 0.4, 1.4))
+	Main.spawn_death_vfx(global_position, Color(1.0, 0.4, 1.4), true)
 	Main.spawn_score_popup(global_position, points * GameSession.multiplier, Color(1.0, 0.5, 1.6))
 	Main.spawn_mult_bits(global_position, 2, 5)
 	Settings.buzz(18)

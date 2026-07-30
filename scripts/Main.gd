@@ -107,40 +107,53 @@ static func spawn_score_popup(pos: Vector2, points: int, color: Color = Color(1.
 	t.tween_property(lbl, "modulate:a", 0.0, 0.45).set_delay(0.12)
 	t.chain().tween_callback(lbl.queue_free)
 
-## Per-enemy death VFX: a coloured star-burst (explosion_stars art) plus an
-## expanding shockwave ring. Tinted to the enemy so kills read distinctly.
-static func spawn_death_vfx(pos: Vector2, color: Color = Color(0.5, 0.9, 1.0)) -> void:
+## Per-enemy death VFX — faithful to the Unity enemyDeath prefab: a burst of
+## small plain glowing dots that fly out fast and fade (NOT the star sprite;
+## that Explosion-stars art was a separate effect). Round dots read as soft
+## glows through the bloom. Tinted to the enemy; `big` for the tougher types.
+static var _dot_tex: Texture2D
+static func _dot() -> Texture2D:
+	if _dot_tex == null:
+		var img := Image.create(24, 24, false, Image.FORMAT_RGBA8)
+		var c := Vector2(11.5, 11.5)
+		for y in 24:
+			for x in 24:
+				var d := Vector2(x, y).distance_to(c) / 12.0
+				var a := clampf(1.0 - d, 0.0, 1.0)
+				a = a * a   # soft falloff
+				img.set_pixel(x, y, Color(1, 1, 1, a))
+		_dot_tex = ImageTexture.create_from_image(img)
+	return _dot_tex
+
+static func spawn_death_vfx(pos: Vector2, color: Color = Color(0.5, 0.9, 1.0), big: bool = false) -> void:
 	if instance == null:
 		return
-	# star-burst particles using the real explosion art (3 frames of 30x32)
-	var tex := load("res://art/explosion_stars.png") as Texture2D
 	var p := CPUParticles2D.new()
 	instance.add_child(p)
 	p.global_position = pos
-	p.texture = tex
+	p.texture = _dot()
 	p.emitting = true
 	p.one_shot = true
 	p.explosiveness = 1.0
-	p.amount = 20
-	p.lifetime = 0.55
-	p.initial_velocity_min = 240.0
-	p.initial_velocity_max = 600.0
+	p.amount = 26 if big else 18
+	p.lifetime = 0.6 if big else 0.45
+	p.initial_velocity_min = 200.0
+	p.initial_velocity_max = 640.0 if big else 480.0
 	p.spread = 180.0
-	p.angular_velocity_min = -400.0
-	p.angular_velocity_max = 400.0
-	p.scale_amount_min = 1.4
-	p.scale_amount_max = 3.2
+	p.damping_min = 120.0
+	p.damping_max = 220.0
+	p.scale_amount_min = 2.2 if big else 1.6
+	p.scale_amount_max = 5.0 if big else 3.4
+	var sc := Curve.new()
+	sc.add_point(Vector2(0.0, 1.0))
+	sc.add_point(Vector2(1.0, 0.0))
+	p.scale_amount_curve = sc
 	p.color = color
 	var g := Gradient.new()
-	g.set_color(0, color)
+	g.set_color(0, Color(color.r, color.g, color.b, 1.0))
 	g.set_color(1, Color(color.r, color.g, color.b, 0.0))
 	p.color_ramp = g
-	p.get_tree().create_timer(0.9).timeout.connect(p.queue_free)
-	# expanding shockwave ring
-	var ring := _Shockwave.new()
-	ring.color = color
-	instance.add_child(ring)
-	ring.global_position = pos
+	p.get_tree().create_timer(1.0).timeout.connect(p.queue_free)
 
 ## Emit N collectible multiplier bits from a dead enemy (Enemy.cs EmitMultipliers()).
 static func spawn_mult_bits(pos: Vector2, count_min: int = 1, count_max: int = 5) -> void:
