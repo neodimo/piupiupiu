@@ -74,6 +74,35 @@ func _on_game_over() -> void:
 	Input.vibrate_handheld(120)
 	get_tree().create_timer(3.0).timeout.connect(func(): get_tree().reload_current_scene())
 
+## Floating "+N" score popup at a kill — drifts up and fades (PopupScoreMovement.cs).
+static func spawn_score_popup(pos: Vector2, points: int, color: Color = Color(1.6, 1.8, 1.0)) -> void:
+	if instance == null:
+		return
+	var lbl := Label.new()
+	lbl.text = "+%d" % points
+	lbl.add_theme_font_size_override("font_size", 44)
+	lbl.add_theme_color_override("font_color", color)
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl.z_index = 50
+	instance.add_child(lbl)
+	lbl.global_position = pos + Vector2(-40, -30)
+	var t := lbl.create_tween()
+	t.set_parallel(true)
+	t.tween_property(lbl, "global_position:y", lbl.global_position.y - 130.0, 0.7)
+	t.tween_property(lbl, "modulate:a", 0.0, 0.7).set_delay(0.15)
+	t.chain().tween_callback(lbl.queue_free)
+
+## Emit N collectible multiplier bits from a dead enemy (Enemy.cs EmitMultipliers()).
+static func spawn_mult_bits(pos: Vector2, count_min: int = 1, count_max: int = 5) -> void:
+	if instance == null:
+		return
+	var count := randi_range(count_min, count_max)
+	for i in count:
+		var bit := MultBit.new()
+		instance.add_child(bit)
+		bit.global_position = pos + Vector2(randf_range(-24, 24), randf_range(-24, 24))
+		bit.launch(Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized() * randf_range(160, 340))
+
 static func spawn_explosion(pos: Vector2) -> void:
 	if instance == null:
 		return

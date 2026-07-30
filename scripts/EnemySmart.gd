@@ -63,10 +63,11 @@ func take_damage(amount: float) -> void:
 
 func _die() -> void:
 	GameSession.add_points(points)
-	GameSession.bump_multiplier()
 	var grid := get_tree().get_first_node_in_group("spring_grid")
 	if grid != null and grid.has_method("disturb"):
 		grid.disturb(global_position, 1200.0)
 	Main.spawn_explosion(global_position)
+	Main.spawn_score_popup(global_position, points * GameSession.multiplier, Color(1.6, 0.8, 2.2))
+	Main.spawn_mult_bits(global_position, 3, 7)
 	Input.vibrate_handheld(30)
 	queue_free()
