@@ -79,7 +79,7 @@ func _end_stick() -> void:
 func _physics_process(delta: float) -> void:
 	if not _alive:
 		return
-	if Main.demo_mode:
+	if Main.demo_mode or OS.has_environment("PIU_DEMO"):
 		_autopilot(delta)
 	var prev := global_position
 	global_position += _joy_vec * move_speed * delta
@@ -148,8 +148,8 @@ func _on_area_entered(a: Area2D) -> void:
 func hit() -> void:
 	if not _alive:
 		return
-	if Main.demo_mode:
-		# background demo never dies — nudge to centre and shrug it off
+	if Main.demo_mode or OS.has_environment("PIU_DEMO"):
+		# demo/recording never dies — nudge to centre and shrug it off
 		global_position = Vector2.ZERO
 		return
 	_alive = false
