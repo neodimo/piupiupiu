@@ -16,6 +16,10 @@ var _dashing: bool = false
 var _dash_dir: Vector2 = Vector2.ZERO
 var _dash_time: float = 0.0
 var _orbit_angle: float = 0.0
+var _launch_vel: Vector2 = Vector2.ZERO
+
+func spawn_launch(vel: Vector2, _index: int, _count: int, _eject_dir: Vector2) -> void:
+	_launch_vel = vel
 
 func _ready() -> void:
 	_health = max_health
@@ -28,6 +32,9 @@ func _ready() -> void:
 	sprite.play("default")
 
 func _physics_process(delta: float) -> void:
+	if _launch_vel.length() > 8.0:
+		global_position += _launch_vel * delta
+		_launch_vel = _launch_vel.move_toward(Vector2.ZERO, 1100.0 * delta)
 	var player := Player.instance
 	if player == null:
 		return
@@ -65,8 +72,8 @@ func _die() -> void:
 	var grid := get_tree().get_first_node_in_group("spring_grid")
 	if grid != null and grid.has_method("disturb"):
 		grid.disturb(global_position, 1200.0)
-	Main.spawn_explosion(global_position)
-	Main.spawn_score_popup(global_position, points * GameSession.multiplier, Color(1.6, 0.8, 2.2))
+	Main.spawn_death_vfx(global_position, Color(0.5, 1.6, 2.2))
+	Main.spawn_score_popup(global_position, points * GameSession.multiplier, Color(0.6, 1.4, 2.4))
 	Main.spawn_mult_bits(global_position, 3, 7)
-	Input.vibrate_handheld(30)
+	Settings.buzz(30)
 	queue_free()

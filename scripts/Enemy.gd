@@ -10,6 +10,10 @@ extends Area2D
 var _health: float
 var _actual_speed: float = 0.0
 var _rand_speed: float = 0.0
+var _launch_vel: Vector2 = Vector2.ZERO
+
+func spawn_launch(vel: Vector2, _index: int, _count: int, _eject_dir: Vector2) -> void:
+	_launch_vel = vel
 
 func _ready() -> void:
 	_health = max_health
@@ -21,6 +25,10 @@ func _ready() -> void:
 	sprite.play("default")
 
 func _physics_process(delta: float) -> void:
+	# ejection kick from the emitter bleeds off before homing takes over
+	if _launch_vel.length() > 8.0:
+		global_position += _launch_vel * delta
+		_launch_vel = _launch_vel.move_toward(Vector2.ZERO, 1100.0 * delta)
 	var player := Player.instance
 	if player == null:
 		return
@@ -42,8 +50,8 @@ func _die() -> void:
 	var grid := get_tree().get_first_node_in_group("spring_grid")
 	if grid != null and grid.has_method("disturb"):
 		grid.disturb(global_position, 900.0)
-	Main.spawn_explosion(global_position)
+	Main.spawn_death_vfx(global_position, Color(0.4, 1.8, 0.7))
 	Main.spawn_score_popup(global_position, points * GameSession.multiplier)
 	Main.spawn_mult_bits(global_position, 1, 4)
-	Input.vibrate_handheld(18)
+	Settings.buzz(18)
 	queue_free()

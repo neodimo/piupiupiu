@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 
 func _collect() -> void:
 	GameSession.bump_multiplier()
-	Input.vibrate_handheld(8)
+	Settings.buzz(8)
 	var grid := get_tree().get_first_node_in_group("spring_grid")
 	if grid != null and grid.has_method("disturb"):
 		grid.disturb(global_position, 260.0, 120.0)

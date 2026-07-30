@@ -79,6 +79,8 @@ func _end_stick() -> void:
 func _physics_process(delta: float) -> void:
 	if not _alive:
 		return
+	if Main.demo_mode:
+		_autopilot(delta)
 	var prev := global_position
 	global_position += _joy_vec * move_speed * delta
 	global_position.x = clampf(global_position.x, -playfield_half.x, playfield_half.x)
@@ -93,6 +95,21 @@ func _physics_process(delta: float) -> void:
 	if _fire_cooldown <= 0.0:
 		_fire_cooldown = _cur_fire_period
 		_fire()
+
+## Demo autopilot for the title-screen background: drift on a lissajous path
+## while steering away from the nearest enemy. Just needs to look alive.
+var _demo_t: float = 0.0
+func _autopilot(delta: float) -> void:
+	_demo_t += delta
+	var wander := Vector2(sin(_demo_t * 0.7) * 360.0, cos(_demo_t * 0.9) * 620.0)
+	var flee := Vector2.ZERO
+	var e := _nearest_enemy()
+	if e != null:
+		var away := global_position - e.global_position
+		if away.length() < 320.0:
+			flee = away.normalized() * (320.0 - away.length()) * 3.0
+	var target := wander + flee
+	_joy_vec = (target - global_position).limit_length(joystick_radius) / joystick_radius
 
 func _fire() -> void:
 	if projectile_scene == null:
@@ -131,7 +148,11 @@ func _on_area_entered(a: Area2D) -> void:
 func hit() -> void:
 	if not _alive:
 		return
+	if Main.demo_mode:
+		# background demo never dies — nudge to centre and shrug it off
+		global_position = Vector2.ZERO
+		return
 	_alive = false
-	Input.vibrate_handheld(150)
+	Settings.buzz(150)
 	died.emit()
 	GameSession.end_run()
