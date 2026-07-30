@@ -19,10 +19,12 @@ func _ready() -> void:
 	_init_pos = global_position
 	add_to_group("enemies")
 	var sprite := $Sprite as AnimatedSprite2D
-	sprite.sprite_frames = SheetAnim.build(load("res://art/enemy_green_sheet.png"), 36, 20.0)
-	sprite.frame = randi() % 48
+	# Own art: neon-triangle "wave" enemy (2-frame pulse).
+	sprite.sprite_frames = SheetAnim.build_from_textures([
+		load("res://art/enemy_wave_1.png"), load("res://art/enemy_wave_2.png")
+	], 5.0)
+	sprite.frame = randi() % 2
 	sprite.play("default")
-	modulate = Color(0.2, 1.0, 0.9)
 
 func _physics_process(delta: float) -> void:
 	var player := Player.instance
@@ -37,12 +39,12 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount: float) -> void:
 	_health -= amount
-	modulate = Color(2.0, 2.0, 2.0)
+	modulate = Color(2.5, 2.5, 2.5)
 	if _health <= 0.0:
 		_die()
 	else:
 		var t := create_tween()
-		t.tween_property(self, "modulate", Color(0.2, 1.0, 0.9), 0.12)
+		t.tween_property(self, "modulate", Color.WHITE, 0.12)
 
 func _die() -> void:
 	GameSession.add_points(points)

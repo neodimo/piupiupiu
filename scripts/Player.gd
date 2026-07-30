@@ -12,8 +12,12 @@ static var instance: Player
 @export var fire_period: float = 0.28
 @export var projectile_scene: PackedScene
 @export var playfield_half: Vector2 = Vector2(520, 940)
+## Floating-joystick radius (px, in viewport space): full-tilt speed is reached
+## when the finger is this far from where the touch began.
+@export var joystick_radius: float = 220.0
 
-var _target: Vector2
+var _joy_origin: Vector2       # where the touch/press began (viewport space)
+var _joy_vec: Vector2          # current stick vector, magnitude 0..1
 var _dragging: bool = false
 var _fire_cooldown: float = 0.0
 var _alive: bool = true
@@ -22,7 +26,7 @@ var _cur_fire_period: float   # decreases on odd levels
 
 func _ready() -> void:
 	instance = self
-	_target = global_position
+	_joy_vec = Vector2.ZERO
 	_cur_fire_period = fire_period
 	add_to_group("player")
 	var sprite := $Sprite as AnimatedSprite2D
@@ -36,25 +40,47 @@ func _on_level_up(lv: int) -> void:
 	else:
 		_shot_count = min(_shot_count + 1, 5)
 
+## Floating virtual joystick: wherever a touch begins becomes the stick centre;
+## the offset of the finger from that centre (clamped to joystick_radius) drives
+## movement direction + speed. Lifting the finger stops the ship.
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
-		_dragging = event.pressed
 		if event.pressed:
-			_target = event.position - get_viewport_rect().size * 0.5
+			_begin_stick(event.position)
+		else:
+			_end_stick()
 	elif event is InputEventScreenDrag:
-		_target = event.position - get_viewport_rect().size * 0.5
-	elif event is InputEventMouseButton:
-		_dragging = event.pressed
+		_update_stick(event.position)
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			_target = get_global_mouse_position()
+			_begin_stick(event.position)
+		else:
+			_end_stick()
 	elif event is InputEventMouseMotion and _dragging:
-		_target = get_global_mouse_position()
+		_update_stick(event.position)
+
+func _begin_stick(pos: Vector2) -> void:
+	_dragging = true
+	_joy_origin = pos
+	_joy_vec = Vector2.ZERO
+
+func _update_stick(pos: Vector2) -> void:
+	if not _dragging:
+		return
+	var offset := pos - _joy_origin
+	if offset.length() > joystick_radius:
+		offset = offset.normalized() * joystick_radius
+	_joy_vec = offset / joystick_radius   # magnitude 0..1
+
+func _end_stick() -> void:
+	_dragging = false
+	_joy_vec = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
 	if not _alive:
 		return
 	var prev := global_position
-	global_position = global_position.move_toward(_target, move_speed * delta)
+	global_position += _joy_vec * move_speed * delta
 	global_position.x = clampf(global_position.x, -playfield_half.x, playfield_half.x)
 	global_position.y = clampf(global_position.y, -playfield_half.y, playfield_half.y)
 	var moved := global_position.distance_to(prev)

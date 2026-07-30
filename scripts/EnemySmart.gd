@@ -23,10 +23,9 @@ func _ready() -> void:
 	_dash_timer = randf_range(0.8, dash_interval)
 	add_to_group("enemies")
 	var sprite := $Sprite as AnimatedSprite2D
-	sprite.sprite_frames = SheetAnim.build(load("res://art/enemy_green_sheet.png"), 36, 20.0)
-	sprite.frame = randi() % 48
+	# Own art: cyan ring / pink-core "smart" enemy (static).
+	sprite.sprite_frames = SheetAnim.build_from_textures([load("res://art/enemy_smart.png")])
 	sprite.play("default")
-	modulate = Color(0.7, 0.3, 1.0)
 
 func _physics_process(delta: float) -> void:
 	var player := Player.instance
@@ -54,12 +53,12 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount: float) -> void:
 	_health -= amount
-	modulate = Color(2.0, 1.0, 2.0)
+	modulate = Color(2.5, 2.5, 2.5)
 	if _health <= 0.0:
 		_die()
 	else:
 		var t := create_tween()
-		t.tween_property(self, "modulate", Color(0.7, 0.3, 1.0), 0.12)
+		t.tween_property(self, "modulate", Color.WHITE, 0.12)
 
 func _die() -> void:
 	GameSession.add_points(points)
