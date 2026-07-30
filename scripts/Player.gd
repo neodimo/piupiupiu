@@ -17,14 +17,24 @@ var _target: Vector2
 var _dragging: bool = false
 var _fire_cooldown: float = 0.0
 var _alive: bool = true
+var _shot_count: int = 1      # increases on even levels
+var _cur_fire_period: float   # decreases on odd levels
 
 func _ready() -> void:
 	instance = self
 	_target = global_position
+	_cur_fire_period = fire_period
 	add_to_group("player")
 	var sprite := $Sprite as AnimatedSprite2D
 	sprite.sprite_frames = SheetAnim.build(load("res://art/player_sheet.png"), 36, 18.0)
 	sprite.play("default")
+	GameSession.leveled_up.connect(_on_level_up)
+
+func _on_level_up(lv: int) -> void:
+	if lv % 2 == 1:
+		_cur_fire_period = maxf(0.10, _cur_fire_period - 0.03)
+	else:
+		_shot_count = min(_shot_count + 1, 5)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
@@ -55,20 +65,25 @@ func _physics_process(delta: float) -> void:
 
 	_fire_cooldown -= delta
 	if _fire_cooldown <= 0.0:
-		_fire_cooldown = fire_period
+		_fire_cooldown = _cur_fire_period
 		_fire()
 
 func _fire() -> void:
 	if projectile_scene == null:
 		return
 	var enemy := _nearest_enemy()
-	var dir := Vector2.UP
+	var base_dir := Vector2.UP
 	if enemy != null:
-		dir = (enemy.global_position - global_position).normalized()
-	var shot := projectile_scene.instantiate()
-	get_parent().add_child(shot)
-	shot.global_position = global_position
-	shot.setup(dir)
+		base_dir = (enemy.global_position - global_position).normalized()
+	var spread_step := 0.18
+	var half := (_shot_count - 1) * 0.5
+	for i in _shot_count:
+		var angle := (i - half) * spread_step
+		var dir := base_dir.rotated(angle)
+		var shot := projectile_scene.instantiate()
+		get_parent().add_child(shot)
+		shot.global_position = global_position
+		shot.setup(dir)
 
 func _nearest_enemy() -> Node2D:
 	var best: Node2D = null

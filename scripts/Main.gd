@@ -6,6 +6,8 @@ static var instance: Main
 
 var _score_label: Label
 var _gameover_label: Label
+var _exp_bar: ProgressBar
+var _levelup_label: Label
 var _bgm: AudioStreamPlayer
 
 func _ready() -> void:
@@ -13,8 +15,12 @@ func _ready() -> void:
 	GameSession.reset()
 	GameSession.score_changed.connect(_on_score_changed)
 	GameSession.game_over.connect(_on_game_over)
+	GameSession.exp_changed.connect(_on_exp_changed)
+	GameSession.leveled_up.connect(_on_leveled_up)
 	_score_label = $HUD/Score
 	_gameover_label = $HUD/GameOver
+	_exp_bar = $HUD/ExpBar
+	_levelup_label = $HUD/LevelUp
 	_gameover_label.visible = false
 	_on_score_changed(0, 1)
 	_start_music()
@@ -29,7 +35,6 @@ func _start_music() -> void:
 	_bgm.finished.connect(_bgm.play)
 	_bgm.play()
 
-## Dev aid: render for `secs`, save a screenshot, then quit. Env-gated.
 func _capture_after(secs: float) -> void:
 	await get_tree().create_timer(secs).timeout
 	await RenderingServer.frame_post_draw
@@ -40,6 +45,17 @@ func _capture_after(secs: float) -> void:
 func _on_score_changed(score: int, mult: int) -> void:
 	if _score_label:
 		_score_label.text = "%d   x%d" % [score, mult]
+
+func _on_exp_changed(current_exp: int, required_exp: int, _lv: int) -> void:
+	if _exp_bar:
+		_exp_bar.max_value = required_exp
+		_exp_bar.value = current_exp
+
+func _on_leveled_up(_lv: int) -> void:
+	if _levelup_label:
+		_levelup_label.modulate.a = 1.0
+		var t := create_tween()
+		t.tween_property(_levelup_label, "modulate:a", 0.0, 1.4)
 
 func _on_game_over() -> void:
 	if _bgm:
@@ -58,7 +74,6 @@ func _on_game_over() -> void:
 	Input.vibrate_handheld(120)
 	get_tree().create_timer(3.0).timeout.connect(func(): get_tree().reload_current_scene())
 
-## Static helper so Enemy.gd can request an explosion burst without a hard ref.
 static func spawn_explosion(pos: Vector2) -> void:
 	if instance == null:
 		return
