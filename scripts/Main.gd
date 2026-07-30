@@ -4,10 +4,9 @@ class_name Main
 
 static var instance: Main
 
-@export var explosion_texture: Texture2D
-
 var _score_label: Label
 var _gameover_label: Label
+var _bgm: AudioStreamPlayer
 
 func _ready() -> void:
 	instance = self
@@ -18,8 +17,17 @@ func _ready() -> void:
 	_gameover_label = $HUD/GameOver
 	_gameover_label.visible = false
 	_on_score_changed(0, 1)
+	_start_music()
 	if OS.has_environment("PIU_CAPTURE"):
 		_capture_after(float(OS.get_environment("PIU_CAPTURE")))
+
+func _start_music() -> void:
+	_bgm = AudioStreamPlayer.new()
+	_bgm.stream = load("res://art/venus.wav")
+	_bgm.volume_db = -8.0
+	add_child(_bgm)
+	_bgm.finished.connect(_bgm.play)
+	_bgm.play()
 
 ## Dev aid: render for `secs`, save a screenshot, then quit. Env-gated.
 func _capture_after(secs: float) -> void:
@@ -34,9 +42,21 @@ func _on_score_changed(score: int, mult: int) -> void:
 		_score_label.text = "%d   x%d" % [score, mult]
 
 func _on_game_over() -> void:
+	if _bgm:
+		var t := create_tween()
+		t.tween_property(_bgm, "volume_db", -40.0, 1.2)
+		t.tween_callback(_bgm.stop)
 	if _gameover_label:
+		var hs := GameSession.high_score
+		var sc := GameSession.current_score
+		_gameover_label.text = "GAME OVER\n%d" % sc
+		if hs > sc:
+			_gameover_label.text += "\nBEST  %d" % hs
+		else:
+			_gameover_label.text += "\nNEW BEST!"
 		_gameover_label.visible = true
-	get_tree().create_timer(2.0).timeout.connect(func(): get_tree().reload_current_scene())
+	Input.vibrate_handheld(120)
+	get_tree().create_timer(3.0).timeout.connect(func(): get_tree().reload_current_scene())
 
 ## Static helper so Enemy.gd can request an explosion burst without a hard ref.
 static func spawn_explosion(pos: Vector2) -> void:

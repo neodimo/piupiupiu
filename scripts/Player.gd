@@ -91,5 +91,6 @@ func hit() -> void:
 	if not _alive:
 		return
 	_alive = false
+	Input.vibrate_handheld(150)
 	died.emit()
 	GameSession.end_run()

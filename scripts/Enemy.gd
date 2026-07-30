@@ -44,4 +44,5 @@ func _die() -> void:
 	if grid != null and grid.has_method("disturb"):
 		grid.disturb(global_position, 900.0)
 	Main.spawn_explosion(global_position)
+	Input.vibrate_handheld(18)
 	queue_free()
