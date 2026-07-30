@@ -15,6 +15,7 @@ var _bgm: AudioStreamPlayer
 
 func _ready() -> void:
 	instance = self
+	_apply_post_fx()
 	GameSession.reset()
 	GameSession.score_changed.connect(_on_score_changed)
 	GameSession.game_over.connect(_on_game_over)
@@ -61,6 +62,19 @@ func _apply_safe_area() -> void:
 	if _exp_bar:
 		_exp_bar.offset_top = -24.0 - bottom
 		_exp_bar.offset_bottom = -bottom
+
+## Push the dialable post-processing settings into the live environment + shader.
+func _apply_post_fx() -> void:
+	var we := get_node_or_null("WorldEnvironment") as WorldEnvironment
+	if we and we.environment:
+		we.environment.glow_intensity = Settings.fx_glow
+		we.environment.glow_bloom = Settings.fx_bloom
+	var screen := get_node_or_null("PostFX/Screen") as ColorRect
+	if screen and screen.material:
+		var m := screen.material as ShaderMaterial
+		m.set_shader_parameter("aberration", Settings.fx_aberration)
+		m.set_shader_parameter("vignette_strength", Settings.fx_vignette)
+		m.set_shader_parameter("grain", Settings.fx_grain)
 
 func _start_music() -> void:
 	_bgm = AudioStreamPlayer.new()

@@ -1,35 +1,143 @@
-extends Control
-## Settings page — music/sfx volume + haptics toggle, persisted via Settings.
-## Reached from the title screen; Back returns to the title.
+extends Node2D
+## Settings page. Runs the game as a live (dimmed) background so post-processing
+## changes are visible in real time while you dial in a sweet spot. Audio,
+## haptics, the full post-FX stack, and a god-mode toggle — all persisted.
 
-@onready var _music: HSlider = $Panel/VBox/MusicRow/MusicSlider
-@onready var _sfx: HSlider = $Panel/VBox/SfxRow/SfxSlider
-@onready var _haptics: CheckButton = $Panel/VBox/HapticsRow/HapticsCheck
-@onready var _preview: AudioStreamPlayer = $Preview
+var _demo: Node
+var _preview: AudioStreamPlayer
 
 func _ready() -> void:
-	_music.value = Settings.music_volume
-	_sfx.value = Settings.sfx_volume
-	_haptics.button_pressed = Settings.haptics
-	_music.value_changed.connect(_on_music)
-	_sfx.value_changed.connect(_on_sfx)
-	_haptics.toggled.connect(_on_haptics)
-	$Panel/VBox/BackBtn.pressed.connect(_on_back)
+	# live background demo so FX sliders show their effect immediately
+	Main.demo_mode = true
+	_demo = load("res://scenes/Main.tscn").instantiate()
+	add_child(_demo)
+	move_child(_demo, 0)
+
+	var layer := CanvasLayer.new()
+	layer.layer = 5
+	add_child(layer)
+
+	# dim scrim so the panel is readable over the game
+	var scrim := ColorRect.new()
+	scrim.color = Color(0.02, 0.02, 0.05, 0.55)
+	scrim.anchor_right = 1.0
+	scrim.anchor_bottom = 1.0
+	scrim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(scrim)
+
+	var scroll := ScrollContainer.new()
+	scroll.anchor_right = 1.0
+	scroll.anchor_bottom = 1.0
+	scroll.offset_left = 50
+	scroll.offset_top = 60
+	scroll.offset_right = -50
+	scroll.offset_bottom = -50
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	layer.add_child(scroll)
+
+	var vbox := VBoxContainer.new()
+	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	vbox.add_theme_constant_override("separation", 34)
+	scroll.add_child(vbox)
+
+	_title(vbox, "SETTINGS", 84)
+
+	_title(vbox, "AUDIO", 40)
+	_slider(vbox, "Music", Settings.music_volume, 0.0, 1.0, 0.01, func(v):
+		Settings.music_volume = v
+		if _preview: _preview.volume_db = Settings.music_db())
+	_slider(vbox, "SFX", Settings.sfx_volume, 0.0, 1.0, 0.01, func(v): Settings.sfx_volume = v)
+	_toggle(vbox, "Haptics", Settings.haptics, func(on):
+		Settings.haptics = on
+		Settings.buzz(20))
+
+	_title(vbox, "POST-PROCESSING", 40)
+	_slider(vbox, "Glow", Settings.fx_glow, 0.0, 3.0, 0.05, func(v):
+		Settings.fx_glow = v
+		_reapply())
+	_slider(vbox, "Bloom", Settings.fx_bloom, 0.0, 0.6, 0.01, func(v):
+		Settings.fx_bloom = v
+		_reapply())
+	_slider(vbox, "Aberration", Settings.fx_aberration, 0.0, 5.0, 0.1, func(v):
+		Settings.fx_aberration = v
+		_reapply())
+	_slider(vbox, "Vignette", Settings.fx_vignette, 0.0, 1.0, 0.01, func(v):
+		Settings.fx_vignette = v
+		_reapply())
+	_slider(vbox, "Grain", Settings.fx_grain, 0.0, 0.08, 0.002, func(v):
+		Settings.fx_grain = v
+		_reapply())
+
+	_title(vbox, "TESTING", 40)
+	_toggle(vbox, "God Mode", Settings.god_mode, func(on): Settings.god_mode = on)
+
+	var back := Button.new()
+	back.text = "BACK"
+	back.add_theme_font_size_override("font_size", 52)
+	back.custom_minimum_size = Vector2(0, 110)
+	back.pressed.connect(_on_back)
+	vbox.add_child(back)
+
+	_preview = AudioStreamPlayer.new()
 	_preview.stream = load("res://art/venus.wav")
 	_preview.volume_db = Settings.music_db()
+	add_child(_preview)
 	_preview.play()
 
-func _on_music(v: float) -> void:
-	Settings.music_volume = v
-	_preview.volume_db = Settings.music_db()
+## Re-push post-FX into the live demo so slider changes show immediately.
+func _reapply() -> void:
+	if _demo and _demo.has_method("_apply_post_fx"):
+		_demo._apply_post_fx()
 
-func _on_sfx(v: float) -> void:
-	Settings.sfx_volume = v
+func _title(parent: Node, text: String, size: int) -> void:
+	var l := Label.new()
+	l.text = text
+	l.add_theme_font_size_override("font_size", size)
+	parent.add_child(l)
 
-func _on_haptics(on: bool) -> void:
-	Settings.haptics = on
-	Settings.buzz(20)   # feedback when enabling
+func _slider(parent: Node, name: String, value: float, lo: float, hi: float, step: float, on_change: Callable) -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 24)
+	var lbl := Label.new()
+	lbl.text = name
+	lbl.custom_minimum_size = Vector2(300, 0)
+	lbl.add_theme_font_size_override("font_size", 40)
+	row.add_child(lbl)
+	var s := HSlider.new()
+	s.min_value = lo
+	s.max_value = hi
+	s.step = step
+	s.value = value
+	s.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	s.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	s.custom_minimum_size = Vector2(0, 60)
+	var val := Label.new()
+	val.custom_minimum_size = Vector2(130, 0)
+	val.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	val.add_theme_font_size_override("font_size", 34)
+	val.text = "%.2f" % value
+	s.value_changed.connect(func(v):
+		val.text = "%.2f" % v
+		on_change.call(v))
+	row.add_child(s)
+	row.add_child(val)
+	parent.add_child(row)
+
+func _toggle(parent: Node, name: String, value: bool, on_change: Callable) -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 24)
+	var lbl := Label.new()
+	lbl.text = name
+	lbl.custom_minimum_size = Vector2(300, 0)
+	lbl.add_theme_font_size_override("font_size", 40)
+	row.add_child(lbl)
+	var chk := CheckButton.new()
+	chk.button_pressed = value
+	chk.toggled.connect(func(on): on_change.call(on))
+	row.add_child(chk)
+	parent.add_child(row)
 
 func _on_back() -> void:
 	Settings.save_settings()
+	Main.demo_mode = false
 	get_tree().change_scene_to_file("res://scenes/TitleScreen.tscn")

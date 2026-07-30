@@ -95,6 +95,16 @@ func _physics_process(delta: float) -> void:
 	if _fire_cooldown <= 0.0:
 		_fire_cooldown = _cur_fire_period
 		_fire()
+	queue_redraw()   # targeting line
+
+## Faint targeting line to the nearest enemy (Unity DrawLineToClosestEnemy).
+func _draw() -> void:
+	if not _alive:
+		return
+	var e := _nearest_enemy()
+	if e == null:
+		return
+	draw_line(Vector2.ZERO, to_local(e.global_position), Color(0.5, 1.1, 2.0, 0.28), 2.0, true)
 
 ## Demo autopilot for the title-screen background: drift on a lissajous path
 ## while steering away from the nearest enemy. Just needs to look alive.
@@ -152,6 +162,8 @@ func hit() -> void:
 		# demo/recording never dies — nudge to centre and shrug it off
 		global_position = Vector2.ZERO
 		return
+	if Settings.god_mode:
+		return   # invulnerable for testing mechanics
 	_alive = false
 	Settings.buzz(150)
 	died.emit()
