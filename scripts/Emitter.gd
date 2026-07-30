@@ -12,6 +12,9 @@ class_name Emitter
 @export var eject_speed: float = 520.0
 @export var spread: float = 120.0          # perpendicular spacing between ejected enemies
 @export var tint: Color = Color(1.6, 1.2, 2.4)
+## Only the wave enemies use the long (elongated) emitter; everything else uses
+## the same pill art squished into a circle.
+@export var elongated: bool = false
 
 var _sprite: Sprite2D
 
@@ -19,9 +22,16 @@ func _ready() -> void:
 	_sprite = Sprite2D.new()
 	_sprite.texture = load("res://art/emitter.png")
 	_sprite.modulate = tint
-	# orient the pill so its long axis lies along the edge (perpendicular to eject)
-	_sprite.rotation = eject_dir.angle() + PI * 0.5
-	_sprite.scale = Vector2(0.1, 0.1)
+	# The pill art is ~3:1. Elongated pods lie along the edge (long axis
+	# perpendicular to the eject direction); everything else is squished to a circle.
+	var base_scale: Vector2
+	if elongated:
+		_sprite.rotation = eject_dir.angle() + PI * 0.5
+		base_scale = Vector2(0.5, 0.42)
+	else:
+		_sprite.rotation = 0.0
+		base_scale = Vector2(0.16, 0.42)   # 3:1 art squished → round
+	_sprite.scale = base_scale * 0.24
 	add_child(_sprite)
 
 	var grid := get_tree().get_first_node_in_group("spring_grid")
@@ -30,12 +40,12 @@ func _ready() -> void:
 
 	# telegraph: pop in, pulse, then eject
 	var t := create_tween()
-	t.tween_property(_sprite, "scale", Vector2(0.42, 0.42), 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(_sprite, "scale", base_scale, 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	t.tween_property(_sprite, "modulate:a", 0.55, 0.18)
 	t.tween_property(_sprite, "modulate:a", 1.0, 0.18)
 	t.tween_interval(maxf(0.0, warn_time - 0.58))
 	t.tween_callback(_eject)
-	t.tween_property(_sprite, "scale", Vector2(0.52, 0.52), 0.12)
+	t.tween_property(_sprite, "scale", base_scale * 1.24, 0.12)
 	t.parallel().tween_property(_sprite, "modulate:a", 0.0, 0.35)
 	t.tween_callback(queue_free)
 

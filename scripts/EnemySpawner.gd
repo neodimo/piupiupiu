@@ -56,12 +56,14 @@ func _spawn() -> void:
 		e.global_position = pos
 		return
 
+	# Configure BEFORE add_child so _ready() sees the final position + params
+	# (otherwise the pod's spawn-disturb fires at world-origin, pinching centre).
 	var pod := emitter_scene.instantiate() as Emitter
-	get_parent().add_child(pod)
-	pod.global_position = pos
+	pod.position = pos
 	pod.enemy_scene = scene
 	pod.eject_dir = eject
 	if scene == enemy_wave_scene:
+		pod.elongated = true              # only wave enemies use the long emitter
 		pod.count = randi_range(4, 6)     # a curtain
 		pod.eject_speed = 380.0
 		pod.spread = 130.0
@@ -77,6 +79,7 @@ func _spawn() -> void:
 		pod.eject_speed = 540.0
 		pod.warn_time = 0.55
 		pod.tint = Color(1.4, 1.9, 1.2)
+	get_parent().add_child(pod)
 
 func _pick_scene() -> PackedScene:
 	var wave_w := clampf((_elapsed - 20.0) / 40.0, 0.0, 0.35)

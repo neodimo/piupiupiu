@@ -20,6 +20,7 @@ extends Node2D
 var _rest: PackedVector2Array = PackedVector2Array()
 var _pos: PackedVector2Array = PackedVector2Array()
 var _vel: PackedVector2Array = PackedVector2Array()
+var _hue_time: float = 0.0   # drives the psychedelic hue cycling
 
 func _idx(c: int, r: int) -> int:
 	return r * cols + c
@@ -67,6 +68,7 @@ func _physics_process(delta: float) -> void:
 				_vel[j2] -= f2
 	for i in n:
 		_pos[i] += _vel[i] * delta
+	_hue_time += delta
 	queue_redraw()
 
 ## Displacement magnitude of a grid point from its rest position.
@@ -76,21 +78,19 @@ func _disp(i: int) -> float:
 ## Map a line's energy (avg endpoint displacement) to a glowing HDR colour.
 ## Rest → dim blue; energetic → saturated cyan/green/yellow boosted past 1.0
 ## so bloom catches it. This is the "colourful and amazing" grid feel.
-func _line_color(energy: float) -> Color:
-	var t := clampf(energy / color_energy_scale, 0.0, 1.0)
-	if t <= 0.001:
+func _line_color(energy: float, mid: Vector2) -> Color:
+	var e := clampf(energy / color_energy_scale, 0.0, 1.0)
+	if e <= 0.001:
 		return rest_color
-	# Hue sweep: 0.60 (blue) → 0.16 (hot yellow-orange) as energy rises.
-	var hue := 0.60 - 0.44 * t
-	var sat := lerpf(0.55, 1.0, t)
-	var val := lerpf(0.7, 1.0, t)
-	var c := Color.from_hsv(hue, sat, val)
-	# HDR boost for glow + rising opacity.
-	var boost := 1.0 + t * t * 2.4
+	# Hue sweeps the FULL colour wheel over time + space (not tied to energy),
+	# so disturbances shimmer through the whole rainbow — psychedelic, not green.
+	var hue := fposmod(_hue_time * 0.35 + mid.length() * 0.0017 + mid.x * 0.0007, 1.0)
+	var c := Color.from_hsv(hue, 0.92, 1.0)
+	var boost := 1.0 + e * e * 2.8
 	c.r *= boost
 	c.g *= boost
 	c.b *= boost
-	c.a = lerpf(rest_color.a, 1.0, t)
+	c.a = lerpf(rest_color.a, 1.0, e)
 	return c
 
 func _draw() -> void:
@@ -100,12 +100,14 @@ func _draw() -> void:
 			if c + 1 < cols:
 				var j := _idx(c + 1, r)
 				var e := (_disp(i) + _disp(j)) * 0.5
-				var col := _line_color(e)
+				var mid := (_pos[i] + _pos[j]) * 0.5
+				var col := _line_color(e, mid)
 				var w := 1.5 + clampf(e / color_energy_scale, 0.0, 1.0) * 1.5
 				draw_line(_pos[i], _pos[j], col, w, true)
 			if r + 1 < rows:
 				var j2 := _idx(c, r + 1)
 				var e2 := (_disp(i) + _disp(j2)) * 0.5
-				var col2 := _line_color(e2)
+				var mid2 := (_pos[i] + _pos[j2]) * 0.5
+				var col2 := _line_color(e2, mid2)
 				var w2 := 1.5 + clampf(e2 / color_energy_scale, 0.0, 1.0) * 1.5
 				draw_line(_pos[i], _pos[j2], col2, w2, true)

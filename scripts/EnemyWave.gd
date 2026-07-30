@@ -1,36 +1,25 @@
 extends Area2D
-## Wave enemy — ejected from an edge emitter, then patrols in formation ALONG
-## that edge (a bobbing curtain that slides side to side and bounces at the
-## bounds), the way the Unity EnemyWave curtain behaves. It does not home the
-## player; it's a moving wall you weave through. Own art: 2-frame neon triangle.
+## Wave enemy — ejected straight out of the elongated emitter, then travels in a
+## strict straight line across the field. When it reaches the far side it turns
+## 180° and retraces its path, back and forth. Its narrow pointy front always
+## faces the direction it's moving. A row of them = a wall you weave through.
+## Own art: 2-frame neon triangle.
 
-@export var patrol_speed: float = 240.0
-@export var bob_amplitude: float = 70.0
-@export var bob_frequency: float = 2.0
-@export var settle_depth: float = 150.0     # how far inward it settles from the edge
+@export var patrol_speed: float = 260.0
 @export var max_health: float = 60.0
 @export var points: int = 10
-@export var bounds: Vector2 = Vector2(520, 950)
+@export var bounds: Vector2 = Vector2(540, 1160)
 
 var _health: float
-var _time: float = 0.0
-var _inward: Vector2 = Vector2.DOWN         # toward the arena centre
-var _patrol_dir: Vector2 = Vector2.RIGHT    # along the edge
-var _base: Vector2                          # settle-line anchor (bob pivots around this)
-var _launch_vel: Vector2 = Vector2.ZERO
-var _settle_t: float = 0.6                   # ejection/settle phase timer
+var _dir: Vector2 = Vector2.DOWN            # strict straight travel direction
 
-func spawn_launch(vel: Vector2, index: int, _count: int, eject_dir: Vector2) -> void:
-	_launch_vel = vel
-	_inward = eject_dir.normalized()
-	_patrol_dir = _inward.orthogonal()
-	# alternate initial slide direction is shared across the row via a coin flip
-	if (index % 2) == 1:
-		_patrol_dir = -_patrol_dir
+func spawn_launch(_vel: Vector2, _index: int, _count: int, eject_dir: Vector2) -> void:
+	# travel straight inward, exactly along the emitter's outward normal
+	_dir = eject_dir.normalized()
+	_orient()
 
 func _ready() -> void:
 	_health = max_health
-	_time = randf_range(0.0, TAU)
 	add_to_group("enemies")
 	var sprite := $Sprite as AnimatedSprite2D
 	sprite.sprite_frames = SheetAnim.build_from_textures([
@@ -38,29 +27,24 @@ func _ready() -> void:
 	], 5.0)
 	sprite.frame = randi() % 2
 	sprite.play("default")
-	# settle line = current pos pushed inward by settle_depth
-	_base = global_position + _inward * settle_depth
+	_orient()
+
+## Point the narrow (pointy) side of the triangle in the travel direction.
+## The art's point faces up (-Y) at zero rotation, so add a quarter turn.
+func _orient() -> void:
+	($Sprite as Node2D).rotation = _dir.angle() + PI * 0.5
 
 func _physics_process(delta: float) -> void:
-	_time += delta
-	if _settle_t > 0.0:
-		# ejection: fly out from the pod, easing into the settle line
-		_settle_t -= delta
-		global_position += _launch_vel * delta
-		_launch_vel = _launch_vel.move_toward(Vector2.ZERO, 900.0 * delta)
-		global_position = global_position.move_toward(_base, 260.0 * delta)
-		return
-	# patrol along the edge, bounce at bounds
-	_base += _patrol_dir * patrol_speed * delta
-	if absf(_base.x) > bounds.x:
-		_base.x = clampf(_base.x, -bounds.x, bounds.x)
-		_patrol_dir.x = -_patrol_dir.x
-	if absf(_base.y) > bounds.y:
-		_base.y = clampf(_base.y, -bounds.y, bounds.y)
-		_patrol_dir.y = -_patrol_dir.y
-	# bob in/out perpendicular to the patrol direction
-	var bob := _inward * sin(_time * bob_frequency) * bob_amplitude
-	global_position = _base + bob
+	global_position += _dir * patrol_speed * delta
+	# turn 180° at the far side and keep going
+	if _dir.x > 0.0 and global_position.x > bounds.x:
+		global_position.x = bounds.x; _dir = -_dir; _orient()
+	elif _dir.x < 0.0 and global_position.x < -bounds.x:
+		global_position.x = -bounds.x; _dir = -_dir; _orient()
+	elif _dir.y > 0.0 and global_position.y > bounds.y:
+		global_position.y = bounds.y; _dir = -_dir; _orient()
+	elif _dir.y < 0.0 and global_position.y < -bounds.y:
+		global_position.y = -bounds.y; _dir = -_dir; _orient()
 
 func take_damage(amount: float) -> void:
 	_health -= amount

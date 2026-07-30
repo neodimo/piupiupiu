@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	if moved > 0.5:
 		var grid := get_tree().get_first_node_in_group("spring_grid")
 		if grid != null and grid.has_method("disturb"):
-			grid.disturb(global_position, moved * 3.5, 90.0)
+			grid.disturb(global_position, moved * 8.5, 55.0)
 
 	_fire_cooldown -= delta
 	if _fire_cooldown <= 0.0:
