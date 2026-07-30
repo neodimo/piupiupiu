@@ -43,9 +43,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if not _alive:
 		return
+	var prev := global_position
 	global_position = global_position.move_toward(_target, move_speed * delta)
 	global_position.x = clampf(global_position.x, -playfield_half.x, playfield_half.x)
 	global_position.y = clampf(global_position.y, -playfield_half.y, playfield_half.y)
+	var moved := global_position.distance_to(prev)
+	if moved > 0.5:
+		var grid := get_tree().get_first_node_in_group("spring_grid")
+		if grid != null and grid.has_method("disturb"):
+			grid.disturb(global_position, moved * 3.5, 90.0)
 
 	_fire_cooldown -= delta
 	if _fire_cooldown <= 0.0:
