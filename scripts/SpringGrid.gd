@@ -7,8 +7,8 @@ extends Node2D
 ## → hot yellow where the grid is violently pushed). Colours are pushed into
 ## HDR range so the WorldEnvironment glow blooms the energetic lines.
 
-@export var cols: int = 22
-@export var rows: int = 38
+@export var cols: int = 24
+@export var rows: int = 48
 @export var spacing: float = 50.0
 @export var stiffness: float = 28.0      # pull back toward rest
 @export var link_stiffness: float = 12.0 # pull toward neighbours

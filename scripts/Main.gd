@@ -30,8 +30,37 @@ func _ready() -> void:
 		$HUD.visible = false
 	else:
 		_start_music()
+		_apply_safe_area.call_deferred()
 	if OS.has_environment("PIU_CAPTURE"):
 		_capture_after(float(OS.get_environment("PIU_CAPTURE")))
+
+## Inset the HUD out of the iPhone Dynamic Island / notch (top) and the home
+## indicator (bottom), using the OS-reported safe area mapped into viewport space.
+## On devices with no cutout the insets are zero and nothing moves.
+func _apply_safe_area() -> void:
+	# Safe-area cutouts (Dynamic Island / notch / home indicator) only exist on
+	# mobile; on desktop/headless the reported area is unrelated to the window,
+	# so skip and let the HUD sit at the true screen edges.
+	if OS.get_name() != "iOS" and OS.get_name() != "Android":
+		return
+	var win := DisplayServer.window_get_size()
+	var safe := DisplayServer.get_display_safe_area()
+	if win.x <= 0 or win.y <= 0 or safe.size.x <= 0 or safe.size.y <= 0:
+		return
+	var vis := get_viewport().get_visible_rect().size
+	var sy := vis.y / float(win.y)
+	var sx := vis.x / float(win.x)
+	var cap_y := win.y * 0.2
+	var cap_x := win.x * 0.2
+	var top := clampf(safe.position.y, 0.0, cap_y) * sy
+	var bottom := clampf(win.y - (safe.position.y + safe.size.y), 0.0, cap_y) * sy
+	var left := clampf(safe.position.x, 0.0, cap_x) * sx
+	if _score_label:
+		_score_label.offset_left = 40.0 + left
+		_score_label.offset_top = 30.0 + top
+	if _exp_bar:
+		_exp_bar.offset_top = -24.0 - bottom
+		_exp_bar.offset_bottom = -bottom
 
 func _start_music() -> void:
 	_bgm = AudioStreamPlayer.new()
