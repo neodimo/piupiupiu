@@ -75,6 +75,10 @@ func _apply_post_fx() -> void:
 		m.set_shader_parameter("aberration", Settings.fx_aberration)
 		m.set_shader_parameter("vignette_strength", Settings.fx_vignette)
 		m.set_shader_parameter("grain", Settings.fx_grain)
+		m.set_shader_parameter("saturation", Settings.fx_saturation)
+		m.set_shader_parameter("contrast", Settings.fx_contrast)
+		m.set_shader_parameter("brightness", Settings.fx_brightness)
+		m.set_shader_parameter("lens_distortion", Settings.fx_lens_distortion)
 
 func _start_music() -> void:
 	_bgm = AudioStreamPlayer.new()

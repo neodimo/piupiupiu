@@ -14,6 +14,15 @@ var fx_bloom: float = 0.0       # global bloom / lift (0..0.6) — raises blacks
 var fx_aberration: float = 1.3  # chromatic aberration (0..5)
 var fx_vignette: float = 0.55   # edge darkening (0..1)
 var fx_grain: float = 0.012     # film grain (0..0.08)
+var fx_saturation: float = 1.0  # color grade saturation (0..2)
+var fx_contrast: float = 1.0    # color grade contrast (0.5..1.8)
+var fx_brightness: float = 0.0  # color grade lift (-0.25..0.25)
+var fx_lens_distortion: float = 0.0 # barrel/pincushion strength (-0.35..0.35)
+
+# Enemy filters — useful for parity/debug runs and for tuning one behavior at a time.
+var enemy_basic_enabled: bool = true
+var enemy_wave_enabled: bool = true
+var enemy_smart_enabled: bool = true
 
 var god_mode: bool = false      # player can't die — for testing mechanics
 
@@ -40,7 +49,14 @@ func save_settings() -> void:
 	cfg.set_value("fx", "aberration", fx_aberration)
 	cfg.set_value("fx", "vignette", fx_vignette)
 	cfg.set_value("fx", "grain", fx_grain)
+	cfg.set_value("fx", "saturation", fx_saturation)
+	cfg.set_value("fx", "contrast", fx_contrast)
+	cfg.set_value("fx", "brightness", fx_brightness)
+	cfg.set_value("fx", "lens_distortion", fx_lens_distortion)
 	cfg.set_value("debug", "god_mode", god_mode)
+	cfg.set_value("enemies", "basic", enemy_basic_enabled)
+	cfg.set_value("enemies", "wave", enemy_wave_enabled)
+	cfg.set_value("enemies", "smart", enemy_smart_enabled)
 	cfg.save(_PATH)
 
 func load_settings() -> void:
@@ -55,4 +71,11 @@ func load_settings() -> void:
 	fx_aberration = cfg.get_value("fx", "aberration", fx_aberration)
 	fx_vignette = cfg.get_value("fx", "vignette", fx_vignette)
 	fx_grain = cfg.get_value("fx", "grain", fx_grain)
+	fx_saturation = cfg.get_value("fx", "saturation", fx_saturation)
+	fx_contrast = cfg.get_value("fx", "contrast", fx_contrast)
+	fx_brightness = cfg.get_value("fx", "brightness", fx_brightness)
+	fx_lens_distortion = cfg.get_value("fx", "lens_distortion", fx_lens_distortion)
 	god_mode = cfg.get_value("debug", "god_mode", god_mode)
+	enemy_basic_enabled = cfg.get_value("enemies", "basic", enemy_basic_enabled)
+	enemy_wave_enabled = cfg.get_value("enemies", "wave", enemy_wave_enabled)
+	enemy_smart_enabled = cfg.get_value("enemies", "smart", enemy_smart_enabled)

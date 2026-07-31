@@ -82,11 +82,20 @@ func _spawn() -> void:
 	get_parent().add_child(pod)
 
 func _pick_scene() -> PackedScene:
+	var basic_ok := Settings.enemy_basic_enabled and enemy_scene != null
+	var wave_ok := Settings.enemy_wave_enabled and enemy_wave_scene != null
+	var smart_ok := Settings.enemy_smart_enabled and enemy_smart_scene != null
+	if not basic_ok and not wave_ok and not smart_ok:
+		return null
 	var wave_w := clampf((_elapsed - 20.0) / 40.0, 0.0, 0.35)
 	var smart_w := clampf((_elapsed - 60.0) / 60.0, 0.0, 0.25)
 	var r := randf()
-	if r < smart_w and enemy_smart_scene != null:
+	if r < smart_w and smart_ok:
 		return enemy_smart_scene
-	if r < smart_w + wave_w and enemy_wave_scene != null:
+	if r < smart_w + wave_w and wave_ok:
 		return enemy_wave_scene
-	return enemy_scene
+	if basic_ok:
+		return enemy_scene
+	if wave_ok:
+		return enemy_wave_scene
+	return enemy_smart_scene

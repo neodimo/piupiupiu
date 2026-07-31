@@ -67,8 +67,28 @@ func _ready() -> void:
 	_slider(vbox, "Grain", Settings.fx_grain, 0.0, 0.08, 0.002, func(v):
 		Settings.fx_grain = v
 		_reapply())
+	_slider(vbox, "Saturation", Settings.fx_saturation, 0.0, 2.0, 0.01, func(v):
+		Settings.fx_saturation = v
+		_reapply())
+	_slider(vbox, "Contrast", Settings.fx_contrast, 0.5, 1.8, 0.01, func(v):
+		Settings.fx_contrast = v
+		_reapply())
+	_slider(vbox, "Brightness", Settings.fx_brightness, -0.25, 0.25, 0.01, func(v):
+		Settings.fx_brightness = v
+		_reapply())
+	_slider(vbox, "Lens / Barrel", Settings.fx_lens_distortion, -0.35, 0.35, 0.01, func(v):
+		Settings.fx_lens_distortion = v
+		_reapply())
 
-	_title(vbox, "TESTING", 40)
+	_title(vbox, "ENEMY TESTING", 40)
+	_toggle(vbox, "Basic / Green", Settings.enemy_basic_enabled, func(on):
+		Settings.enemy_basic_enabled = on)
+	_toggle(vbox, "Wave", Settings.enemy_wave_enabled, func(on):
+		Settings.enemy_wave_enabled = on)
+	_toggle(vbox, "Smart", Settings.enemy_smart_enabled, func(on):
+		Settings.enemy_smart_enabled = on)
+
+	_title(vbox, "DEBUG", 40)
 	_toggle(vbox, "God Mode", Settings.god_mode, func(on): Settings.god_mode = on)
 
 	var back := Button.new()

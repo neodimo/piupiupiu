@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/EnemySmart.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://scenes/Emitter.tscn" id="8"]
 [ext_resource type="Shader" path="res://art/post_fx.gdshader" id="9"]
+[ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="10"]
 
 [sub_resource type="Environment" id="env1"]
 background_mode = 3
@@ -101,3 +102,6 @@ offset_top = -120.0
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 80
 text = "GAME OVER"
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+script = ExtResource("10")
