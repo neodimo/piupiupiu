@@ -7,9 +7,12 @@ extends Node2D
 ## → hot yellow where the grid is violently pushed). Colours are pushed into
 ## HDR range so the WorldEnvironment glow blooms the energetic lines.
 
-@export var cols: int = 24
-@export var rows: int = 48
+## The grid is an arena-sized world surface. It intentionally extends beyond
+## the portrait viewport so camera travel reveals new grid space.
+@export var cols: int = 40
+@export var rows: int = 72
 @export var spacing: float = 50.0
+@export var arena_half: Vector2 = Vector2(950.0, 1750.0)
 @export var stiffness: float = 28.0      # pull back toward rest
 @export var link_stiffness: float = 12.0 # pull toward neighbours
 @export var damping: float = 4.0
@@ -26,6 +29,9 @@ func _idx(c: int, r: int) -> int:
 	return r * cols + c
 
 func _ready() -> void:
+	# Keep the declared arena and lattice in agreement if either is tuned.
+	cols = maxi(cols, int(ceil(arena_half.x * 2.0 / spacing)) + 1)
+	rows = maxi(rows, int(ceil(arena_half.y * 2.0 / spacing)) + 1)
 	var origin := Vector2(-(cols - 1) * spacing * 0.5, -(rows - 1) * spacing * 0.5)
 	for r in rows:
 		for c in cols:

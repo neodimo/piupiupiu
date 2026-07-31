@@ -10,7 +10,7 @@ extends Node2D
 @export var spawn_interval: float = 1.4
 @export var min_interval: float = 0.32
 @export var ramp_per_wave: float = 0.035
-@export var edge: Vector2 = Vector2(560, 980)
+@export var edge: Vector2 = Vector2(950, 1750)
 
 var _timer: float = 0.0
 var _interval: float

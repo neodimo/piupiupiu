@@ -8,7 +8,7 @@ extends Area2D
 @export var patrol_speed: float = 260.0
 @export var max_health: float = 60.0
 @export var points: int = 10
-@export var bounds: Vector2 = Vector2(540, 1160)
+@export var bounds: Vector2 = Vector2(900, 1650)
 
 var _health: float
 var _dir: Vector2 = Vector2.DOWN            # strict straight travel direction

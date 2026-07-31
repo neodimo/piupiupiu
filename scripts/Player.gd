@@ -11,7 +11,7 @@ static var instance: Player
 @export var move_speed: float = 900.0
 @export var fire_period: float = 0.28
 @export var projectile_scene: PackedScene
-@export var playfield_half: Vector2 = Vector2(520, 940)
+@export var playfield_half: Vector2 = Vector2(900, 1650)
 ## Floating-joystick radius (px, in viewport space): full-tilt speed is reached
 ## when the finger is this far from where the touch began.
 @export var joystick_radius: float = 220.0
