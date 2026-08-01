@@ -25,6 +25,8 @@ var _shot_count: int = 1
 var _cur_fire_period: float
 var _drone_count: int = 0
 var _drone_ring: Node2D
+var _projectile_damage: float = 50.0
+var _projectile_pierce: int = 0
 
 func _ready() -> void:
 	instance = self
@@ -46,6 +48,13 @@ func apply_upgrade(kind: String) -> void:
 			_shot_count = min(_shot_count + 1, 5)
 		"overcharge":
 			_cur_fire_period = maxf(0.10, _cur_fire_period * 0.84)
+		"drone_swarm":
+			_drone_count = min(_drone_count + 2, 6)
+			_drone_ring.count = _drone_count
+		"pierce":
+			_projectile_pierce = min(_projectile_pierce + 1, 4)
+		"amplify":
+			_projectile_damage = min(_projectile_damage + 18.0, 140.0)
 
 ## Floating virtual joystick: wherever a touch begins becomes the stick centre;
 ## the offset of the finger from that centre (clamped to joystick_radius) drives
@@ -96,7 +105,7 @@ func _physics_process(delta: float) -> void:
 	if moved > 0.5:
 		var grid := get_tree().get_first_node_in_group("spring_grid")
 		if grid != null and grid.has_method("disturb"):
-			grid.disturb(global_position, moved * 8.5, 55.0)
+			grid.disturb(global_position, moved * Settings.player_distortion, clampf(45.0 + Settings.player_distortion * 2.2, 55.0, 125.0))
 
 	_fire_cooldown -= delta
 	if _fire_cooldown <= 0.0:
@@ -143,7 +152,7 @@ func _fire() -> void:
 		var shot := projectile_scene.instantiate()
 		get_parent().add_child(shot)
 		shot.global_position = global_position
-		shot.setup(dir)
+		shot.setup(dir, _projectile_damage, _projectile_pierce)
 	# Orbit drones visibly escort the ship and fire independently from their
 	# current positions. One upgrade therefore changes both the silhouette and
 	# the combat pattern.
@@ -155,7 +164,7 @@ func _fire() -> void:
 		var drone_shot := projectile_scene.instantiate()
 		get_parent().add_child(drone_shot)
 		drone_shot.global_position = drone_pos
-		drone_shot.setup(drone_dir)
+		drone_shot.setup(drone_dir, _projectile_damage * 0.80, _projectile_pierce)
 
 func _nearest_enemy() -> Node2D:
 	var best: Node2D = null

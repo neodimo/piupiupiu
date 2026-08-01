@@ -18,11 +18,13 @@ var fx_saturation: float = 1.0  # color grade saturation (0..2)
 var fx_contrast: float = 1.0    # color grade contrast (0.5..1.8)
 var fx_brightness: float = 0.0  # color grade lift (-0.25..0.25)
 var fx_lens_distortion: float = 0.0 # barrel/pincushion strength (-0.35..0.35)
+var player_distortion: float = 16.0 # player movement distortion strength (4..35)
 
 # Enemy filters — useful for parity/debug runs and for tuning one behavior at a time.
 var enemy_basic_enabled: bool = true
 var enemy_wave_enabled: bool = true
 var enemy_smart_enabled: bool = true
+var enemy_boss_enabled: bool = true
 
 var god_mode: bool = false      # player can't die — for testing mechanics
 
@@ -53,10 +55,12 @@ func save_settings() -> void:
 	cfg.set_value("fx", "contrast", fx_contrast)
 	cfg.set_value("fx", "brightness", fx_brightness)
 	cfg.set_value("fx", "lens_distortion", fx_lens_distortion)
+	cfg.set_value("gameplay", "player_distortion", player_distortion)
 	cfg.set_value("debug", "god_mode", god_mode)
 	cfg.set_value("enemies", "basic", enemy_basic_enabled)
 	cfg.set_value("enemies", "wave", enemy_wave_enabled)
 	cfg.set_value("enemies", "smart", enemy_smart_enabled)
+	cfg.set_value("enemies", "boss", enemy_boss_enabled)
 	cfg.save(_PATH)
 
 func load_settings() -> void:
@@ -75,7 +79,9 @@ func load_settings() -> void:
 	fx_contrast = cfg.get_value("fx", "contrast", fx_contrast)
 	fx_brightness = cfg.get_value("fx", "brightness", fx_brightness)
 	fx_lens_distortion = cfg.get_value("fx", "lens_distortion", fx_lens_distortion)
+	player_distortion = cfg.get_value("gameplay", "player_distortion", player_distortion)
 	god_mode = cfg.get_value("debug", "god_mode", god_mode)
 	enemy_basic_enabled = cfg.get_value("enemies", "basic", enemy_basic_enabled)
 	enemy_wave_enabled = cfg.get_value("enemies", "wave", enemy_wave_enabled)
 	enemy_smart_enabled = cfg.get_value("enemies", "smart", enemy_smart_enabled)
+	enemy_boss_enabled = cfg.get_value("enemies", "boss", enemy_boss_enabled)

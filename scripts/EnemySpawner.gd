@@ -7,6 +7,7 @@ extends Node2D
 @export var enemy_scene: PackedScene
 @export var enemy_wave_scene: PackedScene
 @export var enemy_smart_scene: PackedScene
+@export var boss_scene: PackedScene
 @export var spawn_interval: float = 2.25
 @export var min_interval: float = 0.70
 @export var ramp_per_wave: float = 0.018
@@ -15,6 +16,7 @@ extends Node2D
 var _timer: float = 0.0
 var _interval: float
 var _elapsed: float = 0.0
+var _next_boss_time: float = 150.0
 
 func _ready() -> void:
 	_interval = spawn_interval
@@ -23,11 +25,20 @@ func _physics_process(delta: float) -> void:
 	if not GameSession.is_running:
 		return
 	_elapsed += delta
+	if Settings.enemy_boss_enabled and boss_scene != null and _elapsed >= _next_boss_time:
+		_spawn_boss()
+		_next_boss_time += 150.0
 	_timer -= delta
 	if _timer <= 0.0:
 		_timer = _interval
 		_interval = maxf(min_interval, _interval - ramp_per_wave)
 		_spawn()
+
+func _spawn_boss() -> void:
+	var boss := boss_scene.instantiate()
+	get_parent().add_child(boss)
+	var side: float = -1.0 if randf() < 0.5 else 1.0
+	boss.global_position = Vector2(side * edge.x, randf_range(-edge.y * 0.45, edge.y * 0.45))
 
 func _spawn() -> void:
 	var scene := _pick_scene()

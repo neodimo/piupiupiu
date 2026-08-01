@@ -80,6 +80,10 @@ func _ready() -> void:
 		Settings.fx_lens_distortion = v
 		_reapply())
 
+	_title(vbox, "PLAYER FEEL", 40)
+	_slider(vbox, "Grid Distortion", Settings.player_distortion, 4.0, 35.0, 0.5, func(v):
+		Settings.player_distortion = v)
+
 	_title(vbox, "ENEMY TESTING", 40)
 	_toggle(vbox, "Basic / Green", Settings.enemy_basic_enabled, func(on):
 		Settings.enemy_basic_enabled = on)
@@ -87,6 +91,8 @@ func _ready() -> void:
 		Settings.enemy_wave_enabled = on)
 	_toggle(vbox, "Smart", Settings.enemy_smart_enabled, func(on):
 		Settings.enemy_smart_enabled = on)
+	_toggle(vbox, "Boss: Prism Warden", Settings.enemy_boss_enabled, func(on):
+		Settings.enemy_boss_enabled = on)
 
 	_title(vbox, "DEBUG", 40)
 	_toggle(vbox, "God Mode", Settings.god_mode, func(on): Settings.god_mode = on)
@@ -120,7 +126,7 @@ func _slider(parent: Node, name: String, value: float, lo: float, hi: float, ste
 	row.add_theme_constant_override("separation", 24)
 	var lbl := Label.new()
 	lbl.text = name
-	lbl.custom_minimum_size = Vector2(300, 0)
+	lbl.custom_minimum_size = Vector2(390, 0)
 	lbl.add_theme_font_size_override("font_size", 40)
 	row.add_child(lbl)
 	var s := HSlider.new()
@@ -148,14 +154,28 @@ func _toggle(parent: Node, name: String, value: bool, on_change: Callable) -> vo
 	row.add_theme_constant_override("separation", 24)
 	var lbl := Label.new()
 	lbl.text = name
-	lbl.custom_minimum_size = Vector2(300, 0)
+	lbl.custom_minimum_size = Vector2(580, 0)
 	lbl.add_theme_font_size_override("font_size", 40)
 	row.add_child(lbl)
 	var chk := CheckButton.new()
+	chk.custom_minimum_size = Vector2(160, 88)
+	chk.add_theme_icon_override("checked", _toggle_icon(true))
+	chk.add_theme_icon_override("unchecked", _toggle_icon(false))
 	chk.button_pressed = value
 	chk.toggled.connect(func(on): on_change.call(on))
 	row.add_child(chk)
 	parent.add_child(row)
+
+func _toggle_icon(on: bool) -> ImageTexture:
+	var img := Image.create(130, 72, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0.10, 0.14, 0.24, 1.0) if not on else Color(0.18, 0.75, 0.55, 1.0))
+	var knob_x := 95 if on else 35
+	for y in 72:
+		for x in 130:
+			var d := Vector2(x, y).distance_to(Vector2(knob_x, 36))
+			if d < 27:
+				img.set_pixel(x, y, Color(0.92, 0.98, 1.0, 1.0))
+	return ImageTexture.create_from_image(img)
 
 func _on_back() -> void:
 	Settings.save_settings()

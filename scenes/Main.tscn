@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/SpringGrid.gd" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://art/post_fx.gdshader" id="9"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="10"]
 [ext_resource type="Script" path="res://scripts/ArenaCamera.gd" id="11"]
+[ext_resource type="PackedScene" path="res://scenes/Boss.tscn" id="12"]
 
 [sub_resource type="Environment" id="env1"]
 background_mode = 3
@@ -58,6 +59,7 @@ emitter_scene = ExtResource("8")
 enemy_scene = ExtResource("5")
 enemy_wave_scene = ExtResource("6")
 enemy_smart_scene = ExtResource("7")
+boss_scene = ExtResource("12")
 
 [node name="PostFX" type="CanvasLayer" parent="."]
 layer = 1
