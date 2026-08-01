@@ -21,8 +21,10 @@ var _joy_vec: Vector2          # current stick vector, magnitude 0..1
 var _dragging: bool = false
 var _fire_cooldown: float = 0.0
 var _alive: bool = true
-var _shot_count: int = 1      # increases on even levels
-var _cur_fire_period: float   # decreases on odd levels
+var _shot_count: int = 1
+var _cur_fire_period: float
+var _drone_count: int = 0
+var _drone_ring: Node2D
 
 func _ready() -> void:
 	instance = self
@@ -32,13 +34,18 @@ func _ready() -> void:
 	var sprite := $Sprite as AnimatedSprite2D
 	sprite.sprite_frames = SheetAnim.build(load("res://art/player_sheet.png"), 36, 18.0)
 	sprite.play("default")
-	GameSession.leveled_up.connect(_on_level_up)
+	_drone_ring = DroneRing.new()
+	add_child(_drone_ring)
 
-func _on_level_up(lv: int) -> void:
-	if lv % 2 == 1:
-		_cur_fire_period = maxf(0.10, _cur_fire_period - 0.03)
-	else:
-		_shot_count = min(_shot_count + 1, 5)
+func apply_upgrade(kind: String) -> void:
+	match kind:
+		"drone":
+			_drone_count = min(_drone_count + 1, 4)
+			_drone_ring.count = _drone_count
+		"spread":
+			_shot_count = min(_shot_count + 1, 5)
+		"overcharge":
+			_cur_fire_period = maxf(0.10, _cur_fire_period * 0.84)
 
 ## Floating virtual joystick: wherever a touch begins becomes the stick centre;
 ## the offset of the finger from that centre (clamped to joystick_radius) drives
@@ -137,6 +144,18 @@ func _fire() -> void:
 		get_parent().add_child(shot)
 		shot.global_position = global_position
 		shot.setup(dir)
+	# Orbit drones visibly escort the ship and fire independently from their
+	# current positions. One upgrade therefore changes both the silhouette and
+	# the combat pattern.
+	for i in _drone_count:
+		var drone_pos: Vector2 = _drone_ring.drone_position(i)
+		var drone_dir: Vector2 = base_dir
+		if enemy != null:
+			drone_dir = (enemy.global_position - drone_pos).normalized()
+		var drone_shot := projectile_scene.instantiate()
+		get_parent().add_child(drone_shot)
+		drone_shot.global_position = drone_pos
+		drone_shot.setup(drone_dir)
 
 func _nearest_enemy() -> Node2D:
 	var best: Node2D = null
@@ -168,3 +187,26 @@ func hit() -> void:
 	Settings.buzz(150)
 	died.emit()
 	GameSession.end_run()
+
+class DroneRing extends Node2D:
+	var count: int = 0:
+		set(value):
+			count = value
+			queue_redraw()
+	var phase: float = 0.0
+
+	func _process(delta: float) -> void:
+		phase += delta * 2.4
+		queue_redraw()
+
+	func drone_position(index: int) -> Vector2:
+		if count <= 0:
+			return global_position
+		return global_position + Vector2.from_angle(phase + TAU * index / count) * 105.0
+
+	func _draw() -> void:
+		for i in count:
+			var p := Vector2.from_angle(phase + TAU * i / count) * 105.0
+			draw_circle(p, 17.0, Color(1.4, 0.45, 2.0, 0.24))
+			draw_circle(p, 9.0, Color(1.7, 0.65, 2.3, 1.0))
+			draw_arc(p, 19.0, phase, phase + PI * 1.4, 16, Color(0.5, 1.4, 2.2, 0.9), 2.5)

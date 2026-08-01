@@ -11,7 +11,9 @@ var _score_label: Label
 var _gameover_label: Label
 var _exp_bar: ProgressBar
 var _levelup_label: Label
+var _level_label: Label
 var _bgm: AudioStreamPlayer
+var _upgrade_menu: UpgradeMenu
 
 func _ready() -> void:
 	instance = self
@@ -25,6 +27,10 @@ func _ready() -> void:
 	_gameover_label = $HUD/GameOver
 	_exp_bar = $HUD/ExpBar
 	_levelup_label = $HUD/LevelUp
+	_level_label = $HUD/Level
+	_upgrade_menu = UpgradeMenu.new()
+	add_child(_upgrade_menu)
+	_upgrade_menu.chosen.connect(_on_upgrade_chosen)
 	_gameover_label.visible = false
 	_on_score_changed(0, 1)
 	if demo_mode:
@@ -103,12 +109,21 @@ func _on_exp_changed(current_exp: int, required_exp: int, _lv: int) -> void:
 	if _exp_bar:
 		_exp_bar.max_value = required_exp
 		_exp_bar.value = current_exp
+	if _level_label:
+		_level_label.text = "LV %d" % _lv
 
-func _on_leveled_up(_lv: int) -> void:
+func _on_leveled_up(lv: int) -> void:
 	if _levelup_label:
 		_levelup_label.modulate.a = 1.0
 		var t := create_tween()
 		t.tween_property(_levelup_label, "modulate:a", 0.0, 1.4)
+	if not demo_mode and _upgrade_menu:
+		_upgrade_menu.present(lv)
+
+func _on_upgrade_chosen(kind: String) -> void:
+	var player := get_node_or_null("Player") as Player
+	if player:
+		player.apply_upgrade(kind)
 
 func _on_game_over() -> void:
 	if _bgm:

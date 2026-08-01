@@ -1,15 +1,15 @@
 extends Node2D
 ## Wave spawner — places emitter pods at the arena edges; each pod telegraphs
-## then ejects its enemy(s) inward. basic-only early; wave enemies join at 20s
-## (ejected as an edge formation); smart enemies at 60s.
+## then ejects its enemy(s) inward. The opening is deliberately roomy: basic
+## enemies establish the rhythm before formations and smart enemies arrive.
 
 @export var emitter_scene: PackedScene
 @export var enemy_scene: PackedScene
 @export var enemy_wave_scene: PackedScene
 @export var enemy_smart_scene: PackedScene
-@export var spawn_interval: float = 1.4
-@export var min_interval: float = 0.32
-@export var ramp_per_wave: float = 0.035
+@export var spawn_interval: float = 2.25
+@export var min_interval: float = 0.70
+@export var ramp_per_wave: float = 0.018
 @export var edge: Vector2 = Vector2(950, 1750)
 
 var _timer: float = 0.0
@@ -87,8 +87,10 @@ func _pick_scene() -> PackedScene:
 	var smart_ok := Settings.enemy_smart_enabled and enemy_smart_scene != null
 	if not basic_ok and not wave_ok and not smart_ok:
 		return null
-	var wave_w := clampf((_elapsed - 20.0) / 40.0, 0.0, 0.35)
-	var smart_w := clampf((_elapsed - 60.0) / 60.0, 0.0, 0.25)
+	# Let players learn the base chase first. New enemy families arrive as
+	# readable events instead of piling into the first frantic minute.
+	var wave_w := clampf((_elapsed - 48.0) / 75.0, 0.0, 0.30)
+	var smart_w := clampf((_elapsed - 115.0) / 100.0, 0.0, 0.20)
 	var r := randf()
 	if r < smart_w and smart_ok:
 		return enemy_smart_scene

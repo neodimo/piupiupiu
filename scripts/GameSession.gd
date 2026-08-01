@@ -17,7 +17,7 @@ var is_running: bool = true
 
 var exp: int = 0
 var level: int = 0
-var _exp_required: int = 8
+var _exp_required: int = 12
 
 var _mult_timer: float = 0.0
 
@@ -40,7 +40,7 @@ func reset() -> void:
 	_mult_timer = 0.0
 	exp = 0
 	level = 0
-	_exp_required = 8
+	_exp_required = 12
 	score_changed.emit(current_score, multiplier)
 	exp_changed.emit(0, _exp_required, 0)
 
@@ -59,7 +59,7 @@ func _add_exp(amount: int) -> void:
 	if exp >= _exp_required:
 		exp -= _exp_required
 		level += 1
-		_exp_required = 8 + level * 4
+		_exp_required = 12 + level * 6
 		leveled_up.emit(level)
 	exp_changed.emit(exp, _exp_required, level)
 
