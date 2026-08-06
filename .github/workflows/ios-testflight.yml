@@ -73,11 +73,11 @@ jobs:
           bundle exec fastlane ios beta
 
       - name: Keep IPA for inspection
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: piupiupiu-ipa
           path: |
             **/*.ipa
           if-no-files-found: warn
-          retention-days: 7
+          retention-days: 2
