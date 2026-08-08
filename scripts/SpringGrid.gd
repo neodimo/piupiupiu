@@ -13,11 +13,13 @@ extends Node2D
 @export var rows: int = 72
 @export var spacing: float = 50.0
 @export var arena_half: Vector2 = Vector2(950.0, 1750.0)
-@export var stiffness: float = 28.0      # pull back toward rest
-@export var link_stiffness: float = 12.0 # pull toward neighbours
-@export var damping: float = 4.0
+@export var stiffness: float = 19.0      # slow, weighty pull back toward rest
+@export var link_stiffness: float = 17.0 # carries shockwaves through the mesh
+@export var damping: float = 1.35        # deliberately under-damped: big elastic recoil
+@export var impulse_gain: float = 3.2    # every gameplay hit lands with real force
+@export var falloff_power: float = 1.65  # smooth edge rather than a hard impulse ring
 ## Displacement (px) at which a line reaches full hot colour.
-@export var color_energy_scale: float = 90.0
+@export var color_energy_scale: float = 360.0
 @export var rest_color: Color = Color(0.12, 0.28, 0.75, 0.45)
 
 var _rest: PackedVector2Array = PackedVector2Array()
@@ -47,8 +49,11 @@ func disturb(world_pos: Vector2, strength: float, radius: float = 260.0) -> void
 		var d := _pos[i] - local
 		var dist := d.length()
 		if dist < radius and dist > 0.001:
-			var falloff := 1.0 - dist / radius
-			_vel[i] += d.normalized() * strength * falloff
+			# The exponent gives the wave a soft, continuous edge. Combined with
+			# low damping this creates a large wobbling pocket instead of a small
+			# one-frame dent.
+			var falloff := pow(1.0 - dist / radius, falloff_power)
+			_vel[i] += d.normalized() * strength * impulse_gain * falloff
 
 func _physics_process(delta: float) -> void:
 	var n := _pos.size()
@@ -85,18 +90,15 @@ func _disp(i: int) -> float:
 ## Rest → dim blue; energetic → saturated cyan/green/yellow boosted past 1.0
 ## so bloom catches it. This is the "colourful and amazing" grid feel.
 func _line_color(energy: float, mid: Vector2) -> Color:
-	var e := clampf(energy / color_energy_scale, 0.0, 1.0)
-	if e <= 0.001:
-		return rest_color
-	# Hue sweeps the FULL colour wheel over time + space (not tied to energy),
-	# so disturbances shimmer through the whole rainbow — psychedelic, not green.
-	var hue := fposmod(_hue_time * 0.35 + mid.length() * 0.0017 + mid.x * 0.0007, 1.0)
-	var c := Color.from_hsv(hue, 0.92, 1.0)
-	var boost := 1.0 + e * e * 2.8
-	c.r *= boost
-	c.g *= boost
-	c.b *= boost
-	c.a = lerpf(rest_color.a, 1.0, e)
+	# An exponential response avoids a colour cliff: even a tiny displacement
+	# gently lifts the resting blue, while hard impacts travel continuously all
+	# the way through cyan, green, yellow, and hot pink.
+	var e := 1.0 - exp(-energy / color_energy_scale)
+	var gradient := smoothstep(0.0, 1.0, e)
+	var hue := lerpf(0.62, 0.92, pow(e, 0.78))
+	var c := Color.from_hsv(hue, lerpf(0.50, 0.94, gradient), 1.0 + gradient * gradient * 2.8)
+	c = rest_color.lerp(c, gradient)
+	c.a = lerpf(rest_color.a, 1.0, gradient)
 	return c
 
 func _draw() -> void:

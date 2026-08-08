@@ -231,6 +231,9 @@ static func spawn_mult_bits(pos: Vector2, count_min: int = 1, count_max: int = 5
 static func spawn_explosion(pos: Vector2) -> void:
 	if instance == null:
 		return
+	var grid := instance.get_tree().get_first_node_in_group("spring_grid")
+	if grid != null and grid.has_method("disturb"):
+		grid.disturb(pos, 1600.0, 420.0)
 	var p := CPUParticles2D.new()
 	p.global_position = pos
 	p.emitting = true

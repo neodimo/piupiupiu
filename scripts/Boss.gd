@@ -33,6 +33,9 @@ func take_damage(amount: float) -> void:
 	_health -= amount
 	if _health <= 0.0:
 		GameSession.add_points(points)
+		var grid := get_tree().get_first_node_in_group("spring_grid")
+		if grid and grid.has_method("disturb"):
+			grid.disturb(global_position, 6200.0, 700.0)
 		Main.spawn_death_vfx(global_position, Color(2.4, 0.45, 1.9), true)
 		Main.spawn_score_popup(global_position, points * GameSession.multiplier, Color(2.5, 0.8, 2.0))
 		Main.spawn_mult_bits(global_position, 12, 18)
