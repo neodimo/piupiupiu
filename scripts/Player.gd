@@ -27,6 +27,7 @@ var _drone_count: int = 0
 var _drone_ring: Node2D
 var _projectile_damage: float = 50.0
 var _projectile_pierce: int = 0
+var _trail: PlayerTrail
 
 func _ready() -> void:
 	instance = self
@@ -38,6 +39,10 @@ func _ready() -> void:
 	sprite.play("default")
 	_drone_ring = DroneRing.new()
 	add_child(_drone_ring)
+	_trail = PlayerTrail.new()
+	_trail.z_index = -2
+	add_child(_trail)
+	_trail.track(global_position, 0.0)
 
 func apply_upgrade(kind: String) -> void:
 	match kind:
@@ -106,6 +111,7 @@ func _physics_process(delta: float) -> void:
 		var grid := get_tree().get_first_node_in_group("spring_grid")
 		if grid != null and grid.has_method("disturb"):
 			grid.disturb(global_position, moved * Settings.player_distortion, clampf(45.0 + Settings.player_distortion * 2.2, 55.0, 125.0))
+	_trail.track(global_position, delta)
 
 	_fire_cooldown -= delta
 	if _fire_cooldown <= 0.0:
@@ -219,3 +225,43 @@ class DroneRing extends Node2D:
 			draw_circle(p, 17.0, Color(1.4, 0.45, 2.0, 0.24))
 			draw_circle(p, 9.0, Color(1.7, 0.65, 2.3, 1.0))
 			draw_arc(p, 19.0, phase, phase + PI * 1.4, 16, Color(0.5, 1.4, 2.2, 0.9), 2.5)
+
+## Long, tapered HDR ribbon made from recent player positions. The bright head
+## and soft magenta/cyan wake are caught by the WorldEnvironment bloom.
+class PlayerTrail extends Node2D:
+	const MAX_AGE := 1.45
+	const SAMPLE_TIME := 0.035
+	const MAX_POINTS := 54
+	var _points: Array[Vector2] = []
+	var _ages: Array[float] = []
+	var _sample_timer := 0.0
+
+	func track(world_pos: Vector2, delta: float) -> void:
+		for i in _ages.size():
+			_ages[i] += delta
+		_sample_timer += delta
+		var needs_sample := _points.is_empty() or _sample_timer >= SAMPLE_TIME
+		if needs_sample:
+			_points.push_front(to_local(world_pos))
+			_ages.push_front(0.0)
+			_sample_timer = 0.0
+		while _points.size() > MAX_POINTS or (not _ages.is_empty() and _ages[-1] > MAX_AGE):
+			_points.pop_back()
+			_ages.pop_back()
+		queue_redraw()
+
+	func _draw() -> void:
+		if _points.size() < 2:
+			return
+		for i in _points.size() - 1:
+			var t := clampf(_ages[i] / MAX_AGE, 0.0, 1.0)
+			var alpha := pow(1.0 - t, 1.55)
+			var width := lerpf(26.0, 1.5, t)
+			var color := Color(0.32 + t * 0.9, 1.25 - t * 0.55, 2.0, alpha * 0.74)
+			# Wide translucent pass becomes the soft neon halo; the narrow core
+			# keeps the wake clean and fast rather than smoky.
+			draw_line(_points[i], _points[i + 1], Color(color.r, color.g, color.b, alpha * 0.16), width * 2.7, true)
+			draw_line(_points[i], _points[i + 1], color, width, true)
+		if _ages[0] < 0.16:
+			var head_alpha := 1.0 - _ages[0] / 0.16
+			draw_circle(_points[0], 22.0 * head_alpha, Color(0.45, 1.4, 2.4, head_alpha * 0.2))
